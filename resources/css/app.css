@@ -1,0 +1,67 @@
+@import 'tailwindcss';
+@import '../../vendor/tallstackui/tallstackui/css/v4.css';
+
+@source '../views';
+@source '../../vendor/tallstackui/tallstackui/**/*.php';
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@plugin '@tailwindcss/forms';
+
+/* ─── Tech / Industrial utilities ─────────────────────────────── */
+.bg-tech-grid {
+    background-color: #03080f;
+    background-image:
+        linear-gradient(rgba(0, 86, 150, 0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 86, 150, 0.07) 1px, transparent 1px);
+    background-size: 52px 52px;
+}
+
+.bg-tech-grid-light {
+    background-color: #f8fafc;
+    background-image:
+        linear-gradient(rgba(0, 86, 150, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 86, 150, 0.06) 1px, transparent 1px);
+    background-size: 40px 40px;
+}
+
+.text-gradient-blue {
+    background: linear-gradient(135deg, #ffffff 0%, #80B8E4 55%, #005696 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.card-glow:hover {
+    box-shadow: 0 0 0 1px rgba(0, 86, 150, 0.4),
+                0 8px 40px rgba(0, 86, 150, 0.2);
+}
+
+.stat-glow {
+    text-shadow: 0 0 30px rgba(0, 86, 150, 0.6);
+}
+
+@theme {
+    --font-sans: 'Roboto', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-display: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+
+    /* Azul Estrutural — cor principal da marca (#005696) */
+    --color-primary-50:  #E5F1FA;
+    --color-primary-100: #B3D5EF;
+    --color-primary-200: #80B8E4;
+    --color-primary-300: #4D9BD8;
+    --color-primary-400: #1A7ECD;
+    --color-primary-500: #0068B5;
+    --color-primary-600: #005696;
+    --color-primary-700: #004478;
+    --color-primary-800: #00325A;
+    --color-primary-900: #00203C;
+    --color-primary-950: #00101E;
+
+    /* Cinza Carvão — textos e símbolo */
+    --color-charcoal: #333333;
+
+    /* Cinza Alumínio — detalhes e planos de fundo */
+    --color-aluminum: #D8D9DA;
+}
