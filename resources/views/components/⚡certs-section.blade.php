@@ -18,8 +18,8 @@ new class extends Component
 <section id="certifications" class="py-20 bg-white">
     <div class="max-w-7xl mx-auto px-6">
 
-        <p class="text-xs font-medium tracking-widest text-blue-500 uppercase mb-2">Quality Assurance</p>
-        <h2 class="text-3xl font-medium text-blue-900 mb-12">Our Certifications</h2>
+        <p class="text-xs font-medium tracking-widest text-blue-500 uppercase mb-2">Qualidade</p>
+        <h2 class="text-3xl font-medium text-blue-900 mb-12">Nossas Certificações</h2>    
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             @forelse ($this->certifications as $cert)
@@ -50,17 +50,17 @@ new class extends Component
                     <div class="flex items-center justify-between mt-3">
                         <div class="text-xs text-gray-500">
                             @if ($cert->issued_at)
-                                Issued: {{ $cert->issued_at->format('M Y') }}
+                                Emitido em: {{ $cert->issued_at->format('M Y') }}
                             @endif
                         </div>
                         @if ($cert->expires_at)
                             @if ($cert->isExpired())
-                                <x-badge color="danger" text="Expired" />
+                                <x-badge color="danger" text="Expirado" />
                             @else
-                                <x-badge color="success" text="Valid until {{ $cert->expires_at->format('M Y') }}" />
+                                <x-badge color="success" text="Válido até {{ $cert->expires_at->format('M Y') }}" />
                             @endif
                         @else
-                            <x-badge color="success" text="No expiry" />
+                            <x-badge color="success" text="Sem expiração" />
                         @endif
                     </div>
 
@@ -72,14 +72,14 @@ new class extends Component
                                 class="inline-flex items-center gap-1 text-xs text-blue-600 hover:text-blue-800 transition"
                             >
                                 <x-icon name="document-arrow-down" class="w-4 h-4" />
-                                View Certificate
+                                Ver Certificado
                             </a>
                         </div>
                     @endif
                 </x-card>
             @empty
                 <div class="col-span-full text-center py-16 text-gray-400 text-sm">
-                    No certifications listed yet.
+                    Nenhuma certificação listada ainda.
                 </div>
             @endforelse
         </div>

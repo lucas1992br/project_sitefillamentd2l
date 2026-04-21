@@ -1,5 +1,7 @@
 <?php
 
+use App\Mail\QuoteRequestMail;
+use App\Models\SiteContent;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 use TallStackUi\Traits\Interactions;
@@ -32,18 +34,60 @@ new class extends Component
     {
         $this->validate();
 
-        // TODO: queue a mail job
-        \Illuminate\Support\Facades\Mail::raw(
-            "Solicitação de orçamento de {$this->name} ({$this->email})\n\n" .
-            "Empresa: {$this->company}\nTelefone: {$this->phone}\nServiço: {$this->service}\n\n{$this->message}",
-            fn ($m) => $m->to(config('mail.from.address'))->subject('Nova Solicitação de Orçamento')
-        );
+        $site = SiteContent::instance();
+
+        if (! $site->contact_email) {
+            $this->toast()->error('Configuração pendente', 'O e-mail de destino ainda não foi configurado pelo administrador.')->send();
+            return;
+        }
+
+        $this->applySmtpSettings($site);
+
+        $serviceLabels = [
+            'cnc-turning' => 'Torneamento CNC',
+            'cnc-milling' => 'Fresamento CNC',
+            'welding'     => 'Soldagem',
+            'finishing'   => 'Acabamento Superficial',
+            'other'       => 'Outro',
+        ];
+
+        \Illuminate\Support\Facades\Mail::to($site->contact_email)
+            ->send(new QuoteRequestMail(
+                senderName:  $this->name,
+                senderEmail: $this->email,
+                phone:       $this->phone,
+                company:     $this->company,
+                service:     $serviceLabels[$this->service] ?? $this->service,
+                messageBody: $this->message,
+            ));
 
         $this->submitted = true;
 
         $this->toast()->success('Solicitação enviada!', 'Retornaremos em até 24 horas úteis.')->send();
 
         $this->reset(['name', 'email', 'phone', 'company', 'service', 'message']);
+    }
+
+    private function applySmtpSettings(SiteContent $site): void
+    {
+        if (! $site->smtp_host) {
+            return;
+        }
+
+        $encryption = $site->smtp_encryption ?: 'tls';
+        $port = $site->smtp_port ?? 587;
+
+        config([
+            'mail.mailers.smtp.host'       => $site->smtp_host,
+            'mail.mailers.smtp.port'       => $port,
+            'mail.mailers.smtp.encryption' => $encryption,
+            'mail.mailers.smtp.scheme'     => ($encryption === 'ssl' || $port == 465) ? 'smtps' : null,
+            'mail.mailers.smtp.username'   => $site->smtp_username,
+            'mail.mailers.smtp.password'   => $site->smtp_password,
+            'mail.from.address'            => $site->mail_from_address ?: $site->smtp_username,
+            'mail.from.name'               => $site->mail_from_name ?: config('app.name'),
+            'mail.default'                 => 'smtp',
+        ]);
     }
 };
 ?>
@@ -54,9 +98,9 @@ new class extends Component
             <div class="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-4">
                 <x-icon name="check-circle" class="w-8 h-8 text-green-600" />
             </div>
-            <h3 class="text-lg font-semibold text-blue-900 mb-2">Obrigado!</h3>
-            <p class="text-sm text-gray-500">Sua solicitação foi recebida. Entraremos em contato em breve.</p>
-            <button wire:click="$set('submitted', false)" class="mt-6 text-sm text-blue-600 hover:underline">
+            <h3 class="text-lg font-semibold text-white mb-2">Obrigado!</h3>
+            <p class="text-sm text-slate-400">Sua solicitação foi recebida. Entraremos em contato em breve.</p>
+            <button wire:click="$set('submitted', false)" class="mt-6 text-sm text-blue-400 hover:underline">
                 Enviar outra solicitação
             </button>
         </div>
@@ -69,9 +113,9 @@ new class extends Component
                         wire:model="name"
                         type="text"
                         placeholder="João Silva"
-                        class="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        class="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     >
-                    @error('name') <p class="text-xs text-red-500 mt-1">{{ $message }}</p> @enderror
+                    @error('name') <p class="text-xs text-red-400 mt-1">{{ $message }}</p> @enderror
                 </div>
 
                 <div>
@@ -80,9 +124,9 @@ new class extends Component
                         wire:model="email"
                         type="email"
                         placeholder="joao@empresa.com.br"
-                        class="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        class="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     >
-                    @error('email') <p class="text-xs text-red-500 mt-1">{{ $message }}</p> @enderror
+                    @error('email') <p class="text-xs text-red-400 mt-1">{{ $message }}</p> @enderror
                 </div>
 
                 <div>
@@ -90,10 +134,10 @@ new class extends Component
                     <input
                         wire:model="phone"
                         type="tel"
-                        placeholder="+55 (11) 00000-0000"
-                        class="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        placeholder="+55 (12) 99751-7673"
+                        class="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     >
-                    @error('phone') <p class="text-xs text-red-500 mt-1">{{ $message }}</p> @enderror
+                    @error('phone') <p class="text-xs text-red-400 mt-1">{{ $message }}</p> @enderror
                 </div>
 
                 <div>
@@ -102,9 +146,9 @@ new class extends Component
                         wire:model="company"
                         type="text"
                         placeholder="Empresa Ltda"
-                        class="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        class="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     >
-                    @error('company') <p class="text-xs text-red-500 mt-1">{{ $message }}</p> @enderror
+                    @error('company') <p class="text-xs text-red-400 mt-1">{{ $message }}</p> @enderror
                 </div>
             </div>
 
@@ -112,7 +156,7 @@ new class extends Component
                 <label class="block text-xs font-medium text-white mb-1">Serviço Necessário *</label>
                 <select
                     wire:model="service"
-                    class="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    class="w-full rounded-lg border border-white/10 bg-slate-800 px-3 py-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
                     <option value="">Selecione um serviço…</option>
                     <option value="cnc-turning">Torneamento CNC</option>
@@ -121,7 +165,7 @@ new class extends Component
                     <option value="finishing">Acabamento Superficial</option>
                     <option value="other">Outro</option>
                 </select>
-                @error('service') <p class="text-xs text-red-500 mt-1">{{ $message }}</p> @enderror
+                @error('service') <p class="text-xs text-red-400 mt-1">{{ $message }}</p> @enderror
             </div>
 
             <div>
@@ -130,9 +174,9 @@ new class extends Component
                     wire:model="message"
                     rows="5"
                     placeholder="Descreva sua peça, material, tolerâncias, quantidade e prazo…"
-                    class="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+                    class="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
                 ></textarea>
-                @error('message') <p class="text-xs text-red-500 mt-1">{{ $message }}</p> @enderror
+                @error('message') <p class="text-xs text-red-400 mt-1">{{ $message }}</p> @enderror
             </div>
 
             <x-button

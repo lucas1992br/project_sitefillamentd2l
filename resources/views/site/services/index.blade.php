@@ -1,16 +1,16 @@
 @extends('layouts.site')
 
-@section('title', 'Services — ' . config('app.name'))
-@section('description', 'Full-range industrial CNC machining services: turning, milling, welding and surface finishing.')
+@section('title', 'Serviços — ' . config('app.name'))
+@section('description', 'Serviços completos de usinagem industrial CNC: torneamento, fresamento, soldagem e acabamento de superfície.')
 
 @section('content')
 
     <section class="bg-blue-950 text-white py-16">
         <div class="max-w-7xl mx-auto px-6">
-            <p class="text-xs font-medium tracking-widest text-blue-300 uppercase mb-3">What We Do</p>
-            <h1 class="text-4xl font-bold mb-4">Our Services</h1>
+            <p class="text-xs font-medium tracking-widest text-blue-300 uppercase mb-3">Serviços</p>
+            <h1 class="text-4xl font-bold mb-4">Serviços</h1>
             <p class="text-blue-200 max-w-xl leading-relaxed">
-                Complete industrial capability — from raw material to finished part.
+                Serviços completos de usinagem industrial CNC: torneamento, fresamento, soldagem e acabamento de superfície.
             </p>
         </div>
     </section>
@@ -44,12 +44,12 @@
     {{-- CTA --}}
     <section class="py-16 bg-blue-900 text-white text-center">
         <div class="max-w-2xl mx-auto px-6">
-            <h2 class="text-2xl font-bold mb-3">Need a custom part?</h2>
-            <p class="text-blue-200 mb-8">Tell us about your project and we'll get back with a quote.</p>
+            <h2 class="text-2xl font-bold mb-3">Precisa de uma peça personalizada?</h2>
+            <p class="text-blue-200 mb-8">Fale sobre seu projeto e retornaremos com um orçamento.</p>
             <x-button
                 href="{{ route('contact') }}"
                 color="white"
-                text="Request a Quote"
+                text="Solicitar Orçamento"
                 class="rounded-full px-10"
             />
         </div>

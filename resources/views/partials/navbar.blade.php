@@ -27,21 +27,12 @@
         </a>
 
         <div class="hidden md:flex items-center gap-7">
-            @if(request()->routeIs('home'))
-                <a href="#quem-somos"      class="text-xs font-medium text-blue-200/80 hover:text-white transition tracking-wide uppercase">Quem Somos</a>
-                <a href="#services"        class="text-xs font-medium text-blue-200/80 hover:text-white transition tracking-wide uppercase">Serviços</a>
-                <a href="#portfolio"       class="text-xs font-medium text-blue-200/80 hover:text-white transition tracking-wide uppercase">Portfólio</a>
-                <a href="{{ route('catalog.index') }}"       class="text-xs font-medium text-blue-200/80 hover:text-white transition tracking-wide uppercase">Catálogo</a>
-                <a href="#certifications"  class="text-xs font-medium text-blue-200/80 hover:text-white transition tracking-wide uppercase">Certificações</a>
-                <a href="#contact"         class="text-xs font-medium text-blue-200/80 hover:text-white transition tracking-wide uppercase">Contato</a>
-            @else
-                <a href="{{ route('home') }}#quem-somos"     class="text-xs font-medium text-blue-200/80 hover:text-white transition tracking-wide uppercase">Quem Somos</a>
-                <a href="{{ route('services.index') }}"      class="text-xs font-medium text-blue-200/80 hover:text-white transition tracking-wide uppercase">Serviços</a>
-                <a href="{{ route('portfolio.index') }}"     class="text-xs font-medium text-blue-200/80 hover:text-white transition tracking-wide uppercase">Portfólio</a>
-                <a href="{{ route('catalog.index') }}"       class="text-xs font-medium text-blue-200/80 hover:text-white transition tracking-wide uppercase">Catálogo</a>
-                <a href="{{ route('certifications.index') }}" class="text-xs font-medium text-blue-200/80 hover:text-white transition tracking-wide uppercase">Certificações</a>
-                <a href="{{ route('contact') }}"             class="text-xs font-medium text-blue-200/80 hover:text-white transition tracking-wide uppercase">Contato</a>
-            @endif
+            <a href="{{ route('home') }}#quem-somos"      class="text-xs font-medium text-blue-200/80 hover:text-white transition tracking-wide uppercase">Quem Somos</a>
+            <a href="{{ route('home') }}#services"        class="text-xs font-medium text-blue-200/80 hover:text-white transition tracking-wide uppercase">Serviços</a>
+            <a href="{{ route('home') }}#portfolio"       class="text-xs font-medium text-blue-200/80 hover:text-white transition tracking-wide uppercase">Portfólio</a>
+            <a href="{{ route('home') }}#catalog"         class="text-xs font-medium text-blue-200/80 hover:text-white transition tracking-wide uppercase">Catálogo</a>
+            <a href="{{ route('home') }}#certifications"  class="text-xs font-medium text-blue-200/80 hover:text-white transition tracking-wide uppercase">Certificações</a>
+            <a href="{{ route('home') }}#contact"         class="text-xs font-medium text-blue-200/80 hover:text-white transition tracking-wide uppercase">Contato</a>
         </div>
 
         <a href="{{ request()->routeIs('home') ? '#contact' : route('contact') }}"
@@ -66,21 +57,12 @@
         x-transition:leave-end="opacity-0"
         class="md:hidden bg-slate-950/98 backdrop-blur-md border-t border-white/5 px-6 py-5 flex flex-col gap-4"
     >
-        @if(request()->routeIs('home'))
-            <a href="#quem-somos"     @click="mobileOpen=false" class="text-sm text-blue-200 hover:text-white transition">Quem Somos</a>
-            <a href="#services"       @click="mobileOpen=false" class="text-sm text-blue-200 hover:text-white transition">Serviços</a>
-            <a href="#portfolio"      @click="mobileOpen=false" class="text-sm text-blue-200 hover:text-white transition">Portfólio</a>
-            <a href="{{ route('catalog.index') }}"        @click="mobileOpen=false" class="text-sm text-blue-200 hover:text-white transition">Catálogo</a>
-            <a href="#certifications" @click="mobileOpen=false" class="text-sm text-blue-200 hover:text-white transition">Certificações</a>
-            <a href="#contact"        @click="mobileOpen=false" class="text-sm text-blue-200 hover:text-white transition">Contato</a>
-        @else
-            <a href="{{ route('home') }}#quem-somos"      class="text-sm text-blue-200 hover:text-white transition">Quem Somos</a>
-            <a href="{{ route('services.index') }}"       class="text-sm text-blue-200 hover:text-white transition">Serviços</a>
-            <a href="{{ route('portfolio.index') }}"      class="text-sm text-blue-200 hover:text-white transition">Portfólio</a>
-            <a href="{{ route('catalog.index') }}"        class="text-sm text-blue-200 hover:text-white transition">Catálogo</a>
-            <a href="{{ route('certifications.index') }}" class="text-sm text-blue-200 hover:text-white transition">Certificações</a>
-            <a href="{{ route('contact') }}"              class="text-sm text-blue-200 hover:text-white transition">Contato</a>
-        @endif
+        <a href="{{ route('home') }}#quem-somos"      @click="mobileOpen=false" class="text-sm text-blue-200 hover:text-white transition">Quem Somos</a>
+        <a href="{{ route('home') }}#services"        @click="mobileOpen=false" class="text-sm text-blue-200 hover:text-white transition">Serviços</a>
+        <a href="{{ route('home') }}#portfolio"       @click="mobileOpen=false" class="text-sm text-blue-200 hover:text-white transition">Portfólio</a>
+        <a href="{{ route('home') }}#catalog"         @click="mobileOpen=false" class="text-sm text-blue-200 hover:text-white transition">Catálogo</a>
+        <a href="{{ route('home') }}#certifications"  @click="mobileOpen=false" class="text-sm text-blue-200 hover:text-white transition">Certificações</a>
+        <a href="{{ route('home') }}#contact"         @click="mobileOpen=false" class="text-sm text-blue-200 hover:text-white transition">Contato</a>
         <a href="{{ request()->routeIs('home') ? '#contact' : route('contact') }}"
            @click="mobileOpen=false"
            class="mt-1 inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-blue-500 text-white text-sm font-semibold">

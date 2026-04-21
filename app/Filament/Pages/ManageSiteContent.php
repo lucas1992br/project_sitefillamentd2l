@@ -3,6 +3,8 @@
 namespace App\Filament\Pages;
 
 use App\Models\SiteContent;
+use Exception;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -49,6 +51,14 @@ class ManageSiteContent extends Page
             'google_tag_manager_id'      => $this->record->google_tag_manager_id,
             'google_search_console_meta' => $this->record->google_search_console_meta,
             'robots_index'               => $this->record->robots_index,
+            'contact_email'              => $this->record->contact_email,
+            'smtp_host'                  => $this->record->smtp_host,
+            'smtp_port'                  => $this->record->smtp_port,
+            'smtp_encryption'            => $this->record->smtp_encryption,
+            'smtp_username'              => $this->record->smtp_username,
+            'smtp_password'              => $this->record->smtp_password,
+            'mail_from_address'          => $this->record->mail_from_address,
+            'mail_from_name'             => $this->record->mail_from_name,
         ]);
     }
 
@@ -188,6 +198,78 @@ class ManageSiteContent extends Page
                     ])
                     ->columns(3),
 
+                Section::make('E-mail de Contato')
+                    ->description('Configurações para receber as mensagens do formulário de orçamento do site.')
+                    ->icon('heroicon-o-envelope')
+                    ->afterHeader([
+                        \Filament\Actions\Action::make('test_mail')
+                            ->label('Testar Conexão')
+                            ->icon('heroicon-o-paper-airplane')
+                            ->color('info')
+                            ->requiresConfirmation()
+                            ->modalHeading('Enviar e-mail de teste?')
+                            ->modalDescription('Um e-mail de teste será enviado para o endereço configurado em "E-mail de Destino" usando as credenciais SMTP salvas.')
+                            ->modalSubmitActionLabel('Enviar Agora')
+                            ->action(fn () => $this->testMailConnection()),
+                    ])
+                    ->schema([
+                        TextInput::make('contact_email')
+                            ->label('E-mail de Destino')
+                            ->helperText('Para este endereço serão enviadas as solicitações de orçamento recebidas pelo site.')
+                            ->email()
+                            ->required()
+                            ->maxLength(150)
+                            ->placeholder('contato@d2l.ind.br'),
+
+                        TextInput::make('smtp_host')
+                            ->label('Servidor SMTP (Host)')
+                            ->helperText('Ex: smtp.gmail.com · smtp.hostinger.com · smtp.office365.com')
+                            ->maxLength(255)
+                            ->placeholder('smtp.gmail.com'),
+
+                        TextInput::make('smtp_port')
+                            ->label('Porta SMTP')
+                            ->helperText('Gmail/TLS: 587 · SSL: 465')
+                            ->numeric()
+                            ->placeholder('587'),
+
+                        Select::make('smtp_encryption')
+                            ->label('Criptografia')
+                            ->options([
+                                'tls'  => 'TLS (recomendado)',
+                                'ssl'  => 'SSL',
+                                ''     => 'Nenhuma',
+                            ])
+                            ->default('tls'),
+
+                        TextInput::make('smtp_username')
+                            ->label('Usuário SMTP')
+                            ->helperText('Geralmente o próprio endereço de e-mail.')
+                            ->maxLength(150)
+                            ->placeholder('contato@d2l.ind.br'),
+
+                        TextInput::make('smtp_password')
+                            ->label('Senha SMTP / Senha de App')
+                            ->helperText('No Gmail, use uma "Senha de app" gerada em Segurança da conta Google.')
+                            ->password()
+                            ->revealable()
+                            ->maxLength(255),
+
+                        TextInput::make('mail_from_address')
+                            ->label('E-mail Remetente (From)')
+                            ->helperText('Endereço que aparece como remetente nos e-mails enviados. Deve ser o mesmo do usuário SMTP.')
+                            ->email()
+                            ->maxLength(150)
+                            ->placeholder('contato@d2l.ind.br'),
+
+                        TextInput::make('mail_from_name')
+                            ->label('Nome Remetente')
+                            ->helperText('Nome que aparece como remetente. Ex: D2L Soluções Metálicas')
+                            ->maxLength(100)
+                            ->placeholder('D2L Soluções Metálicas'),
+                    ])
+                    ->columns(2),
+
                 Section::make('SEO & Rastreamento')
                     ->description('Configurações de indexação, metadados e códigos de rastreamento do Google.')
                     ->icon('heroicon-o-magnifying-glass')
@@ -271,6 +353,70 @@ class ManageSiteContent extends Page
             ]);
     }
 
+    public function testMailConnection(): void
+    {
+        // Always read fresh from DB to avoid Livewire serialization losing field values
+        $site = SiteContent::query()->find(1);
+
+        if (! $site?->contact_email) {
+            Notification::make()->warning()->title('E-mail de destino não configurado.')->send();
+
+            return;
+        }
+
+        if (! $site->smtp_host) {
+            Notification::make()->warning()->title('Servidor SMTP não configurado.')->send();
+
+            return;
+        }
+
+        if (! $site->smtp_password) {
+            Notification::make()
+                ->warning()
+                ->title('Senha SMTP não encontrada no banco.')
+                ->body('Salve o formulário com a senha preenchida e tente novamente.')
+                ->persistent()
+                ->send();
+
+            return;
+        }
+
+        $encryption = $site->smtp_encryption ?: 'tls';
+        $port = $site->smtp_port ?? 587;
+
+        config([
+            'mail.mailers.smtp.host'       => $site->smtp_host,
+            'mail.mailers.smtp.port'       => $port,
+            'mail.mailers.smtp.encryption' => $encryption,
+            'mail.mailers.smtp.scheme'     => ($encryption === 'ssl' || $port == 465) ? 'smtps' : null,
+            'mail.mailers.smtp.username'   => $site->smtp_username,
+            'mail.mailers.smtp.password'   => $site->smtp_password,
+            'mail.from.address'            => $site->mail_from_address ?: $site->smtp_username,
+            'mail.from.name'               => $site->mail_from_name ?: config('app.name'),
+            'mail.default'                 => 'smtp',
+        ]);
+
+        try {
+            \Illuminate\Support\Facades\Mail::raw(
+                "Este é um e-mail de teste enviado pelo painel administrativo da D2L.\n\nSe você recebeu esta mensagem, a configuração SMTP está funcionando corretamente.",
+                fn ($m) => $m->to($site->contact_email)->subject('Teste de Conexão — D2L Painel Admin'),
+            );
+
+            Notification::make()
+                ->success()
+                ->title('E-mail enviado com sucesso!')
+                ->body("Verifique a caixa de entrada de {$site->contact_email}.")
+                ->send();
+        } catch (Exception $e) {
+            Notification::make()
+                ->danger()
+                ->title('Falha no envio')
+                ->body($e->getMessage())
+                ->persistent()
+                ->send();
+        }
+    }
+
     public function deleteMedia(string $collection): void
     {
         $this->record->clearMediaCollection($collection);
@@ -293,6 +439,14 @@ class ManageSiteContent extends Page
             'google_tag_manager_id'      => $this->record->google_tag_manager_id,
             'google_search_console_meta' => $this->record->google_search_console_meta,
             'robots_index'               => $this->record->robots_index,
+            'contact_email'              => $this->record->contact_email,
+            'smtp_host'                  => $this->record->smtp_host,
+            'smtp_port'                  => $this->record->smtp_port,
+            'smtp_encryption'            => $this->record->smtp_encryption,
+            'smtp_username'              => $this->record->smtp_username,
+            'smtp_password'              => $this->record->smtp_password,
+            'mail_from_address'          => $this->record->mail_from_address,
+            'mail_from_name'             => $this->record->mail_from_name,
         ]);
 
         Notification::make()
@@ -322,6 +476,14 @@ class ManageSiteContent extends Page
             'google_tag_manager_id'      => $data['google_tag_manager_id'] ?? null,
             'google_search_console_meta' => $data['google_search_console_meta'] ?? null,
             'robots_index'               => $data['robots_index'] ?? true,
+            'contact_email'              => $data['contact_email'] ?? null,
+            'smtp_host'                  => $data['smtp_host'] ?? null,
+            'smtp_port'                  => $data['smtp_port'] ?? null,
+            'smtp_encryption'            => $data['smtp_encryption'] ?? 'tls',
+            'smtp_username'              => $data['smtp_username'] ?? null,
+            'smtp_password'              => $data['smtp_password'] ?: $this->record->smtp_password,
+            'mail_from_address'          => $data['mail_from_address'] ?? null,
+            'mail_from_name'             => $data['mail_from_name'] ?? null,
         ]);
 
         $this->form->saveRelationships();
