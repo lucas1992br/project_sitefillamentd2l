@@ -26,29 +26,36 @@ class ManageSiteContent extends Page
 
     public ?array $data = [];
 
+    public SiteContent $record;
+
     public function mount(): void
     {
-        $record = SiteContent::instance();
+        $this->record = SiteContent::instance();
 
         $this->form->fill([
-            'showcase_video_active' => $record->showcase_video_active,
-            'hero_poster_active'    => $record->hero_poster_active,
-            'about_active'          => $record->about_active,
-            'about_title'           => $record->about_title,
-            'about_description'     => $record->about_description,
-            'about_founded_year'    => $record->about_founded_year,
-            'whatsapp_url'          => $record->whatsapp_url,
-            'facebook_url'          => $record->facebook_url,
-            'instagram_url'         => $record->instagram_url,
+            'showcase_video_active'      => $this->record->showcase_video_active,
+            'hero_poster_active'         => $this->record->hero_poster_active,
+            'about_active'               => $this->record->about_active,
+            'about_title'                => $this->record->about_title,
+            'about_description'          => $this->record->about_description,
+            'about_founded_year'         => $this->record->about_founded_year,
+            'whatsapp_url'               => $this->record->whatsapp_url,
+            'facebook_url'               => $this->record->facebook_url,
+            'instagram_url'              => $this->record->instagram_url,
+            'seo_title'                  => $this->record->seo_title,
+            'seo_description'            => $this->record->seo_description,
+            'seo_keywords'               => $this->record->seo_keywords,
+            'google_analytics_id'        => $this->record->google_analytics_id,
+            'google_tag_manager_id'      => $this->record->google_tag_manager_id,
+            'google_search_console_meta' => $this->record->google_search_console_meta,
+            'robots_index'               => $this->record->robots_index,
         ]);
     }
 
     public function form(Schema $schema): Schema
     {
-        $record = SiteContent::instance();
-
         return $schema
-            ->model($record)
+            ->model($this->record)
             ->statePath('data')
             ->components([
                 Section::make('Logotipo')
@@ -61,7 +68,7 @@ class ManageSiteContent extends Page
                             ->requiresConfirmation()
                             ->modalHeading('Excluir logotipo?')
                             ->modalDescription('Esta ação não pode ser desfeita.')
-                            ->visible(fn () => SiteContent::instance()->hasMedia('logo'))
+                            ->visible(fn () => $this->record->hasMedia('logo'))
                             ->action(fn () => $this->deleteMedia('logo')),
                     ])
                     ->schema([
@@ -73,7 +80,7 @@ class ManageSiteContent extends Page
                             ->imageEditor()
                             ->maxSize(2048)
                             ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp', 'image/avif', 'image/svg+xml'])
-                            ->model($record),
+                            ->model($this->record),
                     ]),
 
                 Section::make('Quem Somos')
@@ -86,7 +93,7 @@ class ManageSiteContent extends Page
                             ->requiresConfirmation()
                             ->modalHeading('Excluir foto da empresa?')
                             ->modalDescription('Esta ação não pode ser desfeita.')
-                            ->visible(fn () => SiteContent::instance()->hasMedia('about_image'))
+                            ->visible(fn () => $this->record->hasMedia('about_image'))
                             ->action(fn () => $this->deleteMedia('about_image')),
                     ])
                     ->schema([
@@ -124,7 +131,7 @@ class ManageSiteContent extends Page
                             ->imageEditor()
                             ->maxSize(5120)
                             ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp', 'image/avif'])
-                            ->model($record),
+                            ->model($this->record),
                     ]),
 
                 Section::make('Vídeo de Apresentação')
@@ -137,7 +144,7 @@ class ManageSiteContent extends Page
                             ->requiresConfirmation()
                             ->modalHeading('Excluir vídeo de apresentação?')
                             ->modalDescription('Esta ação não pode ser desfeita.')
-                            ->visible(fn () => SiteContent::instance()->hasMedia('showcase_video'))
+                            ->visible(fn () => $this->record->hasMedia('showcase_video'))
                             ->action(fn () => $this->deleteMedia('showcase_video')),
                     ])
                     ->schema([
@@ -154,7 +161,7 @@ class ManageSiteContent extends Page
                             ->collection('showcase_video')
                             ->acceptedFileTypes(['video/mp4', 'video/webm', 'video/ogg'])
                             ->maxSize(100 * 1024)
-                            ->model($record),
+                            ->model($this->record),
                     ]),
 
                 Section::make('Redes Sociais')
@@ -181,6 +188,55 @@ class ManageSiteContent extends Page
                     ])
                     ->columns(3),
 
+                Section::make('SEO & Rastreamento')
+                    ->description('Configurações de indexação, metadados e códigos de rastreamento do Google.')
+                    ->icon('heroicon-o-magnifying-glass')
+                    ->schema([
+                        TextInput::make('seo_title')
+                            ->label('Título SEO')
+                            ->helperText('Sobrescreve o título padrão nas abas e resultados do Google. Ideal: 50–60 caracteres.')
+                            ->maxLength(70)
+                            ->placeholder('D2L — Usinagem CNC e Soluções Metálicas em Caçapava'),
+
+                        Textarea::make('seo_description')
+                            ->label('Meta Description')
+                            ->helperText('Descrição exibida nos resultados do Google. Ideal: 120–160 caracteres.')
+                            ->rows(3)
+                            ->maxLength(320)
+                            ->placeholder('Usinagem CNC, soldagem e acabamento com tolerâncias de ±0.003 mm. ISO 9001. Desde 2005.'),
+
+                        TextInput::make('seo_keywords')
+                            ->label('Palavras-chave (Keywords)')
+                            ->helperText('Separadas por vírgula. Influência limitada no Google, mas útil para outros motores.')
+                            ->maxLength(500)
+                            ->placeholder('usinagem cnc, torneamento, soldagem, caçapava, são paulo'),
+
+                        Toggle::make('robots_index')
+                            ->label('Permitir indexação pelo Google')
+                            ->helperText('Quando desativado, adiciona "noindex, nofollow" — útil durante desenvolvimento.')
+                            ->onColor('success')
+                            ->offColor('danger'),
+
+                        TextInput::make('google_analytics_id')
+                            ->label('Google Analytics 4 — Measurement ID')
+                            ->helperText('Formato: G-XXXXXXXXXX · Encontre em: GA4 → Admin → Fluxos de dados')
+                            ->maxLength(50)
+                            ->placeholder('G-XXXXXXXXXX'),
+
+                        TextInput::make('google_tag_manager_id')
+                            ->label('Google Tag Manager — Container ID')
+                            ->helperText('Formato: GTM-XXXXXXX · Encontre em: GTM → Admin → Container')
+                            ->maxLength(50)
+                            ->placeholder('GTM-XXXXXXX'),
+
+                        TextInput::make('google_search_console_meta')
+                            ->label('Google Search Console — Meta Tag de Verificação')
+                            ->helperText('Cole apenas o valor do atributo "content" da meta tag fornecida pelo Search Console.')
+                            ->maxLength(100)
+                            ->placeholder('abc123xyz_verificação'),
+                    ])
+                    ->columns(2),
+
                 Section::make('Imagem de Fundo do Hero (Poster)')
                     ->description('Imagem exibida enquanto o vídeo carrega.')
                     ->afterHeader([
@@ -191,7 +247,7 @@ class ManageSiteContent extends Page
                             ->requiresConfirmation()
                             ->modalHeading('Excluir imagem de fundo do hero?')
                             ->modalDescription('Esta ação não pode ser desfeita.')
-                            ->visible(fn () => SiteContent::instance()->hasMedia('hero_poster'))
+                            ->visible(fn () => $this->record->hasMedia('hero_poster'))
                             ->action(fn () => $this->deleteMedia('hero_poster')),
                     ])
                     ->schema([
@@ -210,26 +266,33 @@ class ManageSiteContent extends Page
                             ->imageEditor()
                             ->maxSize(5120)
                             ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp', 'image/avif'])
-                            ->model($record),
+                            ->model($this->record),
                     ]),
             ]);
     }
 
     public function deleteMedia(string $collection): void
     {
-        $record = SiteContent::instance();
-        $record->clearMediaCollection($collection);
+        $this->record->clearMediaCollection($collection);
+        $this->record->refresh();
 
         $this->form->fill([
-            'showcase_video_active' => $record->showcase_video_active,
-            'hero_poster_active'    => $record->hero_poster_active,
-            'about_active'          => $record->about_active,
-            'about_title'           => $record->about_title,
-            'about_description'     => $record->about_description,
-            'about_founded_year'    => $record->about_founded_year,
-            'whatsapp_url'          => $record->whatsapp_url,
-            'facebook_url'          => $record->facebook_url,
-            'instagram_url'         => $record->instagram_url,
+            'showcase_video_active'      => $this->record->showcase_video_active,
+            'hero_poster_active'         => $this->record->hero_poster_active,
+            'about_active'               => $this->record->about_active,
+            'about_title'                => $this->record->about_title,
+            'about_description'          => $this->record->about_description,
+            'about_founded_year'         => $this->record->about_founded_year,
+            'whatsapp_url'               => $this->record->whatsapp_url,
+            'facebook_url'               => $this->record->facebook_url,
+            'instagram_url'              => $this->record->instagram_url,
+            'seo_title'                  => $this->record->seo_title,
+            'seo_description'            => $this->record->seo_description,
+            'seo_keywords'               => $this->record->seo_keywords,
+            'google_analytics_id'        => $this->record->google_analytics_id,
+            'google_tag_manager_id'      => $this->record->google_tag_manager_id,
+            'google_search_console_meta' => $this->record->google_search_console_meta,
+            'robots_index'               => $this->record->robots_index,
         ]);
 
         Notification::make()
@@ -242,16 +305,23 @@ class ManageSiteContent extends Page
     {
         $data = $this->form->getState();
 
-        SiteContent::instance()->update([
-            'showcase_video_active' => $data['showcase_video_active'] ?? true,
-            'hero_poster_active'    => $data['hero_poster_active'] ?? true,
-            'about_active'          => $data['about_active'] ?? true,
-            'about_title'           => $data['about_title'] ?? 'Sobre a D2L',
-            'about_description'     => $data['about_description'] ?? null,
-            'about_founded_year'    => $data['about_founded_year'] ?? null,
-            'whatsapp_url'          => $data['whatsapp_url'] ?? null,
-            'facebook_url'          => $data['facebook_url'] ?? null,
-            'instagram_url'         => $data['instagram_url'] ?? null,
+        $this->record->update([
+            'showcase_video_active'      => $data['showcase_video_active'] ?? true,
+            'hero_poster_active'         => $data['hero_poster_active'] ?? true,
+            'about_active'               => $data['about_active'] ?? true,
+            'about_title'                => $data['about_title'] ?? 'Sobre a D2L',
+            'about_description'          => $data['about_description'] ?? null,
+            'about_founded_year'         => $data['about_founded_year'] ?? null,
+            'whatsapp_url'               => $data['whatsapp_url'] ?? null,
+            'facebook_url'               => $data['facebook_url'] ?? null,
+            'instagram_url'              => $data['instagram_url'] ?? null,
+            'seo_title'                  => $data['seo_title'] ?? null,
+            'seo_description'            => $data['seo_description'] ?? null,
+            'seo_keywords'               => $data['seo_keywords'] ?? null,
+            'google_analytics_id'        => $data['google_analytics_id'] ?? null,
+            'google_tag_manager_id'      => $data['google_tag_manager_id'] ?? null,
+            'google_search_console_meta' => $data['google_search_console_meta'] ?? null,
+            'robots_index'               => $data['robots_index'] ?? true,
         ]);
 
         $this->form->saveRelationships();

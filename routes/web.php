@@ -5,6 +5,8 @@ use App\Http\Controllers\Site\ServicesController;
 use App\Livewire\User\Profile;
 use App\Livewire\Users\Index;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 // Public site
 Route::get('/', HomeController::class)->name('home');
@@ -18,6 +20,21 @@ Route::get('/catalog', fn () => view('site.catalog.index'))->name('catalog.index
 Route::get('/certifications', fn () => view('site.certifications.index'))->name('certifications.index');
 
 Route::get('/contact', fn () => view('site.contact'))->name('contact');
+
+Route::get('/storage/{path}', function (string $path) {
+    if (!Storage::disk('private')->exists($path)) {
+        abort(404);
+    }
+
+    $mimeType = Storage::disk('private')->mimeType($path);
+
+    return response()->stream(function () use ($path) {
+        echo Storage::disk('private')->get($path);
+    }, 200, [
+        'Content-Type' => $mimeType,
+        'Cache-Control' => 'public, max-age=86400',
+    ]);
+})->where('path', '.*');
 
 // Auth-protected area
 Route::middleware(['auth'])->group(function () {

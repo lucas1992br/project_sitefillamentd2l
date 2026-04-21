@@ -20,6 +20,7 @@ class SiteContent extends Model implements HasMedia
             'hero_poster_active'    => 'boolean',
             'about_active'          => 'boolean',
             'about_founded_year'    => 'integer',
+            'robots_index'          => 'boolean',
         ];
     }
 
