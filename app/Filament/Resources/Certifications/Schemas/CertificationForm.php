@@ -3,11 +3,11 @@
 namespace App\Filament\Resources\Certifications\Schemas;
 
 use Filament\Forms\Components\DatePicker;
-use Filament\Schemas\Components\Section;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
+use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 
 class CertificationForm
@@ -16,61 +16,68 @@ class CertificationForm
     {
         return $schema
             ->components([
-                Section::make('Certificate Information')
+                Section::make('Informações do Certificado')
                     ->schema([
                         TextInput::make('name')
+                            ->label('Nome da Certificação')
                             ->required()
-                            ->placeholder('e.g., ISO 9001:2015'),
+                            ->placeholder('ex: ISO 9001:2015'),
 
                         TextInput::make('issuer')
+                            ->label('Emissor / Organismo Certificador')
                             ->required()
-                            ->placeholder('e.g., Bureau Veritas'),
+                            ->placeholder('ex: Bureau Veritas'),
 
                         TextInput::make('certificate_number')
-                            ->placeholder('e.g., BR-12345-2025'),
+                            ->label('Número do Certificado')
+                            ->placeholder('ex: BR-12345-2025'),
 
                         DatePicker::make('issued_at')
+                            ->label('Data de Emissão')
                             ->required()
-                            ->label('Issue Date')
                             ->displayFormat('d/m/Y'),
 
                         DatePicker::make('expires_at')
-                            ->label('Expiration Date')
+                            ->label('Data de Vencimento')
                             ->displayFormat('d/m/Y')
-                            ->helperText('Leave blank if the certificate does not expire'),
+                            ->helperText('Deixe em branco se o certificado não expira'),
 
                         Textarea::make('description')
+                            ->label('Descrição')
                             ->rows(3)
                             ->columnSpanFull(),
 
                         TextInput::make('sort_order')
+                            ->label('Ordem de Exibição')
                             ->numeric()
                             ->default(0),
 
                         Toggle::make('is_active')
-                            ->label('Active')
+                            ->label('Ativo')
                             ->default(true),
                     ])
                     ->columns(2),
 
-                Section::make('Certificate Document / Image')
+                Section::make('Documento / Imagem do Certificado')
                     ->schema([
                         SpatieMediaLibraryFileUpload::make('certificate')
+                            ->label('Arquivo do Certificado')
                             ->collection('certificate')
                             ->image()
                             ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp', 'application/pdf'])
                             ->maxSize(10240)
-                            ->helperText('Upload scan or PDF · Max 10 MB'),
+                            ->helperText('Envie o scan ou PDF · Máx 10 MB'),
                     ]),
 
-                Section::make('Issuer Logo')
+                Section::make('Logotipo do Emissor')
                     ->schema([
                         SpatieMediaLibraryFileUpload::make('logo')
+                            ->label('Logotipo')
                             ->collection('logo')
                             ->image()
                             ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp', 'image/svg+xml'])
                             ->maxSize(2048)
-                            ->helperText('SVG preferred · Max 2 MB'),
+                            ->helperText('SVG recomendado · Máx 2 MB'),
                     ]),
             ]);
     }

@@ -22,7 +22,11 @@ class CatalogCategoryResource extends Resource
 
     protected static string|\UnitEnum|null $navigationGroup = 'Website Content';
 
-    protected static ?string $navigationLabel = 'Categorias de Catálogo';
+    protected static ?string $navigationLabel = 'Categorias do Catálogo';
+
+    protected static ?string $modelLabel = 'Categoria';
+
+    protected static ?string $pluralModelLabel = 'Categorias do Catálogo';
 
     protected static ?int $navigationSort = 4;
 

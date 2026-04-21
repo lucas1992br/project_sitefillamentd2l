@@ -2,11 +2,11 @@
 
 namespace App\Filament\Resources\Clients\Schemas;
 
-use Filament\Schemas\Components\Section;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
+use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 
 class ClientForm
@@ -15,56 +15,65 @@ class ClientForm
     {
         return $schema
             ->components([
-                Section::make('Client Information')
+                Section::make('Informações do Cliente')
                     ->schema([
                         TextInput::make('name')
+                            ->label('Nome do Cliente')
                             ->required()
                             ->maxLength(255),
 
                         TextInput::make('industry')
-                            ->placeholder('e.g., Automotive, Oil & Gas, Aerospace'),
+                            ->label('Setor / Indústria')
+                            ->placeholder('ex: Automotivo, Petróleo & Gás, Aeroespacial'),
 
                         TextInput::make('website')
+                            ->label('Site')
                             ->url()
-                            ->placeholder('https://client.com'),
+                            ->placeholder('https://cliente.com.br'),
 
                         TextInput::make('sort_order')
+                            ->label('Ordem de Exibição')
                             ->numeric()
                             ->default(0),
 
                         Toggle::make('is_featured')
-                            ->label('Show testimonial on homepage'),
+                            ->label('Exibir depoimento na página inicial'),
 
                         Toggle::make('is_active')
-                            ->label('Active')
+                            ->label('Ativo')
                             ->default(true),
                     ])
                     ->columns(2),
 
-                Section::make('Testimonial')
+                Section::make('Depoimento')
                     ->schema([
                         Textarea::make('testimonial')
+                            ->label('Depoimento')
                             ->rows(4)
                             ->columnSpanFull(),
 
                         TextInput::make('contact_name')
-                            ->label('Contact Name'),
+                            ->label('Nome do Contato'),
 
                         TextInput::make('contact_role')
-                            ->label('Contact Role')
-                            ->placeholder('e.g., Procurement Manager'),
+                            ->label('Cargo do Contato')
+                            ->placeholder('ex: Gerente de Compras'),
                     ])
                     ->columns(2),
 
-                Section::make('Client Logo')
+                Section::make('Logotipo do Cliente')
                     ->schema([
                         SpatieMediaLibraryFileUpload::make('logo')
+                            ->label('Logotipo')
                             ->collection('logo')
+                            ->downloadable()
+                            ->deletable()
+                            ->previewable()
                             ->image()
                             ->imageEditor()
                             ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp', 'image/svg+xml'])
                             ->maxSize(2048)
-                            ->helperText('PNG transparent or SVG preferred · Max 2 MB'),
+                            ->helperText('PNG transparente ou SVG recomendado · Máx 2 MB'),
                     ]),
             ]);
     }

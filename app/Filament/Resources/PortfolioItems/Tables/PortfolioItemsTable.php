@@ -19,16 +19,19 @@ class PortfolioItemsTable
         return $table
             ->columns([
                 SpatieMediaLibraryImageColumn::make('cover')
+                    ->label('Capa')
                     ->collection('cover')
                     ->conversion('thumb')
                     ->width(70)
                     ->height(50),
 
                 TextColumn::make('title')
+                    ->label('Título')
                     ->searchable()
                     ->sortable(),
 
                 TextColumn::make('category')
+                    ->label('Categoria')
                     ->badge()
                     ->color(fn (string $state): string => match ($state) {
                         'CNC Turning' => 'primary',
@@ -39,33 +42,36 @@ class PortfolioItemsTable
                     }),
 
                 TextColumn::make('material')
+                    ->label('Material')
                     ->limit(30)
                     ->placeholder('—'),
 
                 TextColumn::make('tolerance')
+                    ->label('Tolerância')
                     ->placeholder('—'),
 
                 IconColumn::make('is_featured')
                     ->boolean()
-                    ->label('Featured'),
+                    ->label('Destaque'),
 
                 IconColumn::make('is_active')
                     ->boolean()
-                    ->label('Active'),
+                    ->label('Ativo'),
             ])
             ->defaultSort('sort_order')
             ->reorderable('sort_order')
             ->filters([
                 SelectFilter::make('category')
+                    ->label('Categoria')
                     ->options([
-                        'CNC Turning' => 'CNC Turning',
-                        'CNC Milling' => 'CNC Milling',
-                        'Welding'     => 'Welding',
-                        'Finishing'   => 'Finishing',
-                        'Assembly'    => 'Assembly',
+                        'CNC Turning' => 'Torneamento CNC',
+                        'CNC Milling' => 'Fresamento CNC',
+                        'Welding'     => 'Soldagem',
+                        'Finishing'   => 'Acabamento',
+                        'Assembly'    => 'Montagem',
                     ]),
-                TernaryFilter::make('is_featured'),
-                TernaryFilter::make('is_active'),
+                TernaryFilter::make('is_featured')->label('Destaque'),
+                TernaryFilter::make('is_active')->label('Ativo'),
             ])
             ->recordActions([
                 EditAction::make(),

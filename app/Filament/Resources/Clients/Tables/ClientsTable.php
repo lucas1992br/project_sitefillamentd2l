@@ -18,38 +18,43 @@ class ClientsTable
         return $table
             ->columns([
                 SpatieMediaLibraryImageColumn::make('logo')
+                    ->label('Logo')
                     ->collection('logo')
                     ->conversion('thumb')
                     ->width(80)
                     ->height(40),
 
                 TextColumn::make('name')
+                    ->label('Nome')
                     ->searchable()
                     ->sortable(),
 
                 TextColumn::make('industry')
+                    ->label('Setor')
                     ->placeholder('—'),
 
                 TextColumn::make('testimonial')
+                    ->label('Depoimento')
                     ->limit(50)
-                    ->placeholder('No testimonial'),
+                    ->placeholder('Sem depoimento'),
 
                 TextColumn::make('contact_name')
+                    ->label('Contato')
                     ->placeholder('—'),
 
                 IconColumn::make('is_featured')
                     ->boolean()
-                    ->label('Featured'),
+                    ->label('Destaque'),
 
                 IconColumn::make('is_active')
                     ->boolean()
-                    ->label('Active'),
+                    ->label('Ativo'),
             ])
             ->defaultSort('sort_order')
             ->reorderable('sort_order')
             ->filters([
-                TernaryFilter::make('is_featured'),
-                TernaryFilter::make('is_active'),
+                TernaryFilter::make('is_featured')->label('Destaque'),
+                TernaryFilter::make('is_active')->label('Ativo'),
             ])
             ->recordActions([
                 EditAction::make(),

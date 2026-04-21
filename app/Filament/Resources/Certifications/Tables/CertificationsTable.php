@@ -19,38 +19,44 @@ class CertificationsTable
         return $table
             ->columns([
                 SpatieMediaLibraryImageColumn::make('logo')
+                    ->label('Logo')
                     ->collection('logo')
                     ->conversion('thumb')
                     ->width(60)
                     ->height(40),
 
                 TextColumn::make('name')
+                    ->label('Nome')
                     ->searchable()
                     ->sortable()
                     ->weight('bold'),
 
                 TextColumn::make('issuer')
+                    ->label('Emissor')
                     ->searchable(),
 
                 TextColumn::make('certificate_number')
+                    ->label('Número')
                     ->placeholder('—'),
 
                 TextColumn::make('issued_at')
+                    ->label('Emitido em')
                     ->date('d/m/Y')
                     ->sortable(),
 
                 TextColumn::make('expires_at')
+                    ->label('Vencimento')
                     ->date('d/m/Y')
-                    ->placeholder('No expiration')
+                    ->placeholder('Sem vencimento')
                     ->color(fn (Certification $record): string => $record->isExpired() ? 'danger' : 'success'),
 
                 IconColumn::make('is_active')
                     ->boolean()
-                    ->label('Active'),
+                    ->label('Ativo'),
             ])
             ->defaultSort('sort_order')
             ->filters([
-                TernaryFilter::make('is_active'),
+                TernaryFilter::make('is_active')->label('Ativo'),
             ])
             ->recordActions([
                 EditAction::make(),

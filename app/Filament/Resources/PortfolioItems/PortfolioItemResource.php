@@ -22,7 +22,11 @@ class PortfolioItemResource extends Resource
 
     protected static string|\UnitEnum|null $navigationGroup = 'Website Content';
 
-    protected static ?string $navigationLabel = 'Portfolio';
+    protected static ?string $navigationLabel = 'Portfólio';
+
+    protected static ?string $modelLabel = 'Item do Portfólio';
+
+    protected static ?string $pluralModelLabel = 'Portfólio';
 
     protected static ?int $navigationSort = 2;
 

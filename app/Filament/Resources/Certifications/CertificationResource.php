@@ -22,6 +22,12 @@ class CertificationResource extends Resource
 
     protected static string|\UnitEnum|null $navigationGroup = 'Website Content';
 
+    protected static ?string $navigationLabel = 'Certificações';
+
+    protected static ?string $modelLabel = 'Certificação';
+
+    protected static ?string $pluralModelLabel = 'Certificações';
+
     protected static ?int $navigationSort = 3;
 
     public static function form(Schema $schema): Schema

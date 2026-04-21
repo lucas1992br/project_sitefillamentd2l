@@ -22,6 +22,12 @@ class ClientResource extends Resource
 
     protected static string|\UnitEnum|null $navigationGroup = 'Website Content';
 
+    protected static ?string $navigationLabel = 'Clientes';
+
+    protected static ?string $modelLabel = 'Cliente';
+
+    protected static ?string $pluralModelLabel = 'Clientes';
+
     protected static ?int $navigationSort = 4;
 
     public static function form(Schema $schema): Schema

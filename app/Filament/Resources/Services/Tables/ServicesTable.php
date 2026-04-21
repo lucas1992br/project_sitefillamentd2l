@@ -18,35 +18,39 @@ class ServicesTable
         return $table
             ->columns([
                 SpatieMediaLibraryImageColumn::make('cover')
+                    ->label('Capa')
                     ->collection('cover')
                     ->conversion('thumb')
                     ->width(60)
                     ->height(45),
 
                 TextColumn::make('title')
+                    ->label('Título')
                     ->searchable()
                     ->sortable(),
 
                 TextColumn::make('subtitle')
+                    ->label('Subtítulo')
                     ->limit(40)
                     ->placeholder('—'),
 
                 TextColumn::make('sort_order')
-                    ->label('Order')
+                    ->label('Ordem')
                     ->sortable(),
 
                 IconColumn::make('is_active')
                     ->boolean()
-                    ->label('Active'),
+                    ->label('Ativo'),
 
                 TextColumn::make('updated_at')
+                    ->label('Atualizado em')
                     ->dateTime('d/m/Y H:i')
                     ->sortable(),
             ])
             ->defaultSort('sort_order')
             ->reorderable('sort_order')
             ->filters([
-                TernaryFilter::make('is_active')->label('Active'),
+                TernaryFilter::make('is_active')->label('Ativo'),
             ])
             ->recordActions([
                 EditAction::make(),

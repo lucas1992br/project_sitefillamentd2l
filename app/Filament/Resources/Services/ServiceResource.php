@@ -22,6 +22,12 @@ class ServiceResource extends Resource
 
     protected static string|\UnitEnum|null $navigationGroup = 'Website Content';
 
+    protected static ?string $navigationLabel = 'Serviços';
+
+    protected static ?string $modelLabel = 'Serviço';
+
+    protected static ?string $pluralModelLabel = 'Serviços';
+
     protected static ?int $navigationSort = 1;
 
     public static function form(Schema $schema): Schema
