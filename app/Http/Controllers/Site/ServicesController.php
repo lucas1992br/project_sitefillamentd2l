@@ -9,7 +9,7 @@ class ServicesController
 {
     public function index(): View
     {
-        $services = Service::active()->get();
+        $services = Service::active()->with('media')->get();
 
         return view('site.services.index', compact('services'));
     }

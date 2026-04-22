@@ -24,6 +24,7 @@ new class extends Component
     public function items(): LengthAwarePaginator
     {
         return PortfolioItem::active()
+            ->with('media')
             ->when($this->category, fn ($q) => $q->where('category', $this->category))
             ->paginate(9);
     }
@@ -66,12 +67,26 @@ new class extends Component
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         @forelse ($this->items as $item)
             <x-card wire:key="{{ $item->id }}" class="overflow-hidden hover:shadow-md transition">
-                @if ($item->getFirstMedia('cover'))
-                    <img
-                        src="{{ $item->getFirstMediaUrl('cover', 'thumb') }}"
-                        alt="{{ $item->title }}"
-                        class="w-full h-48 object-cover rounded-lg mb-4"
-                    >
+                @php
+                    $images = collect();
+                    $cover = $item->getFirstMedia('cover');
+                    if ($cover) {
+                        $images->push([
+                            'thumb' => $cover->hasGeneratedConversion('thumb') ? $cover->getUrl('thumb') : $cover->getUrl(),
+                            'full'  => $cover->getUrl(),
+                            'alt'   => $item->title,
+                        ]);
+                    }
+                    foreach ($item->getMedia('gallery') as $media) {
+                        $images->push([
+                            'thumb' => $media->hasGeneratedConversion('thumb') ? $media->getUrl('thumb') : $media->getUrl(),
+                            'full'  => $media->getUrl(),
+                            'alt'   => $item->title,
+                        ]);
+                    }
+                @endphp
+                @if ($images->isNotEmpty())
+                    <x-image-slider :images="$images" height="h-48" class="mb-4" />
                 @endif
 
                 <div class="flex items-start justify-between gap-2 mb-2">

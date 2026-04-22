@@ -15,7 +15,7 @@ class HomeController
     public function __invoke(): View
     {
         return view('site.home', [
-            'services'             => Service::active()->where('show_on_home', true)->get(),
+            'services'             => Service::active()->where('show_on_home', true)->with('media')->get(),
             'featuredItems'        => PortfolioItem::active()->where('show_on_home', true)->get(),
             'featuredCatalogItems' => CatalogItem::active()->with('category')->featured()->take(4)->get(),
             'certifications'       => Certification::active()->where('show_on_home', true)->get(),

@@ -143,18 +143,9 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             @foreach($services as $service)
-                <div class="group relative bg-white rounded-2xl border border-slate-100 p-6 card-glow transition-all duration-300 hover:-translate-y-1">
+                <a href="{{ route('services.index') }}" class="group relative bg-white rounded-2xl border border-slate-100 p-6 card-glow transition-all duration-300 hover:-translate-y-1 block">
                     {{-- Accent top bar --}}
                     <div class="absolute top-0 left-6 right-6 h-0.5 bg-gradient-to-r from-blue-500 to-blue-300 rounded-full opacity-0 group-hover:opacity-100 transition duration-300"></div>
-
-                    {{-- Icon --}}
-                    <div class="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center mb-5 group-hover:bg-blue-500 transition-colors duration-300">
-                        @if($service->icon)
-                            <x-icon :name="$service->icon" class="w-6 h-6 text-blue-500 group-hover:text-white transition-colors duration-300" />
-                        @else
-                            <x-icon name="wrench-screwdriver" class="w-6 h-6 text-blue-500 group-hover:text-white transition-colors duration-300" />
-                        @endif
-                    </div>
 
                     @if($service->getFirstMedia('cover'))
                         <img src="{{ $service->getFirstMediaUrl('cover', 'thumb') }}"
@@ -173,7 +164,7 @@
                     <p class="text-sm text-slate-500 leading-relaxed line-clamp-3">
                         {!! strip_tags($service->description) !!}
                     </p>
-                </div>
+                </a>
             @endforeach
         </div>
     </div>
@@ -206,11 +197,11 @@
         @else
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                 @foreach($featuredItems as $item)
-                    <div class="group relative rounded-2xl overflow-hidden bg-slate-900 border border-white/5 card-glow transition-all duration-300 hover:-translate-y-1">
+                    <a href="{{ route('portfolio.index') }}" class="group relative rounded-2xl overflow-hidden bg-slate-900 border border-white/5 card-glow transition-all duration-300 hover:-translate-y-1 block">
 
-                        {{-- Image / placeholder --}}
+                        {{-- Imagem de capa --}}
                         @if($item->getFirstMedia('cover'))
-                            <img src="{{ $item->getFirstMediaUrl('cover', 'thumb') }}"
+                            <img src="{{ $item->getFirstMediaUrl('cover', 'thumb') ?: $item->getFirstMediaUrl('cover') }}"
                                  alt="{{ $item->title }}"
                                  class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500">
                         @else
@@ -219,20 +210,7 @@
                             </div>
                         @endif
 
-                        {{-- Hover overlay --}}
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-transparent
-                                    opacity-0 group-hover:opacity-100 transition-opacity duration-300
-                                    flex flex-col justify-end p-6">
-                            <h3 class="text-white font-bold text-base mb-1">{{ $item->title }}</h3>
-                            @if($item->material)
-                                <p class="text-blue-300 text-xs mb-1">Material: {{ $item->material }}</p>
-                            @endif
-                            @if($item->tolerance)
-                                <p class="text-blue-300 text-xs">Tolerância: {{ $item->tolerance }}</p>
-                            @endif
-                        </div>
-
-                        {{-- Always-visible footer info --}}
+                        {{-- Footer info --}}
                         <div class="p-5">
                             <div class="flex items-start justify-between gap-2">
                                 <h3 class="text-sm font-semibold text-white">{{ $item->title }}</h3>
@@ -245,8 +223,11 @@
                             @if($item->subtitle)
                                 <p class="text-xs text-slate-400 mt-1">{{ $item->subtitle }}</p>
                             @endif
+                            @if($item->material)
+                                <p class="text-xs text-slate-500 mt-0.5">Material: {{ $item->material }}</p>
+                            @endif
                         </div>
-                    </div>
+                    </a>
                 @endforeach
             </div>
         @endif

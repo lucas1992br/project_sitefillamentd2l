@@ -20,10 +20,26 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach ($services as $service)
                     <x-card class="border border-blue-100 border-t-4 border-t-blue-500 hover:shadow-md transition">
-                        @if ($service->getFirstMedia('cover'))
-                            <img src="{{ $service->getFirstMediaUrl('cover', 'card') }}"
-                                 alt="{{ $service->title }}"
-                                 class="w-full h-44 object-cover rounded-lg mb-4">
+                        @php
+                            $images = collect();
+                            $cover = $service->getFirstMedia('cover');
+                            if ($cover) {
+                                $images->push([
+                                    'thumb' => $cover->hasGeneratedConversion('card') ? $cover->getUrl('card') : $cover->getUrl(),
+                                    'full'  => $cover->getUrl(),
+                                    'alt'   => $service->title,
+                                ]);
+                            }
+                            foreach ($service->getMedia('gallery') as $media) {
+                                $images->push([
+                                    'thumb' => $media->hasGeneratedConversion('card') ? $media->getUrl('card') : $media->getUrl(),
+                                    'full'  => $media->getUrl(),
+                                    'alt'   => $service->title,
+                                ]);
+                            }
+                        @endphp
+                        @if ($images->isNotEmpty())
+                            <x-image-slider :images="$images" height="h-44" class="mb-4" />
                         @endif
 
                         <h2 class="text-base font-semibold text-blue-900 mb-1">{{ $service->title }}</h2>
