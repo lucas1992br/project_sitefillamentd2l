@@ -31,7 +31,8 @@ new class extends Component
     #[Computed]
     public function categories(): Collection
     {
-        return PortfolioItem::active()
+        return PortfolioItem::query()
+            ->where('is_active', true)
             ->distinct()
             ->orderBy('category')
             ->pluck('category')

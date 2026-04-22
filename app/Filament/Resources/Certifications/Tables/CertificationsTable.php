@@ -53,10 +53,15 @@ class CertificationsTable
                 IconColumn::make('is_active')
                     ->boolean()
                     ->label('Ativo'),
+
+                IconColumn::make('show_on_home')
+                    ->boolean()
+                    ->label('Na home'),
             ])
             ->defaultSort('sort_order')
             ->filters([
                 TernaryFilter::make('is_active')->label('Ativo'),
+                TernaryFilter::make('show_on_home')->label('Na home'),
             ])
             ->recordActions([
                 EditAction::make(),

@@ -12,7 +12,8 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 class Certification extends Model implements HasMedia
 {
     /** @use HasFactory<\Database\Factories\CertificationFactory> */
-    use HasFactory, InteractsWithMedia;
+    use HasFactory;
+    use InteractsWithMedia;
 
     protected $fillable = [
         'name',
@@ -23,14 +24,16 @@ class Certification extends Model implements HasMedia
         'description',
         'sort_order',
         'is_active',
+        'show_on_home',
     ];
 
     protected function casts(): array
     {
         return [
-            'is_active'  => 'boolean',
-            'issued_at'  => 'date',
-            'expires_at' => 'date',
+            'is_active'    => 'boolean',
+            'show_on_home' => 'boolean',
+            'issued_at'    => 'date',
+            'expires_at'   => 'date',
         ];
     }
 

@@ -60,6 +60,10 @@ class ServiceForm
                         Toggle::make('is_active')
                             ->label('Visível no site')
                             ->default(true),
+
+                        Toggle::make('show_on_home')
+                            ->label('Exibir na página inicial')
+                            ->default(false),
                     ])
                     ->columns(2),
 

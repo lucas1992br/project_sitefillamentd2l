@@ -42,6 +42,10 @@ class ServicesTable
                     ->boolean()
                     ->label('Ativo'),
 
+                IconColumn::make('show_on_home')
+                    ->boolean()
+                    ->label('Na home'),
+
                 TextColumn::make('updated_at')
                     ->label('Atualizado em')
                     ->dateTime('d/m/Y H:i')
@@ -51,6 +55,7 @@ class ServicesTable
             ->reorderable('sort_order')
             ->filters([
                 TernaryFilter::make('is_active')->label('Ativo'),
+                TernaryFilter::make('show_on_home')->label('Na home'),
             ])
             ->recordActions([
                 EditAction::make(),

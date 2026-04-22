@@ -57,6 +57,10 @@ class PortfolioItemsTable
                 IconColumn::make('is_active')
                     ->boolean()
                     ->label('Ativo'),
+
+                IconColumn::make('show_on_home')
+                    ->boolean()
+                    ->label('Na home'),
             ])
             ->defaultSort('sort_order')
             ->reorderable('sort_order')
@@ -72,6 +76,7 @@ class PortfolioItemsTable
                     ]),
                 TernaryFilter::make('is_featured')->label('Destaque'),
                 TernaryFilter::make('is_active')->label('Ativo'),
+                TernaryFilter::make('show_on_home')->label('Na home'),
             ])
             ->recordActions([
                 EditAction::make(),

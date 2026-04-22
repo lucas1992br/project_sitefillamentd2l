@@ -141,7 +141,7 @@
             </a>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             @foreach($services as $service)
                 <div class="group relative bg-white rounded-2xl border border-slate-100 p-6 card-glow transition-all duration-300 hover:-translate-y-1">
                     {{-- Accent top bar --}}

@@ -15,10 +15,10 @@ class HomeController
     public function __invoke(): View
     {
         return view('site.home', [
-            'services'             => Service::active()->take(4)->get(),
-            'featuredItems'        => PortfolioItem::active()->featured()->take(3)->get(),
+            'services'             => Service::active()->where('show_on_home', true)->get(),
+            'featuredItems'        => PortfolioItem::active()->where('show_on_home', true)->get(),
             'featuredCatalogItems' => CatalogItem::active()->with('category')->featured()->take(4)->get(),
-            'certifications'       => Certification::active()->take(6)->get(),
+            'certifications'       => Certification::active()->where('show_on_home', true)->get(),
             'clients'              => Client::active()->featured()->take(4)->get(),
             'siteContent'          => SiteContent::instance(),
         ]);

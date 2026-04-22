@@ -7,7 +7,7 @@
 
     <section class="bg-blue-950 text-white py-16">
         <div class="max-w-7xl mx-auto px-6">
-            <p class="text-xs font-medium tracking-widest text-blue-300 uppercase mb-3">Serviços</p>
+            </br>
             <h1 class="text-4xl font-bold mb-4">Serviços</h1>
             <p class="text-blue-200 max-w-xl leading-relaxed">
                 Serviços completos de usinagem industrial CNC: torneamento, fresamento, soldagem e acabamento de superfície.

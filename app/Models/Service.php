@@ -13,7 +13,8 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 class Service extends Model implements HasMedia
 {
     /** @use HasFactory<\Database\Factories\ServiceFactory> */
-    use HasFactory, InteractsWithMedia;
+    use HasFactory;
+    use InteractsWithMedia;
 
     protected $fillable = [
         'title',
@@ -23,12 +24,14 @@ class Service extends Model implements HasMedia
         'slug',
         'sort_order',
         'is_active',
+        'show_on_home',
     ];
 
     protected function casts(): array
     {
         return [
-            'is_active' => 'boolean',
+            'is_active'    => 'boolean',
+            'show_on_home' => 'boolean',
         ];
     }
 

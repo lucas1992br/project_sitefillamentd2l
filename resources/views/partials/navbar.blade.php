@@ -27,11 +27,11 @@
         </a>
 
         <div class="hidden md:flex items-center gap-7">
-            <a href="{{ route('home') }}#quem-somos"      class="text-xs font-medium text-blue-200/80 hover:text-white transition tracking-wide uppercase">Quem Somos</a>
             <a href="{{ route('home') }}#services"        class="text-xs font-medium text-blue-200/80 hover:text-white transition tracking-wide uppercase">Serviços</a>
             <a href="{{ route('home') }}#portfolio"       class="text-xs font-medium text-blue-200/80 hover:text-white transition tracking-wide uppercase">Portfólio</a>
             <a href="{{ route('home') }}#catalog"         class="text-xs font-medium text-blue-200/80 hover:text-white transition tracking-wide uppercase">Catálogo</a>
             <a href="{{ route('home') }}#certifications"  class="text-xs font-medium text-blue-200/80 hover:text-white transition tracking-wide uppercase">Certificações</a>
+            <a href="{{ route('home') }}#quem-somos"      class="text-xs font-medium text-blue-200/80 hover:text-white transition tracking-wide uppercase">Quem Somos</a>
             <a href="{{ route('home') }}#contact"         class="text-xs font-medium text-blue-200/80 hover:text-white transition tracking-wide uppercase">Contato</a>
         </div>
 

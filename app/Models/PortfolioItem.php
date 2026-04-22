@@ -12,7 +12,8 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 class PortfolioItem extends Model implements HasMedia
 {
     /** @use HasFactory<\Database\Factories\PortfolioItemFactory> */
-    use HasFactory, InteractsWithMedia;
+    use HasFactory;
+    use InteractsWithMedia;
 
     protected $fillable = [
         'title',
@@ -25,13 +26,15 @@ class PortfolioItem extends Model implements HasMedia
         'sort_order',
         'is_featured',
         'is_active',
+        'show_on_home',
     ];
 
     protected function casts(): array
     {
         return [
-            'is_featured' => 'boolean',
-            'is_active'   => 'boolean',
+            'is_featured'  => 'boolean',
+            'is_active'    => 'boolean',
+            'show_on_home' => 'boolean',
         ];
     }
 
