@@ -1,64 +1,113 @@
 @extends('layouts.site')
 
-@section('title', 'Contact & Quote — ' . config('app.name'))
-@section('description', 'Get in touch to request a quote or ask about our CNC machining services.')
+@section('title', 'Contato & Orçamento — ' . config('app.name'))
+@section('description', 'Entre em contato para solicitar um orçamento ou tirar dúvidas sobre nossos serviços de usinagem CNC.')
 
 @section('content')
 
-    <section class="bg-blue-950 text-white py-16">
-        <div class="max-w-7xl mx-auto px-6">
-            <p class="text-xs font-medium tracking-widest text-blue-300 uppercase mb-3">Get in Touch</p>
-            <h1 class="text-4xl font-bold mb-4">Contact Us</h1>
-            <p class="text-blue-200 max-w-xl leading-relaxed">
-                Fill in the form and we'll respond within one business day.
+    {{-- Hero --}}
+    <section class="bg-slate-950 text-white py-20 relative overflow-hidden">
+        <div class="absolute inset-0 bg-tech-grid opacity-40 pointer-events-none"></div>
+        <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-500/40 to-transparent"></div>
+        <div class="relative max-w-7xl mx-auto px-6">
+            <p class="text-xs font-semibold tracking-widest text-blue-400 uppercase mb-3">Fale Conosco</p>
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Entre em Contato</h1>
+            <p class="text-blue-200/70 max-w-xl leading-relaxed">
+                Preencha o formulário e responderemos em até 24 horas úteis.
             </p>
         </div>
     </section>
 
-    <section class="py-20 bg-gray-50">
+    {{-- Conteúdo --}}
+    <section class="py-20 bg-slate-50">
         <div class="max-w-7xl mx-auto px-6">
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
 
-                {{-- Contact info --}}
+                {{-- Informações de contato --}}
                 <div class="space-y-8">
+
                     <div>
-                        <h2 class="text-sm font-semibold text-blue-900 mb-4">Contact Information</h2>
-                        <ul class="space-y-3 text-sm text-gray-600">
+                        <h2 class="text-xs font-semibold uppercase tracking-widest text-blue-600 mb-5">Informações de Contato</h2>
+                        <ul class="space-y-5">
                             <li class="flex items-start gap-3">
-                                <x-icon name="envelope" class="w-5 h-5 text-blue-500 mt-0.5 shrink-0" />
-                                <a href="mailto:contact@precisionmachining.com" class="hover:text-blue-600 transition">
-                                    contact@precisionmachining.com
-                                </a>
+                                <div class="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center shrink-0 mt-0.5">
+                                    <x-icon name="envelope" class="w-4 h-4 text-blue-600" />
+                                </div>
+                                <div>
+                                    <p class="text-xs text-slate-400 mb-0.5">E-mail</p>
+                                    <a href="mailto:contato@d2l.ind.br" class="text-sm text-slate-700 hover:text-blue-600 transition font-medium">
+                                        contato@d2l.ind.br
+                                    </a>
+                                </div>
                             </li>
                             <li class="flex items-start gap-3">
-                                <x-icon name="phone" class="w-5 h-5 text-blue-500 mt-0.5 shrink-0" />
-                                <a href="tel:+5511999999999" class="hover:text-blue-600 transition">
-                                    +55 11 99999-9999
-                                </a>
+                                <div class="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center shrink-0 mt-0.5">
+                                    <x-icon name="phone" class="w-4 h-4 text-blue-600" />
+                                </div>
+                                <div>
+                                    <p class="text-xs text-slate-400 mb-0.5">Telefone</p>
+                                    <a href="tel:+5512997517673" class="text-sm text-slate-700 hover:text-blue-600 transition font-medium">
+                                        +55 (12) 99751-7673
+                                    </a>
+                                </div>
                             </li>
                             <li class="flex items-start gap-3">
-                                <x-icon name="map-pin" class="w-5 h-5 text-blue-500 mt-0.5 shrink-0" />
-                                <span>Rua das Máquinas, 100<br>São Paulo — SP, Brazil</span>
+                                <div class="w-9 h-9 rounded-lg bg-green-500/10 border border-green-500/20 flex items-center justify-center shrink-0 mt-0.5">
+                                    <svg class="w-4 h-4 text-[#25D366]" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-slate-400 mb-0.5">WhatsApp</p>
+                                    <a href="https://wa.me/5512997517673" target="_blank" rel="noopener noreferrer"
+                                       class="text-sm text-slate-700 hover:text-green-600 transition font-medium">
+                                        +55 (12) 99751-7673
+                                    </a>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <div class="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center shrink-0 mt-0.5">
+                                    <x-icon name="map-pin" class="w-4 h-4 text-blue-600" />
+                                </div>
+                                <div>
+                                    <p class="text-xs text-slate-400 mb-0.5">Endereço</p>
+                                    <p class="text-sm text-slate-700 font-medium leading-relaxed">
+                                        Rod. Dr. Edmir Viana Moura, 5300<br>
+                                        Vila Paraíso — Caçapava, SP<br>
+                                        Brasil
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <div class="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center shrink-0 mt-0.5">
+                                    <x-icon name="clock" class="w-4 h-4 text-blue-600" />
+                                </div>
+                                <div>
+                                    <p class="text-xs text-slate-400 mb-0.5">Horário de Atendimento</p>
+                                    <p class="text-sm text-slate-700 font-medium">Segunda a Sexta: 08h – 18h</p>
+                                    <p class="text-xs text-slate-400 mt-0.5">Sábado e Domingo: Fechado</p>
+                                </div>
                             </li>
                         </ul>
                     </div>
 
-                    <div>
-                        <h2 class="text-sm font-semibold text-blue-900 mb-3">Business Hours</h2>
-                        <ul class="text-sm text-gray-600 space-y-1">
-                            <li>Mon – Fri: 08:00 – 18:00</li>
-                            <li>Saturday: 08:00 – 12:00</li>
-                            <li class="text-gray-400">Sunday: Closed</li>
-                        </ul>
+                    {{-- Certificação --}}
+                    <div class="rounded-xl border border-blue-100 bg-blue-50 p-5">
+                        <div class="flex items-center gap-3 mb-2">
+                            <x-icon name="shield-check" class="w-5 h-5 text-blue-600 shrink-0" />
+                            <p class="text-sm font-semibold text-blue-800">ISO 9001 Certificado</p>
+                        </div>
+                        <p class="text-xs text-blue-600 leading-relaxed">
+                            Respondemos todas as solicitações em até 24 horas úteis com proposta técnica detalhada.
+                        </p>
                     </div>
+
                 </div>
 
-                {{-- Quote form --}}
-                <div class="lg:col-span-2">
-                    <x-card class="border border-blue-100">
-                        <h2 class="text-sm font-semibold text-blue-900 mb-6">Request a Quote</h2>
-                        <livewire:quote-form />
-                    </x-card>
+                {{-- Formulário --}}
+                <div class="lg:col-span-2 bg-slate-900 rounded-2xl border border-white/5 p-8">
+                    <h2 class="text-sm font-semibold text-white mb-6">Solicite um Orçamento</h2>
+                    <livewire:quote-form />
                 </div>
 
             </div>
