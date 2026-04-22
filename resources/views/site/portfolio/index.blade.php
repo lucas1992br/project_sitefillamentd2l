@@ -7,7 +7,7 @@
 
     <section class="bg-blue-950 text-white py-16">
         <div class="max-w-7xl mx-auto px-6">
-            <p class="text-xs font-medium tracking-widest text-blue-300 uppercase mb-3">Portifólio</p>
+</br>
             <h1 class="text-4xl font-bold mb-4">Portifólio</h1>
             <p class="text-blue-200 max-w-xl leading-relaxed">
                 Uma seleção de projetos concluídos em diversas indústrias e materiais.
