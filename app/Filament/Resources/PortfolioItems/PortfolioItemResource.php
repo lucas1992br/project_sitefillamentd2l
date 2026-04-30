@@ -28,7 +28,7 @@ class PortfolioItemResource extends Resource
 
     protected static ?string $pluralModelLabel = 'Portfólio';
 
-    protected static ?int $navigationSort = 2;
+    protected static ?int $navigationSort = 5;
 
     public static function form(Schema $schema): Schema
     {

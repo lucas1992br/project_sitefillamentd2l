@@ -13,7 +13,7 @@
             <p class="text-xs font-semibold tracking-widest text-blue-400 uppercase mb-3">Fale Conosco</p>
             <h1 class="text-4xl md:text-5xl font-bold mb-4">Entre em Contato</h1>
             <p class="text-blue-200/70 max-w-xl leading-relaxed">
-                Preencha o formulário e responderemos em até 24 horas úteis.
+                Preencha o formulário e nossa equipe retornará em breve com uma proposta.
             </p>
         </div>
     </section>
@@ -21,10 +21,10 @@
     {{-- Conteúdo --}}
     <section class="py-20 bg-slate-50">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-12">
 
                 {{-- Informações de contato --}}
-                <div class="space-y-8">
+                <div class="lg:col-span-2 space-y-8">
 
                     <div>
                         <h2 class="text-xs font-semibold uppercase tracking-widest text-blue-600 mb-5">Informações de Contato</h2>
@@ -72,40 +72,16 @@
                                 <div>
                                     <p class="text-xs text-slate-400 mb-0.5">Endereço</p>
                                     <p class="text-sm text-slate-700 font-medium leading-relaxed">
-                                        Rod. Dr. Edmir Viana Moura, 5300<br>
-                                        Vila Paraíso — Caçapava, SP<br>
-                                        Brasil
+                                        Rodovia João Amaral Gurgel, N4800<br>Bairro Piedade, Caçapava/SP</p>
                                     </p>
-                                </div>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <div class="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center shrink-0 mt-0.5">
-                                    <x-icon name="clock" class="w-4 h-4 text-blue-600" />
-                                </div>
-                                <div>
-                                    <p class="text-xs text-slate-400 mb-0.5">Horário de Atendimento</p>
-                                    <p class="text-sm text-slate-700 font-medium">Segunda a Sexta: 08h – 18h</p>
-                                    <p class="text-xs text-slate-400 mt-0.5">Sábado e Domingo: Fechado</p>
                                 </div>
                             </li>
                         </ul>
                     </div>
-
-                    {{-- Certificação --}}
-                    <div class="rounded-xl border border-blue-100 bg-blue-50 p-5">
-                        <div class="flex items-center gap-3 mb-2">
-                            <x-icon name="shield-check" class="w-5 h-5 text-blue-600 shrink-0" />
-                            <p class="text-sm font-semibold text-blue-800">ISO 9001 Certificado</p>
-                        </div>
-                        <p class="text-xs text-blue-600 leading-relaxed">
-                            Respondemos todas as solicitações em até 24 horas úteis com proposta técnica detalhada.
-                        </p>
-                    </div>
-
                 </div>
 
                 {{-- Formulário --}}
-                <div class="lg:col-span-2 bg-slate-900 rounded-2xl border border-white/5 p-8">
+                <div class="lg:col-span-3 bg-slate-900 rounded-2xl border border-white/5 p-8">
                     <h2 class="text-sm font-semibold text-white mb-6">Solicite um Orçamento</h2>
                     <livewire:quote-form />
                 </div>

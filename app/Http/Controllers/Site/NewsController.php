@@ -1,0 +1,16 @@
+<?php
+
+namespace App\Http\Controllers\Site;
+
+use App\Models\News;
+use Illuminate\View\View;
+
+class NewsController
+{
+    public function index(): View
+    {
+        $news = News::published()->with('media')->paginate(12);
+
+        return view('site.news.index', compact('news'));
+    }
+}

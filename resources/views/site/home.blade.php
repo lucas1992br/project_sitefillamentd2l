@@ -34,18 +34,18 @@
             {{-- Badge --}}
             <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-blue-500/30 bg-blue-500/10 mb-8">
                 <span class="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse"></span>
-                <span class="text-xs font-medium text-blue-300 tracking-widest uppercase">ISO 9001 Certificado · Desde 2005</span>
+                <span class="text-xs font-medium text-blue-300 tracking-widest uppercase">ISO 9001 Certificado</span>
             </div>
 
             {{-- Headline --}}
             <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight mb-6">
-                <span class="text-white">Precisão que</span><br>
-                <span class="text-gradient-blue">Move a Indústria</span>
+                <span class="text-white">Soluções em Ferramentais,</span><br>
+                <span class="text-gradient-blue">GSE e Dispositivos.</span>
             </h1>
 
             <p class="text-blue-200/70 text-lg md:text-xl leading-relaxed max-w-xl mb-10">
-                Torneamento CNC, fresamento 5 eixos, soldagem certificada e acabamento superficial —
-                tolerâncias de <strong class="text-blue-300 font-semibold">±0.003 mm</strong> para os setores mais exigentes.
+                A D2L Soluções Metálicas atua no desenvolvimento, fabricação, integração e restauração de Plataformas, Carros de Transporte, 
+                Lingas, Dummies, entre outros, para o setor Aeroespacial, Defesa, Óleo & Gás e Automotivo. 
             </p>
 
             <div class="flex flex-wrap gap-4">
@@ -101,21 +101,7 @@
         </div>
 
         {{-- Stats strip --}}
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-20 pt-10 border-t border-white/5">
-            @foreach([
-                ['value' => '20+',      'unit' => 'Anos',       'label' => 'de experiência'],
-                ['value' => '500+',     'unit' => 'Projetos',   'label' => 'entregues'],
-                ['value' => '±0.003',   'unit' => 'mm',         'label' => 'tolerância mínima'],
-                ['value' => 'ISO',      'unit' => '9001',       'label' => 'certificação ativa'],
-            ] as $stat)
-                <div class="text-center md:text-left">
-                    <p class="text-3xl md:text-4xl font-bold text-white stat-glow">
-                        {{ $stat['value'] }}<span class="text-blue-400 text-2xl">{{ $stat['unit'] }}</span>
-                    </p>
-                    <p class="text-xs text-blue-400/70 uppercase tracking-widest mt-1">{{ $stat['label'] }}</p>
-                </div>
-            @endforeach
-        </div>
+        
     </div>
 
     {{-- Bottom fade --}}
@@ -347,83 +333,165 @@
 @endif
 
 {{-- ══════════════════════════════════════════════════
-     5. POR QUE NOS ESCOLHER
-══════════════════════════════════════════════════ --}}
-<section class="py-24 bg-slate-50">
-    <div class="max-w-7xl mx-auto px-6">
-
-        <div class="text-center mb-14">
-            <p class="text-xs font-semibold tracking-widest text-blue-500 uppercase mb-2">Vantagens Competitivas</p>
-            <h2 class="text-3xl md:text-4xl font-bold text-slate-900">Por que nos escolher</h2>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            @foreach([
-                [
-                    'icon' => 'adjustments-horizontal',
-                    'title' => 'Precisão Superior',
-                    'desc'  => 'Tolerâncias a partir de ±0.003 mm com controle estatístico de processo (CEP) em cada lote.',
-                ],
-                [
-                    'icon' => 'shield-check',
-                    'title' => 'Qualidade Assegurada',
-                    'desc'  => 'ISO 9001 e AS9100 — rastreabilidade completa do material ao certificado de conformidade.',
-                ],
-                [
-                    'icon' => 'clock',
-                    'title' => 'Entrega no Prazo',
-                    'desc'  => '98% dos pedidos entregues dentro do prazo acordado. Capacidade de produção urgente disponível.',
-                ],
-                [
-                    'icon' => 'cpu-chip',
-                    'title' => 'Tecnologia de Ponta',
-                    'desc'  => 'Centros de usinagem 5 eixos, robôs de solda e CMM de medição de alta resolução.',
-                ],
-            ] as $item)
-                <div class="group bg-white rounded-2xl p-6 border border-slate-100 hover:border-blue-200 card-glow transition-all duration-300 hover:-translate-y-1">
-                    <div class="w-11 h-11 rounded-xl bg-blue-500/10 flex items-center justify-center mb-5 group-hover:bg-blue-500 transition-colors duration-300">
-                        <x-icon :name="$item['icon']" class="w-5 h-5 text-blue-500 group-hover:text-white transition-colors duration-300" />
-                    </div>
-                    <h3 class="font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">{{ $item['title'] }}</h3>
-                    <p class="text-sm text-slate-500 leading-relaxed">{{ $item['desc'] }}</p>
-                </div>
-            @endforeach
-        </div>
-    </div>
-</section>
-
-
-{{-- ══════════════════════════════════════════════════
      6. CERTIFICAÇÕES & TESTIMONIALS
 ══════════════════════════════════════════════════ --}}
+@if($certifications->isNotEmpty() || $clients->whereNotNull('testimonial')->isNotEmpty())
 <section id="certifications" class="py-24 bg-white relative">
     <div class="max-w-7xl mx-auto px-6">
 
-        <div class="text-center mb-14">
-            <p class="text-xs font-semibold tracking-widest text-blue-500 uppercase mb-2">Qualidade & Conformidade</p>
-            <h2 class="text-3xl md:text-4xl font-bold text-slate-900">Certificações</h2>
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-14">
+            <div>
+                <p class="text-xs font-semibold tracking-widest text-blue-500 uppercase mb-2">Qualidade & Conformidade</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900">Certificações</h2>
+            </div>
+            <a href="{{ route('certifications.index') }}"
+               class="inline-flex items-center gap-2 text-sm font-medium text-blue-600 hover:text-blue-500 transition shrink-0">
+                Ver todas as certificações <x-icon name="arrow-right" class="w-4 h-4" />
+            </a>
         </div>
 
         @if($certifications->isNotEmpty())
-            <div class="flex flex-wrap justify-center gap-4 mb-20">
-                @foreach($certifications as $cert)
-                    <div class="group flex items-center gap-3 bg-white rounded-xl border border-slate-100 px-5 py-3.5 shadow-sm hover:border-blue-200 hover:shadow-md transition-all duration-300">
-                        <div class="w-9 h-9 rounded-full bg-blue-50 flex items-center justify-center shrink-0 group-hover:bg-blue-500 transition-colors duration-300">
-                            @if($cert->getFirstMedia('logo'))
-                                <img src="{{ $cert->getFirstMediaUrl('logo') }}" alt="{{ $cert->name }}" class="w-6 h-6 object-contain">
-                            @else
-                                <x-icon name="shield-check" class="w-5 h-5 text-blue-500 group-hover:text-white transition-colors duration-300" />
+            <div
+                x-data="{
+                    open: false,
+                    cert: {},
+                    show(c) { this.cert = c; this.open = true; }
+                }"
+                @keydown.escape.window="open = false"
+            >
+                <div class="flex flex-wrap justify-center gap-4 mb-20">
+                    @foreach($certifications as $cert)
+                        @php
+                            $certData = [
+                                'name'               => $cert->name,
+                                'issuer'             => $cert->issuer,
+                                'certificate_number' => $cert->certificate_number,
+                                'issued_at'          => $cert->issued_at?->format('d/m/Y'),
+                                'expires_at'         => $cert->expires_at?->format('d/m/Y'),
+                                'description'        => $cert->description,
+                                'is_expired'         => $cert->isExpired(),
+                                'logo_url'           => $cert->getFirstMediaUrl('logo'),
+                                'cert_url'           => $cert->getFirstMediaUrl('certificate'),
+                                'cert_mime'          => $cert->getFirstMedia('certificate')?->mime_type,
+                            ];
+                        @endphp
+                        <button
+                            type="button"
+                            @click="show({{ json_encode($certData) }})"
+                            class="group flex items-center gap-3 bg-white rounded-xl border border-slate-100 px-5 py-3.5 shadow-sm hover:border-blue-200 hover:shadow-md transition-all duration-300 text-left cursor-pointer"
+                        >
+                            <div class="w-9 h-9 rounded-full bg-blue-50 flex items-center justify-center shrink-0 group-hover:bg-blue-500 transition-colors duration-300">
+                                @if($cert->getFirstMedia('logo'))
+                                    <img src="{{ $cert->getFirstMediaUrl('logo') }}" alt="{{ $cert->name }}" class="w-6 h-6 object-contain">
+                                @else
+                                    <x-icon name="shield-check" class="w-5 h-5 text-blue-500 group-hover:text-white transition-colors duration-300" />
+                                @endif
+                            </div>
+                            <div>
+                                <p class="text-sm font-bold text-slate-800">{{ $cert->name }}</p>
+                                <p class="text-xs text-slate-400">{{ $cert->issuer }}</p>
+                            </div>
+                            @if(!$cert->isExpired() && $cert->expires_at)
+                                <span class="ml-2 text-xs font-semibold text-green-600 bg-green-50 border border-green-100 px-2 py-0.5 rounded-full">Válido</span>
+                            @elseif($cert->isExpired())
+                                <span class="ml-2 text-xs font-semibold text-red-500 bg-red-50 border border-red-100 px-2 py-0.5 rounded-full">Expirado</span>
                             @endif
+                            <x-icon name="eye" class="w-4 h-4 text-slate-300 group-hover:text-blue-400 transition-colors ml-1" />
+                        </button>
+                    @endforeach
+                </div>
+
+                {{-- Modal --}}
+                <div
+                    x-show="open"
+                    x-transition:enter="transition duration-200"
+                    x-transition:enter-start="opacity-0"
+                    x-transition:enter-end="opacity-100"
+                    x-transition:leave="transition duration-150"
+                    x-transition:leave-end="opacity-0"
+                    class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+                    @click.self="open = false"
+                    style="display:none"
+                >
+                    <div
+                        x-show="open"
+                        x-transition:enter="transition duration-200"
+                        x-transition:enter-start="opacity-0 scale-95"
+                        x-transition:enter-end="opacity-100 scale-100"
+                        x-transition:leave="transition duration-150"
+                        x-transition:leave-end="opacity-0 scale-95"
+                        class="bg-white rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden"
+                    >
+                        {{-- Header --}}
+                        <div class="flex items-center justify-between px-6 py-4 border-b border-slate-100">
+                            <div class="flex items-center gap-3">
+                                <div class="w-9 h-9 rounded-full bg-blue-50 flex items-center justify-center shrink-0">
+                                    <template x-if="cert.logo_url">
+                                        <img :src="cert.logo_url" :alt="cert.name" class="w-6 h-6 object-contain">
+                                    </template>
+                                    <template x-if="!cert.logo_url">
+                                        <svg class="w-5 h-5 text-blue-500" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.955 11.955 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" /></svg>
+                                    </template>
+                                </div>
+                                <h3 x-text="cert.name" class="text-base font-bold text-slate-900"></h3>
+                            </div>
+                            <button @click="open = false" class="text-slate-400 hover:text-slate-600 transition">
+                                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+                            </button>
                         </div>
-                        <div>
-                            <p class="text-sm font-bold text-slate-800">{{ $cert->name }}</p>
-                            <p class="text-xs text-slate-400">{{ $cert->issuer }}</p>
+
+                        {{-- Body --}}
+                        <div class="px-6 py-5 space-y-4">
+                            <div class="grid grid-cols-2 gap-4 text-sm">
+                                <div>
+                                    <p class="text-xs text-slate-400 mb-0.5">Emissor</p>
+                                    <p class="font-medium text-slate-800" x-text="cert.issuer"></p>
+                                </div>
+                                <template x-if="cert.certificate_number">
+                                    <div>
+                                        <p class="text-xs text-slate-400 mb-0.5">Número</p>
+                                        <p class="font-medium text-slate-800" x-text="cert.certificate_number"></p>
+                                    </div>
+                                </template>
+                                <template x-if="cert.issued_at">
+                                    <div>
+                                        <p class="text-xs text-slate-400 mb-0.5">Emitido em</p>
+                                        <p class="font-medium text-slate-800" x-text="cert.issued_at"></p>
+                                    </div>
+                                </template>
+                                <template x-if="cert.expires_at">
+                                    <div>
+                                        <p class="text-xs text-slate-400 mb-0.5">Validade</p>
+                                        <p class="font-medium" :class="cert.is_expired ? 'text-red-500' : 'text-green-600'" x-text="cert.expires_at + (cert.is_expired ? ' (Expirado)' : ' (Válido)')"></p>
+                                    </div>
+                                </template>
+                            </div>
+
+                            <template x-if="cert.description">
+                                <div>
+                                    <p class="text-xs text-slate-400 mb-0.5">Descrição</p>
+                                    <p class="text-sm text-slate-600 leading-relaxed" x-text="cert.description"></p>
+                                </div>
+                            </template>
+
+                            <template x-if="cert.cert_url">
+                                <div>
+                                    <p class="text-xs text-slate-400 mb-2">Documento</p>
+                                    <template x-if="cert.cert_mime && cert.cert_mime.startsWith('image/')">
+                                        <img :src="cert.cert_url" alt="Certificado" class="w-full rounded-lg border border-slate-100 object-contain max-h-64">
+                                    </template>
+                                    <template x-if="!cert.cert_mime || !cert.cert_mime.startsWith('image/')">
+                                        <a :href="cert.cert_url" target="_blank" rel="noopener noreferrer"
+                                           class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-50 border border-blue-100 text-blue-600 text-sm font-medium hover:bg-blue-100 transition">
+                                            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m.75 12l3 3m0 0l3-3m-3 3v-6m-1.5-9H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" /></svg>
+                                            Ver Certificado (PDF)
+                                        </a>
+                                    </template>
+                                </div>
+                            </template>
                         </div>
-                        @if(!$cert->isExpired() && $cert->expires_at)
-                            <span class="ml-2 text-xs font-semibold text-green-600 bg-green-50 border border-green-100 px-2 py-0.5 rounded-full">Válido</span>
-                        @endif
                     </div>
-                @endforeach
+                </div>
             </div>
         @endif
 
@@ -457,6 +525,61 @@
         @endif
     </div>
 </section>
+@endif
+
+{{-- ══════════════════════════════════════════════════
+     6.5 NOTÍCIAS
+══════════════════════════════════════════════════ --}}
+@if($latestNews->isNotEmpty())
+<section id="noticias" class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-14">
+            <div>
+                <p class="text-xs font-semibold tracking-widest text-blue-500 uppercase mb-2">Novidades</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900">Notícias</h2>
+            </div>
+            <a href="{{ route('news.index') }}"
+               class="inline-flex items-center gap-2 text-sm font-medium text-blue-600 hover:text-blue-500 transition shrink-0">
+                Ver todas as notícias <x-icon name="arrow-right" class="w-4 h-4" />
+            </a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            @foreach($latestNews as $item)
+                <a href="{{ route('news.index') }}" class="group bg-white rounded-2xl border border-slate-100 overflow-hidden card-glow transition-all duration-300 hover:-translate-y-1 hover:border-blue-200 block">
+
+                    @if($item->getFirstMedia('cover'))
+                        <img src="{{ $item->getFirstMediaUrl('cover', 'thumb') ?: $item->getFirstMediaUrl('cover') }}"
+                             alt="{{ $item->title }}"
+                             class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500">
+                    @else
+                        <div class="w-full h-48 bg-slate-50 flex items-center justify-center border-b border-slate-100">
+                            <x-icon name="newspaper" class="w-10 h-10 text-slate-200" />
+                        </div>
+                    @endif
+
+                    <div class="p-5">
+                        @if($item->published_at)
+                            <p class="text-xs text-blue-500 font-semibold uppercase tracking-wider mb-2">
+                                {{ $item->published_at->format('d/m/Y') }}
+                            </p>
+                        @endif
+                        <h3 class="text-sm font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors leading-snug">
+                            {{ $item->title }}
+                        </h3>
+                        @if($item->excerpt)
+                            <p class="text-xs text-slate-500 leading-relaxed line-clamp-3">{{ $item->excerpt }}</p>
+                        @endif
+                    </div>
+                </a>
+            @endforeach
+        </div>
+
+    </div>
+</section>
+@endif
+
 {{-- ══════════════════════════════════════════════════
      2. QUEM SOMOS
 ══════════════════════════════════════════════════ --}}
@@ -527,7 +650,6 @@
 @endif
 
 
-
 {{-- ══════════════════════════════════════════════════
      7. CONTATO & ORÇAMENTO
 ══════════════════════════════════════════════════ --}}
@@ -542,23 +664,23 @@
             <p class="text-xs font-semibold tracking-widest text-blue-400 uppercase mb-2">Fale Conosco</p>
             <h2 class="text-3xl md:text-4xl font-bold text-white">Solicite um Orçamento</h2>
             <p class="text-slate-400 mt-3 max-w-lg mx-auto text-sm leading-relaxed">
-                Descreva sua peça, material e prazo — respondemos em até 24 horas úteis.
+               
             </p>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+        <div class="grid grid-cols-1 lg:grid-cols-5 gap-10">
 
             {{-- Contact info --}}
-            <div class="space-y-8">
+            <div class="lg:col-span-2 space-y-8">
                 <div>
                     <h3 class="text-xs font-semibold uppercase tracking-widest text-blue-400 mb-5">Informações de Contato</h3>
                     <ul class="space-y-4">
                         <li class="flex items-start gap-3">
                             <div class="w-8 h-8 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center shrink-0">
-                                <x-icon name="envelope" class="w-4 h-4 text-blue-400" />
+                                <x-icon name="envelope" class="w-4 h-4 text-white" />
                             </div>
                             <div>
-                                <p class="text-xs text-slate-500 mb-0.5">E-mail</p>
+                                <p class="text-xs text-white mb-0.5">E-mail</p>
                                 <a href="mailto:contato@d2l.ind.br" class="text-sm text-slate-200 hover:text-blue-300 transition">
                                     contato@d2l.ind.br
                                 </a>
@@ -566,31 +688,36 @@
                         </li>
                         <li class="flex items-start gap-3">
                             <div class="w-8 h-8 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center shrink-0">
-                                <x-icon name="phone" class="w-4 h-4 text-blue-400" />
+                                <x-icon name="phone" class="w-4 h-4 text-white" />
                             </div>
                             <div>
-                                <p class="text-xs text-slate-500 mb-0.5">Telefone</p>
+                                <p class="text-xs text-white mb-0.5">Telefone</p>
                                 <a href="tel:+5512997517673" class="text-sm text-slate-200 hover:text-blue-300 transition">
                                     +55 (12) 99751-7673
                                 </a>
                             </div>
                         </li>
                         <li class="flex items-start gap-3">
-                            <div class="w-8 h-8 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center shrink-0">
-                                <x-icon name="map-pin" class="w-4 h-4 text-blue-400" />
+                            <div class="w-8 h-8 rounded-lg bg-green-500/10 border border-green-500/20 flex items-center justify-center shrink-0">
+                                <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                                </svg>
                             </div>
                             <div>
-                                <p class="text-xs text-slate-500 mb-0.5">Endereço</p>
-                                <p class="text-sm text-slate-200">ROD Doutor Edmir Viana Moura ,5300 <br>VILA PARAISO, CACAPAVA — SP, Brasil</p>
+                                <p class="text-xs text-white mb-0.5">WhatsApp</p>
+                                <a href="https://wa.me/5512997517673" target="_blank" rel="noopener noreferrer"
+                                   class="text-sm text-slate-200 hover:text-green-400 transition">
+                                    +55 (12) 99751-7673
+                                </a>
                             </div>
                         </li>
                         <li class="flex items-start gap-3">
                             <div class="w-8 h-8 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center shrink-0">
-                                <x-icon name="clock" class="w-4 h-4 text-blue-400" />
+                                <x-icon name="map-pin" class="w-4 h-4 text-white" />
                             </div>
                             <div>
-                                <p class="text-xs text-slate-500 mb-0.5">Horário</p>
-                                <p class="text-sm text-slate-200">Seg–Sex: 08h–18h</p>
+                                <p class="text-xs text-white mb-0.5">Endereço</p>
+                                <p class="text-sm text-slate-200">Rodovia João Amaral Gurgel, N4800<br>Bairro Piedade, Caçapava/SP</p>
                             </div>
                         </li>
                     </ul>
@@ -611,7 +738,7 @@
             </div>
 
             {{-- Form --}}
-            <div class="lg:col-span-2 bg-slate-900/70 backdrop-blur-sm rounded-2xl border border-white/5 p-7">
+            <div class="lg:col-span-3 bg-slate-900/70 backdrop-blur-sm rounded-2xl border border-white/5 p-7">
                 <livewire:quote-form />
             </div>
 

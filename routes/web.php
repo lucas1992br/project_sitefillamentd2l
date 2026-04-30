@@ -1,12 +1,12 @@
 <?php
 
 use App\Http\Controllers\Site\HomeController;
+use App\Http\Controllers\Site\NewsController;
 use App\Http\Controllers\Site\ServicesController;
 use App\Livewire\User\Profile;
 use App\Livewire\Users\Index;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
-use Symfony\Component\HttpFoundation\StreamedResponse;
 
 // Public site
 Route::get('/', HomeController::class)->name('home');
@@ -17,7 +17,13 @@ Route::get('/portfolio', fn () => view('site.portfolio.index'))->name('portfolio
 
 Route::get('/catalog', fn () => view('site.catalog.index'))->name('catalog.index');
 
-Route::get('/certifications', fn () => view('site.certifications.index'))->name('certifications.index');
+Route::get('/certifications', function () {
+    return view('site.certifications.index', [
+        'certifications' => \App\Models\Certification::active()->with('media')->get(),
+    ]);
+})->name('certifications.index');
+
+Route::get('/noticias', [NewsController::class, 'index'])->name('news.index');
 
 Route::get('/contact', fn () => view('site.contact'))->name('contact');
 

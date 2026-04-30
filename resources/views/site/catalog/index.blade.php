@@ -1,22 +1,23 @@
 @extends('layouts.site')
 
 @section('title', 'Catálogo — ' . config('app.name'))
-@section('description', 'Explore nosso catálogo de produtos e soluções metálicas.')
+@section('description', 'Conheça nossos produtos e soluções disponíveis, organizados por categoria.')
 
 @section('content')
 
-    <section class="bg-blue-950 text-white py-16">
-        <div class="max-w-7xl mx-auto px-6">
-            </br>
-            <p class="text-xs font-medium tracking-widest text-blue-300 uppercase mb-3">Produtos</p>
-            <h1 class="text-4xl font-bold mb-4">Catálogo</h1>
-            <p class="text-blue-200 max-w-xl leading-relaxed">
+    <section class="bg-slate-950 text-white py-20 relative overflow-hidden">
+        <div class="absolute inset-0 bg-tech-grid opacity-40 pointer-events-none"></div>
+        <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-500/40 to-transparent"></div>
+        <div class="relative max-w-7xl mx-auto px-6">
+            <p class="text-xs font-semibold tracking-widest text-blue-400 uppercase mb-3">Produtos</p>
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Catálogo</h1>
+            <p class="text-blue-200/70 max-w-xl leading-relaxed">
                 Conheça nossos produtos e soluções disponíveis, organizados por categoria.
             </p>
         </div>
     </section>
 
-    <section class="py-20 bg-gray-50">
+    <section class="py-20 bg-slate-50">
         <div class="max-w-7xl mx-auto px-6">
             <livewire:catalog-grid />
         </div>

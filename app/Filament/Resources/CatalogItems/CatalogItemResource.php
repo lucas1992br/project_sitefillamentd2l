@@ -28,7 +28,7 @@ class CatalogItemResource extends Resource
 
     protected static ?string $pluralModelLabel = 'Catálogo de Produtos';
 
-    protected static ?int $navigationSort = 3;
+    protected static ?int $navigationSort = 6;
 
     public static function form(Schema $schema): Schema
     {

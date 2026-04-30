@@ -22,9 +22,6 @@ new class extends Component
     #[Validate('required|string|max:100')]
     public string $company = '';
 
-    #[Validate('required|string|in:cnc-turning,cnc-milling,welding,finishing,other')]
-    public string $service = '';
-
     #[Validate('required|string|max:2000')]
     public string $message = '';
 
@@ -43,29 +40,21 @@ new class extends Component
 
         $this->applySmtpSettings($site);
 
-        $serviceLabels = [
-            'cnc-turning' => 'Torneamento CNC',
-            'cnc-milling' => 'Fresamento CNC',
-            'welding'     => 'Soldagem',
-            'finishing'   => 'Acabamento Superficial',
-            'other'       => 'Outro',
-        ];
-
         \Illuminate\Support\Facades\Mail::to($site->contact_email)
             ->send(new QuoteRequestMail(
                 senderName:  $this->name,
                 senderEmail: $this->email,
                 phone:       $this->phone,
                 company:     $this->company,
-                service:     $serviceLabels[$this->service] ?? $this->service,
+                service:     '',
                 messageBody: $this->message,
             ));
 
         $this->submitted = true;
 
-        $this->toast()->success('Solicitação enviada!', 'Retornaremos em até 24 horas úteis.')->send();
+        $this->toast()->success('Recebemos Sua Solicitação', 'Entraremos em contato em breve.')->send();
 
-        $this->reset(['name', 'email', 'phone', 'company', 'service', 'message']);
+        $this->reset(['name', 'email', 'phone', 'company', 'message']);
     }
 
     private function applySmtpSettings(SiteContent $site): void
@@ -153,27 +142,11 @@ new class extends Component
             </div>
 
             <div>
-                <label class="block text-xs font-medium text-white mb-1">Serviço Necessário *</label>
-                <select
-                    wire:model="service"
-                    class="w-full rounded-lg border border-white/10 bg-slate-800 px-3 py-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-                >
-                    <option value="">Selecione um serviço…</option>
-                    <option value="cnc-turning">Torneamento CNC</option>
-                    <option value="cnc-milling">Fresamento CNC</option>
-                    <option value="welding">Soldagem</option>
-                    <option value="finishing">Acabamento Superficial</option>
-                    <option value="other">Outro</option>
-                </select>
-                @error('service') <p class="text-xs text-red-400 mt-1">{{ $message }}</p> @enderror
-            </div>
-
-            <div>
                 <label class="block text-xs font-medium text-white mb-1">Detalhes do Projeto *</label>
                 <textarea
                     wire:model="message"
                     rows="5"
-                    placeholder="Descreva sua peça, material, tolerâncias, quantidade e prazo…"
+                    placeholder="Por gentileza, descreva sua necessidade em detalhes."
                     class="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
                 ></textarea>
                 @error('message') <p class="text-xs text-red-400 mt-1">{{ $message }}</p> @enderror

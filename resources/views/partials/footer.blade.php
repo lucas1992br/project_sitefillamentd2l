@@ -1,17 +1,42 @@
 <footer class="bg-blue-950 text-blue-300 py-12">
     <div class="max-w-7xl mx-auto px-6">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
 
             <div>
-                <h3 class="text-white font-semibold text-sm mb-3">D2L Soluções Metálicas</h3>
+                @php($footerLogoUrl = \App\Models\SiteContent::instance()->getFirstMediaUrl('logo'))
+                @if($footerLogoUrl)
+                    <a href="{{ route('home') }}">
+                        <img src="{{ $footerLogoUrl }}" alt="D2L Soluções Metálicas" class="h-10 sm:h-12 md:h-14 w-auto object-contain mb-3" />
+                    </a>
+                @else
+                    <div class="flex items-center gap-2 mb-3">
+                        <div class="w-7 h-7 rounded bg-blue-500 flex items-center justify-center shrink-0">
+                            <x-icon name="wrench-screwdriver" class="w-4 h-4 text-white" />
+                        </div>
+                        <span class="text-white font-semibold text-sm tracking-tight leading-tight">
+                            D2L<br><span class="text-blue-400 font-light text-xs tracking-widest uppercase">Soluções Metálicas</span>
+                        </span>
+                    </div>
+                @endif
             </div>
 
             <div>
                 <h3 class="text-white font-semibold text-sm mb-3">Navegação</h3>
                 <ul class="space-y-2">
-                    <li><a href="{{ route('services.index') }}" class="text-xs hover:text-white transition">Serviços</a></li>
-                    <li><a href="{{ route('portfolio.index') }}" class="text-xs hover:text-white transition">Portfólio</a></li>
+                    <li><a href="{{ route('home') }}" class="text-xs hover:text-white transition">Home</a></li>
+                    <li><a href="{{ route('home') }}#quem-somos" class="text-xs hover:text-white transition">Quem Somos</a></li>
                     <li><a href="{{ route('certifications.index') }}" class="text-xs hover:text-white transition">Certificações</a></li>
+                    <li><a href="{{ route('services.index') }}" class="text-xs hover:text-white transition">Serviços</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <ul class="space-y-2">
+                    <li><a href="{{ route('portfolio.index') }}" class="text-xs hover:text-white transition">Portfólio</a></li>
+                    <li><a href="{{ route('catalog.index') }}" class="text-xs hover:text-white transition">Catálogo</a></li>
+                    @if(\App\Models\News::published()->exists())
+                        <li><a href="{{ route('news.index') }}" class="text-xs hover:text-white transition">Notícias</a></li>
+                    @endif
                     <li><a href="{{ route('contact') }}" class="text-xs hover:text-white transition">Contato</a></li>
                 </ul>
             </div>

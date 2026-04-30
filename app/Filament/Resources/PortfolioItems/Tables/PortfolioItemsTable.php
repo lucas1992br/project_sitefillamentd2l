@@ -68,11 +68,10 @@ class PortfolioItemsTable
                 SelectFilter::make('category')
                     ->label('Categoria')
                     ->options([
-                        'CNC Turning' => 'Torneamento CNC',
-                        'CNC Milling' => 'Fresamento CNC',
-                        'Welding'     => 'Soldagem',
-                        'Finishing'   => 'Acabamento',
-                        'Assembly'    => 'Montagem',
+                        'Turnkey' => 'Turnkey',
+                        'Usinagem' => 'Usinagem',
+                        'Caldeiraria'     => 'Caldeiraria',
+                        'Restauração'   => 'Restauração'
                     ]),
                 TernaryFilter::make('is_featured')->label('Destaque'),
                 TernaryFilter::make('is_active')->label('Ativo'),

@@ -12,27 +12,40 @@
 >
     <div class="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
 
-        <a href="{{ route('home') }}" class="flex items-center gap-2.5">
-            @php($logoUrl = \App\Models\SiteContent::instance()->getFirstMediaUrl('logo'))
+        @php($logoUrl = \App\Models\SiteContent::instance()->getFirstMediaUrl('logo'))
+        <a href="{{ route('home') }}" class="flex items-center gap-2.5 shrink-0">
             @if($logoUrl)
-                <img src="{{ $logoUrl }}" alt="Logotipo" class="h-10 w-auto object-contain" />
+                <img src="{{ $logoUrl }}" alt="D2L Soluções Metálicas" class="h-10 sm:h-12 md:h-14 w-auto object-contain" />
             @else
-                <div class="w-7 h-7 rounded bg-blue-500 flex items-center justify-center shrink-0">
-                    <x-icon name="wrench-screwdriver" class="w-4 h-4 text-white" />
+                <div class="flex items-center gap-2">
+                    <div class="w-7 h-7 rounded bg-blue-500 flex items-center justify-center shrink-0">
+                        <x-icon name="wrench-screwdriver" class="w-4 h-4 text-white" />
+                    </div>
+                    <span class="text-white font-semibold text-sm tracking-tight leading-tight">
+                        D2L<br><span class="text-blue-400 font-light text-xs tracking-widest uppercase">Soluções Metálicas</span>
+                    </span>
                 </div>
             @endif
-            <span class="text-white font-semibold text-sm tracking-tight leading-tight">
-                D2L<br><span class="text-blue-400 font-light text-xs tracking-widest uppercase">Soluções Metálicas</span>
-            </span>
         </a>
 
+        @php($hasNews = \App\Models\News::published()->exists())
+        @php($hasCertifications = \App\Models\Certification::active()->exists())
+        @php($hasCatalog = \App\Models\CatalogItem::active()->exists())
         <div class="hidden md:flex items-center gap-7">
-            <a href="{{ route('home') }}#services"        class="text-xs font-medium text-blue-200/80 hover:text-white transition tracking-wide uppercase">Serviços</a>
-            <a href="{{ route('home') }}#portfolio"       class="text-xs font-medium text-blue-200/80 hover:text-white transition tracking-wide uppercase">Portfólio</a>
-            <a href="{{ route('home') }}#catalog"         class="text-xs font-medium text-blue-200/80 hover:text-white transition tracking-wide uppercase">Catálogo</a>
-            <a href="{{ route('home') }}#certifications"  class="text-xs font-medium text-blue-200/80 hover:text-white transition tracking-wide uppercase">Certificações</a>
-            <a href="{{ route('home') }}#quem-somos"      class="text-xs font-medium text-blue-200/80 hover:text-white transition tracking-wide uppercase">Quem Somos</a>
-            <a href="{{ route('home') }}#contact"         class="text-xs font-medium text-blue-200/80 hover:text-white transition tracking-wide uppercase">Contato</a>
+            <a href="{{ route('home') }}"        class="text-sm font-semibold text-blue-200/80 hover:text-white transition tracking-wide uppercase">home</a>
+            <a href="{{ route('home') }}#services"        class="text-sm font-semibold text-blue-200/80 hover:text-white transition tracking-wide uppercase">Serviços</a>
+            <a href="{{ route('home') }}#portfolio"       class="text-sm font-semibold text-blue-200/80 hover:text-white transition tracking-wide uppercase">Portfólio</a>
+            @if($hasCatalog)
+                <a href="{{ route('home') }}#catalog" class="text-sm font-semibold text-blue-200/80 hover:text-white transition tracking-wide uppercase">Catálogo</a>
+            @endif
+            @if($hasCertifications)
+                <a href="{{ route('home') }}#certifications" class="text-sm font-semibold text-blue-200/80 hover:text-white transition tracking-wide uppercase">Certificações</a>
+            @endif
+            @if($hasNews)
+                <a href="{{ route('news.index') }}" class="text-sm font-semibold text-blue-200/80 hover:text-white transition tracking-wide uppercase">Notícias</a>
+            @endif
+            <a href="{{ route('home') }}#quem-somos"      class="text-sm font-semibold text-blue-200/80 hover:text-white transition tracking-wide uppercase">Quem Somos</a>
+            <a href="{{ route('home') }}#contact"         class="text-sm font-semibold text-blue-200/80 hover:text-white transition tracking-wide uppercase">Contato</a>
         </div>
 
         <a href="{{ request()->routeIs('home') ? '#contact' : route('contact') }}"
@@ -57,11 +70,19 @@
         x-transition:leave-end="opacity-0"
         class="md:hidden bg-slate-950/98 backdrop-blur-md border-t border-white/5 px-6 py-5 flex flex-col gap-4"
     >
-        <a href="{{ route('home') }}#quem-somos"      @click="mobileOpen=false" class="text-sm text-blue-200 hover:text-white transition">Quem Somos</a>
+        <a href="{{ route('home') }}"                 @click="mobileOpen=false" class="text-sm text-blue-200 hover:text-white transition">Home</a>
         <a href="{{ route('home') }}#services"        @click="mobileOpen=false" class="text-sm text-blue-200 hover:text-white transition">Serviços</a>
         <a href="{{ route('home') }}#portfolio"       @click="mobileOpen=false" class="text-sm text-blue-200 hover:text-white transition">Portfólio</a>
-        <a href="{{ route('home') }}#catalog"         @click="mobileOpen=false" class="text-sm text-blue-200 hover:text-white transition">Catálogo</a>
-        <a href="{{ route('home') }}#certifications"  @click="mobileOpen=false" class="text-sm text-blue-200 hover:text-white transition">Certificações</a>
+        @if($hasCatalog)
+            <a href="{{ route('home') }}#catalog" @click="mobileOpen=false" class="text-sm text-blue-200 hover:text-white transition">Catálogo</a>
+        @endif
+        @if($hasCertifications)
+            <a href="{{ route('home') }}#certifications" @click="mobileOpen=false" class="text-sm text-blue-200 hover:text-white transition">Certificações</a>
+        @endif
+        @if($hasNews)
+            <a href="{{ route('news.index') }}"       @click="mobileOpen=false" class="text-sm text-blue-200 hover:text-white transition">Notícias</a>
+        @endif
+        <a href="{{ route('home') }}#quem-somos"      @click="mobileOpen=false" class="text-sm text-blue-200 hover:text-white transition">Quem Somos</a>
         <a href="{{ route('home') }}#contact"         @click="mobileOpen=false" class="text-sm text-blue-200 hover:text-white transition">Contato</a>
         <a href="{{ request()->routeIs('home') ? '#contact' : route('contact') }}"
            @click="mobileOpen=false"
