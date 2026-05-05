@@ -1,7 +1,7 @@
 @extends('layouts.site')
 
-@section('title', 'Notícias — ' . config('app.name'))
-@section('description', 'Fique por dentro das últimas novidades da D2L Soluções Metálicas.')
+@section('title', __('site.news.title') . ' — ' . config('app.name'))
+@section('description', __('site.news.description'))
 
 @section('content')
 
@@ -10,10 +10,10 @@
         <div class="absolute inset-0 bg-tech-grid opacity-40 pointer-events-none"></div>
         <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-500/40 to-transparent"></div>
         <div class="relative max-w-7xl mx-auto px-6">
-            <p class="text-xs font-semibold tracking-widest text-blue-400 uppercase mb-3">Novidades</p>
-            <h1 class="text-4xl md:text-5xl font-bold mb-4">Notícias</h1>
+            <p class="text-xs font-semibold tracking-widest text-blue-400 uppercase mb-3">{{ __('site.news.tag') }}</p>
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">{{ __('site.news.title') }}</h1>
             <p class="text-blue-200/70 max-w-xl leading-relaxed">
-                Fique por dentro das últimas novidades, projetos e atualizações da D2L.
+                {{ __('site.news.description') }}
             </p>
         </div>
     </section>
@@ -25,7 +25,7 @@
             @if($news->isEmpty())
                 <div class="text-center py-24">
                     <x-icon name="newspaper" class="w-12 h-12 text-slate-300 mx-auto mb-4" />
-                    <p class="text-slate-400 text-sm">Nenhuma notícia publicada ainda.</p>
+                    <p class="text-slate-400 text-sm">{{ __('site.news.empty') }}</p>
                 </div>
             @else
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

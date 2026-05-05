@@ -34,37 +34,36 @@
             {{-- Badge --}}
             <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-blue-500/30 bg-blue-500/10 mb-8">
                 <span class="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse"></span>
-                <span class="text-xs font-medium text-blue-300 tracking-widest uppercase">ISO 9001 Certificado</span>
+                <span class="text-xs font-medium text-blue-300 tracking-widest uppercase">{{ __('site.home.iso_badge') }}</span>
             </div>
 
             {{-- Headline --}}
             <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight mb-6">
-                <span class="text-white">Soluções em Ferramentais,</span><br>
-                <span class="text-gradient-blue">GSE e Dispositivos.</span>
+                <span class="text-white">{{ __('site.home.headline1') }}</span><br>
+                <span class="text-gradient-blue">{{ __('site.home.headline2') }}</span>
             </h1>
 
             <p class="text-blue-200/70 text-lg md:text-xl leading-relaxed max-w-xl mb-10">
-                A D2L Soluções Metálicas atua no desenvolvimento, fabricação, integração e restauração de Plataformas, Carros de Transporte, 
-                Lingas, Dummies, entre outros, para o setor Aeroespacial, Defesa, Óleo & Gás e Automotivo. 
+                {{ __('site.home.subtext') }}
             </p>
 
             <div class="flex flex-wrap gap-4">
                 <a href="#contact"
                    class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-blue-500 text-white font-semibold text-sm hover:bg-blue-400 transition-all shadow-lg shadow-blue-500/30 hover:shadow-blue-400/40 hover:-translate-y-0.5">
                     <x-icon name="document-text" class="w-4 h-4" />
-                    Solicite um Orçamento
+                    {{ __('site.home.cta_quote') }}
                 </a>
                 <a href="#portfolio"
                    class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-blue-500/40 text-blue-200 font-semibold text-sm hover:border-blue-400 hover:text-white transition-all hover:-translate-y-0.5">
                     <x-icon name="photo" class="w-4 h-4" />
-                    Ver Portfólio
+                    {{ __('site.home.cta_portfolio') }}
                 </a>
             </div>
 
             {{-- Ícones de redes sociais --}}
             @if($siteContent->whatsapp_url || $siteContent->facebook_url || $siteContent->instagram_url)
                 <div class="flex items-center gap-3 mt-2">
-                    <span class="text-xs text-blue-400/60 uppercase tracking-widest">Siga-nos</span>
+                    <span class="text-xs text-blue-400/60 uppercase tracking-widest">{{ __('site.nav.follow_us') }}</span>
                     <div class="h-px w-6 bg-blue-500/30"></div>
 
                     @if($siteContent->whatsapp_url)
@@ -118,12 +117,12 @@
 
         <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-14">
             <div>
-                <p class="text-xs font-semibold tracking-widest text-blue-500 uppercase mb-2">O que fazemos</p>
-                <h2 class="text-3xl md:text-4xl font-bold text-slate-900">Nossos Serviços</h2>
+                <p class="text-xs font-semibold tracking-widest text-blue-500 uppercase mb-2">{{ __('site.home.services_tag') }}</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900">{{ __('site.home.services_title') }}</h2>
             </div>
             <a href="{{ route('services.index') }}"
                class="inline-flex items-center gap-2 text-sm font-medium text-blue-600 hover:text-blue-500 transition shrink-0">
-                Ver todos os serviços <x-icon name="arrow-right" class="w-4 h-4" />
+                {{ __('site.home.services_see_all') }} <x-icon name="arrow-right" class="w-4 h-4" />
             </a>
         </div>
 
@@ -169,17 +168,17 @@
 
         <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-14">
             <div>
-                <p class="text-xs font-semibold tracking-widest text-blue-400 uppercase mb-2">Nosso Trabalho</p>
-                <h2 class="text-3xl md:text-4xl font-bold text-white">Portfólio de Projetos</h2>
+                <p class="text-xs font-semibold tracking-widest text-blue-400 uppercase mb-2">{{ __('site.home.portfolio_tag') }}</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-white">{{ __('site.home.portfolio_title') }}</h2>
             </div>
             <a href="{{ route('portfolio.index') }}"
                class="inline-flex items-center gap-2 text-sm font-medium text-blue-400 hover:text-blue-300 transition shrink-0">
-                Ver portfólio completo <x-icon name="arrow-right" class="w-4 h-4" />
+                {{ __('site.home.portfolio_see_all') }} <x-icon name="arrow-right" class="w-4 h-4" />
             </a>
         </div>
 
         @if($featuredItems->isEmpty())
-            <div class="text-center py-20 text-slate-500 text-sm">Nenhum projeto em destaque no momento.</div>
+            <div class="text-center py-20 text-slate-500 text-sm">{{ __('site.home.portfolio_empty') }}</div>
         @else
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                 @foreach($featuredItems as $item)
@@ -210,7 +209,7 @@
                                 <p class="text-xs text-slate-400 mt-1">{{ $item->subtitle }}</p>
                             @endif
                             @if($item->material)
-                                <p class="text-xs text-slate-500 mt-0.5">Material: {{ $item->material }}</p>
+                                <p class="text-xs text-slate-500 mt-0.5">{{ __('site.common.material') }}: {{ $item->material }}</p>
                             @endif
                         </div>
                     </a>
@@ -281,12 +280,12 @@
 
         <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-14">
             <div>
-                <p class="text-xs font-semibold tracking-widest text-blue-500 uppercase mb-2">Produtos</p>
-                <h2 class="text-3xl md:text-4xl font-bold text-slate-900">Catálogo de Produtos</h2>
+                <p class="text-xs font-semibold tracking-widest text-blue-500 uppercase mb-2">{{ __('site.home.catalog_tag') }}</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900">{{ __('site.home.catalog_title') }}</h2>
             </div>
             <a href="{{ route('catalog.index') }}"
                class="inline-flex items-center gap-2 text-sm font-medium text-blue-600 hover:text-blue-500 transition shrink-0">
-                Ver catálogo completo <x-icon name="arrow-right" class="w-4 h-4" />
+                {{ __('site.home.catalog_see_all') }} <x-icon name="arrow-right" class="w-4 h-4" />
             </a>
         </div>
 
@@ -316,7 +315,7 @@
                         </h3>
 
                         @if($catalogItem->reference)
-                            <p class="text-xs text-slate-400 mb-2">Ref: {{ $catalogItem->reference }}</p>
+                            <p class="text-xs text-slate-400 mb-2">{{ __('site.common.ref') }}: {{ $catalogItem->reference }}</p>
                         @endif
 
                         @if($catalogItem->description)
@@ -341,12 +340,12 @@
 
         <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-14">
             <div>
-                <p class="text-xs font-semibold tracking-widest text-blue-500 uppercase mb-2">Qualidade & Conformidade</p>
-                <h2 class="text-3xl md:text-4xl font-bold text-slate-900">Certificações</h2>
+                <p class="text-xs font-semibold tracking-widest text-blue-500 uppercase mb-2">{{ __('site.home.certifications_tag') }}</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900">{{ __('site.home.certifications_title') }}</h2>
             </div>
             <a href="{{ route('certifications.index') }}"
                class="inline-flex items-center gap-2 text-sm font-medium text-blue-600 hover:text-blue-500 transition shrink-0">
-                Ver todas as certificações <x-icon name="arrow-right" class="w-4 h-4" />
+                {{ __('site.home.certifications_see_all') }} <x-icon name="arrow-right" class="w-4 h-4" />
             </a>
         </div>
 
@@ -392,9 +391,9 @@
                                 <p class="text-xs text-slate-400">{{ $cert->issuer }}</p>
                             </div>
                             @if(!$cert->isExpired() && $cert->expires_at)
-                                <span class="ml-2 text-xs font-semibold text-green-600 bg-green-50 border border-green-100 px-2 py-0.5 rounded-full">Válido</span>
+                                <span class="ml-2 text-xs font-semibold text-green-600 bg-green-50 border border-green-100 px-2 py-0.5 rounded-full">{{ __('site.home.cert_valid') }}</span>
                             @elseif($cert->isExpired())
-                                <span class="ml-2 text-xs font-semibold text-red-500 bg-red-50 border border-red-100 px-2 py-0.5 rounded-full">Expirado</span>
+                                <span class="ml-2 text-xs font-semibold text-red-500 bg-red-50 border border-red-100 px-2 py-0.5 rounded-full">{{ __('site.home.cert_expired') }}</span>
                             @endif
                             <x-icon name="eye" class="w-4 h-4 text-slate-300 group-hover:text-blue-400 transition-colors ml-1" />
                         </button>
@@ -444,39 +443,39 @@
                         <div class="px-6 py-5 space-y-4">
                             <div class="grid grid-cols-2 gap-4 text-sm">
                                 <div>
-                                    <p class="text-xs text-slate-400 mb-0.5">Emissor</p>
+                                    <p class="text-xs text-slate-400 mb-0.5">{{ __('site.home.cert_issuer') }}</p>
                                     <p class="font-medium text-slate-800" x-text="cert.issuer"></p>
                                 </div>
                                 <template x-if="cert.certificate_number">
                                     <div>
-                                        <p class="text-xs text-slate-400 mb-0.5">Número</p>
+                                        <p class="text-xs text-slate-400 mb-0.5">{{ __('site.home.cert_number') }}</p>
                                         <p class="font-medium text-slate-800" x-text="cert.certificate_number"></p>
                                     </div>
                                 </template>
                                 <template x-if="cert.issued_at">
                                     <div>
-                                        <p class="text-xs text-slate-400 mb-0.5">Emitido em</p>
+                                        <p class="text-xs text-slate-400 mb-0.5">{{ __('site.home.cert_issued_at') }}</p>
                                         <p class="font-medium text-slate-800" x-text="cert.issued_at"></p>
                                     </div>
                                 </template>
                                 <template x-if="cert.expires_at">
                                     <div>
-                                        <p class="text-xs text-slate-400 mb-0.5">Validade</p>
-                                        <p class="font-medium" :class="cert.is_expired ? 'text-red-500' : 'text-green-600'" x-text="cert.expires_at + (cert.is_expired ? ' (Expirado)' : ' (Válido)')"></p>
+                                        <p class="text-xs text-slate-400 mb-0.5">{{ __('site.home.cert_expires_at') }}</p>
+                                        <p class="font-medium" :class="cert.is_expired ? 'text-red-500' : 'text-green-600'" x-text="cert.expires_at + (cert.is_expired ? ' {{ __('site.home.cert_expired_label') }}' : ' {{ __('site.home.cert_valid_label') }}')"></p>
                                     </div>
                                 </template>
                             </div>
 
                             <template x-if="cert.description">
                                 <div>
-                                    <p class="text-xs text-slate-400 mb-0.5">Descrição</p>
+                                    <p class="text-xs text-slate-400 mb-0.5">{{ __('site.home.cert_description') }}</p>
                                     <p class="text-sm text-slate-600 leading-relaxed" x-text="cert.description"></p>
                                 </div>
                             </template>
 
                             <template x-if="cert.cert_url">
                                 <div>
-                                    <p class="text-xs text-slate-400 mb-2">Documento</p>
+                                    <p class="text-xs text-slate-400 mb-2">{{ __('site.home.cert_document') }}</p>
                                     <template x-if="cert.cert_mime && cert.cert_mime.startsWith('image/')">
                                         <img :src="cert.cert_url" alt="Certificado" class="w-full rounded-lg border border-slate-100 object-contain max-h-64">
                                     </template>
@@ -484,7 +483,7 @@
                                         <a :href="cert.cert_url" target="_blank" rel="noopener noreferrer"
                                            class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-50 border border-blue-100 text-blue-600 text-sm font-medium hover:bg-blue-100 transition">
                                             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m.75 12l3 3m0 0l3-3m-3 3v-6m-1.5-9H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" /></svg>
-                                            Ver Certificado (PDF)
+                                            {{ __('site.home.cert_view_pdf') }}
                                         </a>
                                     </template>
                                 </div>
@@ -498,8 +497,8 @@
         {{-- Testimonials --}}
         @if($clients->where('testimonial', '!=', null)->isNotEmpty())
             <div class="text-center mb-10">
-                <p class="text-xs font-semibold tracking-widest text-blue-500 uppercase mb-2">Depoimentos</p>
-                <h3 class="text-2xl font-bold text-slate-900">O que dizem nossos clientes</h3>
+                <p class="text-xs font-semibold tracking-widest text-blue-500 uppercase mb-2">{{ __('site.home.testimonials_tag') }}</p>
+                <h3 class="text-2xl font-bold text-slate-900">{{ __('site.home.testimonials_title') }}</h3>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -536,12 +535,12 @@
 
         <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-14">
             <div>
-                <p class="text-xs font-semibold tracking-widest text-blue-500 uppercase mb-2">Novidades</p>
-                <h2 class="text-3xl md:text-4xl font-bold text-slate-900">Notícias</h2>
+                <p class="text-xs font-semibold tracking-widest text-blue-500 uppercase mb-2">{{ __('site.home.news_tag') }}</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900">{{ __('site.home.news_title') }}</h2>
             </div>
             <a href="{{ route('news.index') }}"
                class="inline-flex items-center gap-2 text-sm font-medium text-blue-600 hover:text-blue-500 transition shrink-0">
-                Ver todas as notícias <x-icon name="arrow-right" class="w-4 h-4" />
+                {{ __('site.home.news_see_all') }} <x-icon name="arrow-right" class="w-4 h-4" />
             </a>
         </div>
 
@@ -590,7 +589,7 @@
 
             {{-- Texto --}}
             <div>
-                <p class="text-xs font-semibold tracking-widest text-primary-600 uppercase mb-3">Quem Somos</p>
+                <p class="text-xs font-semibold tracking-widest text-primary-600 uppercase mb-3">{{ __('site.home.about_tag') }}</p>
                 <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-6 leading-tight">
                     {{ $siteContent->about_title }}
                 </h2>
@@ -609,7 +608,7 @@
                     <div class="mt-8 inline-flex items-center gap-3 px-5 py-3 rounded-full border border-primary-200 bg-primary-50">
                         <span class="w-2 h-2 rounded-full bg-primary-600"></span>
                         <span class="text-sm font-semibold text-primary-700">
-                            Fundada em {{ $siteContent->about_founded_year }} · {{ (int) date('Y') - $siteContent->about_founded_year }} anos de experiência
+                            {{ __('site.home.about_founded', ['year' => $siteContent->about_founded_year, 'years' => (int) date('Y') - $siteContent->about_founded_year]) }}
                         </span>
                     </div>
                 @endif
@@ -661,10 +660,10 @@
     <div class="relative max-w-7xl mx-auto px-6">
 
         <div class="text-center mb-14">
-            <p class="text-xs font-semibold tracking-widest text-blue-400 uppercase mb-2">Fale Conosco</p>
-            <h2 class="text-3xl md:text-4xl font-bold text-white">Solicite um Orçamento</h2>
+            <p class="text-xs font-semibold tracking-widest text-blue-400 uppercase mb-2">{{ __('site.home.contact_tag') }}</p>
+            <h2 class="text-3xl md:text-4xl font-bold text-white">{{ __('site.home.contact_title') }}</h2>
             <p class="text-slate-400 mt-3 max-w-lg mx-auto text-sm leading-relaxed">
-               
+
             </p>
         </div>
 
@@ -673,14 +672,14 @@
             {{-- Contact info --}}
             <div class="lg:col-span-2 space-y-8">
                 <div>
-                    <h3 class="text-xs font-semibold uppercase tracking-widest text-blue-400 mb-5">Informações de Contato</h3>
+                    <h3 class="text-xs font-semibold uppercase tracking-widest text-blue-400 mb-5">{{ __('site.home.contact_info_title') }}</h3>
                     <ul class="space-y-4">
                         <li class="flex items-start gap-3">
                             <div class="w-8 h-8 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center shrink-0">
                                 <x-icon name="envelope" class="w-4 h-4 text-white" />
                             </div>
                             <div>
-                                <p class="text-xs text-white mb-0.5">E-mail</p>
+                                <p class="text-xs text-white mb-0.5">{{ __('site.home.contact_email') }}</p>
                                 <a href="mailto:contato@d2l.ind.br" class="text-sm text-slate-200 hover:text-blue-300 transition">
                                     contato@d2l.ind.br
                                 </a>
@@ -691,7 +690,7 @@
                                 <x-icon name="phone" class="w-4 h-4 text-white" />
                             </div>
                             <div>
-                                <p class="text-xs text-white mb-0.5">Telefone</p>
+                                <p class="text-xs text-white mb-0.5">{{ __('site.home.contact_phone') }}</p>
                                 <a href="tel:+5512997517673" class="text-sm text-slate-200 hover:text-blue-300 transition">
                                     +55 (12) 99751-7673
                                 </a>
@@ -704,7 +703,7 @@
                                 </svg>
                             </div>
                             <div>
-                                <p class="text-xs text-white mb-0.5">WhatsApp</p>
+                                <p class="text-xs text-white mb-0.5">{{ __('site.home.contact_whatsapp') }}</p>
                                 <a href="https://wa.me/5512997517673" target="_blank" rel="noopener noreferrer"
                                    class="text-sm text-slate-200 hover:text-green-400 transition">
                                     +55 (12) 99751-7673
@@ -716,7 +715,7 @@
                                 <x-icon name="map-pin" class="w-4 h-4 text-white" />
                             </div>
                             <div>
-                                <p class="text-xs text-white mb-0.5">Endereço</p>
+                                <p class="text-xs text-white mb-0.5">{{ __('site.home.contact_address') }}</p>
                                 <p class="text-sm text-slate-200">Rodovia João Amaral Gurgel, N4800<br>Bairro Piedade, Caçapava/SP</p>
                             </div>
                         </li>
@@ -725,7 +724,7 @@
 
                 @if($clients->isNotEmpty())
                     <div>
-                        <h3 class="text-xs font-semibold uppercase tracking-widest text-blue-400 mb-4">Confiado por</h3>
+                        <h3 class="text-xs font-semibold uppercase tracking-widest text-blue-400 mb-4">{{ __('site.home.contact_trusted_by') }}</h3>
                         <div class="flex flex-wrap gap-2">
                             @foreach($clients->take(4) as $client)
                                 <span class="text-xs text-slate-400 bg-white/5 border border-white/10 px-3 py-1.5 rounded-full">

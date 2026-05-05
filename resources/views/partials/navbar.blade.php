@@ -32,27 +32,41 @@
         @php($hasCertifications = \App\Models\Certification::active()->exists())
         @php($hasCatalog = \App\Models\CatalogItem::active()->exists())
         <div class="hidden md:flex items-center gap-7">
-            <a href="{{ route('home') }}"        class="text-sm font-semibold text-blue-200/80 hover:text-white transition tracking-wide uppercase">home</a>
-            <a href="{{ route('home') }}#services"        class="text-sm font-semibold text-blue-200/80 hover:text-white transition tracking-wide uppercase">Serviços</a>
-            <a href="{{ route('home') }}#portfolio"       class="text-sm font-semibold text-blue-200/80 hover:text-white transition tracking-wide uppercase">Portfólio</a>
+            <a href="{{ route('home') }}"               class="text-sm font-semibold text-blue-200/80 hover:text-white transition tracking-wide uppercase">{{ __('site.nav.home') }}</a>
+            <a href="{{ route('home') }}#services"      class="text-sm font-semibold text-blue-200/80 hover:text-white transition tracking-wide uppercase">{{ __('site.nav.services') }}</a>
+            <a href="{{ route('home') }}#portfolio"     class="text-sm font-semibold text-blue-200/80 hover:text-white transition tracking-wide uppercase">{{ __('site.nav.portfolio') }}</a>
             @if($hasCatalog)
-                <a href="{{ route('home') }}#catalog" class="text-sm font-semibold text-blue-200/80 hover:text-white transition tracking-wide uppercase">Catálogo</a>
+                <a href="{{ route('home') }}#catalog"   class="text-sm font-semibold text-blue-200/80 hover:text-white transition tracking-wide uppercase">{{ __('site.nav.catalog') }}</a>
             @endif
             @if($hasCertifications)
-                <a href="{{ route('home') }}#certifications" class="text-sm font-semibold text-blue-200/80 hover:text-white transition tracking-wide uppercase">Certificações</a>
+                <a href="{{ route('home') }}#certifications" class="text-sm font-semibold text-blue-200/80 hover:text-white transition tracking-wide uppercase">{{ __('site.nav.certifications') }}</a>
             @endif
             @if($hasNews)
-                <a href="{{ route('news.index') }}" class="text-sm font-semibold text-blue-200/80 hover:text-white transition tracking-wide uppercase">Notícias</a>
+                <a href="{{ route('news.index') }}"     class="text-sm font-semibold text-blue-200/80 hover:text-white transition tracking-wide uppercase">{{ __('site.nav.news') }}</a>
             @endif
-            <a href="{{ route('home') }}#quem-somos"      class="text-sm font-semibold text-blue-200/80 hover:text-white transition tracking-wide uppercase">Quem Somos</a>
-            <a href="{{ route('home') }}#contact"         class="text-sm font-semibold text-blue-200/80 hover:text-white transition tracking-wide uppercase">Contato</a>
+            <a href="{{ route('home') }}#quem-somos"   class="text-sm font-semibold text-blue-200/80 hover:text-white transition tracking-wide uppercase">{{ __('site.nav.about') }}</a>
+            <a href="{{ route('home') }}#contact"       class="text-sm font-semibold text-blue-200/80 hover:text-white transition tracking-wide uppercase">{{ __('site.nav.contact') }}</a>
         </div>
 
-        <a href="{{ request()->routeIs('home') ? '#contact' : route('contact') }}"
-           class="hidden md:inline-flex items-center gap-2 px-5 py-2 rounded-full bg-blue-500 text-white text-xs font-semibold hover:bg-blue-400 transition shadow-lg shadow-blue-500/30">
-            <x-icon name="document-text" class="w-3.5 h-3.5" />
-            Solicite um Orçamento
-        </a>
+        <div class="hidden md:flex items-center gap-3">
+            {{-- Language switcher --}}
+            <div class="flex items-center gap-1 border border-white/10 rounded-full px-1.5 py-1">
+                <a href="{{ route('locale.switch', 'pt') }}"
+                   class="text-xs font-semibold px-2 py-0.5 rounded-full transition {{ app()->getLocale() === 'pt' ? 'bg-blue-500 text-white' : 'text-blue-300/70 hover:text-white' }}">
+                    PT
+                </a>
+                <a href="{{ route('locale.switch', 'en') }}"
+                   class="text-xs font-semibold px-2 py-0.5 rounded-full transition {{ app()->getLocale() === 'en' ? 'bg-blue-500 text-white' : 'text-blue-300/70 hover:text-white' }}">
+                    EN
+                </a>
+            </div>
+
+            <a href="{{ request()->routeIs('home') ? '#contact' : route('contact') }}"
+               class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-blue-500 text-white text-xs font-semibold hover:bg-blue-400 transition shadow-lg shadow-blue-500/30">
+                <x-icon name="document-text" class="w-3.5 h-3.5" />
+                {{ __('site.nav.quote') }}
+            </a>
+        </div>
 
         <button @click="mobileOpen = !mobileOpen" class="md:hidden text-white p-1" aria-label="Menu">
             <x-icon x-show="!mobileOpen" name="bars-3"    class="w-6 h-6" />
@@ -70,24 +84,38 @@
         x-transition:leave-end="opacity-0"
         class="md:hidden bg-slate-950/98 backdrop-blur-md border-t border-white/5 px-6 py-5 flex flex-col gap-4"
     >
-        <a href="{{ route('home') }}"                 @click="mobileOpen=false" class="text-sm text-blue-200 hover:text-white transition">Home</a>
-        <a href="{{ route('home') }}#services"        @click="mobileOpen=false" class="text-sm text-blue-200 hover:text-white transition">Serviços</a>
-        <a href="{{ route('home') }}#portfolio"       @click="mobileOpen=false" class="text-sm text-blue-200 hover:text-white transition">Portfólio</a>
+        <a href="{{ route('home') }}"               @click="mobileOpen=false" class="text-sm text-blue-200 hover:text-white transition">{{ __('site.nav.home') }}</a>
+        <a href="{{ route('home') }}#services"      @click="mobileOpen=false" class="text-sm text-blue-200 hover:text-white transition">{{ __('site.nav.services') }}</a>
+        <a href="{{ route('home') }}#portfolio"     @click="mobileOpen=false" class="text-sm text-blue-200 hover:text-white transition">{{ __('site.nav.portfolio') }}</a>
         @if($hasCatalog)
-            <a href="{{ route('home') }}#catalog" @click="mobileOpen=false" class="text-sm text-blue-200 hover:text-white transition">Catálogo</a>
+            <a href="{{ route('home') }}#catalog"   @click="mobileOpen=false" class="text-sm text-blue-200 hover:text-white transition">{{ __('site.nav.catalog') }}</a>
         @endif
         @if($hasCertifications)
-            <a href="{{ route('home') }}#certifications" @click="mobileOpen=false" class="text-sm text-blue-200 hover:text-white transition">Certificações</a>
+            <a href="{{ route('home') }}#certifications" @click="mobileOpen=false" class="text-sm text-blue-200 hover:text-white transition">{{ __('site.nav.certifications') }}</a>
         @endif
         @if($hasNews)
-            <a href="{{ route('news.index') }}"       @click="mobileOpen=false" class="text-sm text-blue-200 hover:text-white transition">Notícias</a>
+            <a href="{{ route('news.index') }}"     @click="mobileOpen=false" class="text-sm text-blue-200 hover:text-white transition">{{ __('site.nav.news') }}</a>
         @endif
-        <a href="{{ route('home') }}#quem-somos"      @click="mobileOpen=false" class="text-sm text-blue-200 hover:text-white transition">Quem Somos</a>
-        <a href="{{ route('home') }}#contact"         @click="mobileOpen=false" class="text-sm text-blue-200 hover:text-white transition">Contato</a>
+        <a href="{{ route('home') }}#quem-somos"   @click="mobileOpen=false" class="text-sm text-blue-200 hover:text-white transition">{{ __('site.nav.about') }}</a>
+        <a href="{{ route('home') }}#contact"       @click="mobileOpen=false" class="text-sm text-blue-200 hover:text-white transition">{{ __('site.nav.contact') }}</a>
+
+        {{-- Mobile language switcher --}}
+        <div class="flex items-center gap-2 pt-1 border-t border-white/5">
+            <span class="text-xs text-blue-400/60 uppercase tracking-widest">{{ app()->getLocale() === 'pt' ? 'Idioma' : 'Language' }}</span>
+            <a href="{{ route('locale.switch', 'pt') }}"
+               class="text-xs font-semibold px-2 py-0.5 rounded-full transition {{ app()->getLocale() === 'pt' ? 'bg-blue-500 text-white' : 'text-blue-300/70 hover:text-white' }}">
+                PT
+            </a>
+            <a href="{{ route('locale.switch', 'en') }}"
+               class="text-xs font-semibold px-2 py-0.5 rounded-full transition {{ app()->getLocale() === 'en' ? 'bg-blue-500 text-white' : 'text-blue-300/70 hover:text-white' }}">
+                EN
+            </a>
+        </div>
+
         <a href="{{ request()->routeIs('home') ? '#contact' : route('contact') }}"
            @click="mobileOpen=false"
            class="mt-1 inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-blue-500 text-white text-sm font-semibold">
-            Solicite um Orçamento
+            {{ __('site.nav.quote') }}
         </a>
     </div>
 </nav>

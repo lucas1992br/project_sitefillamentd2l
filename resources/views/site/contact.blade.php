@@ -1,7 +1,7 @@
 @extends('layouts.site')
 
-@section('title', 'Contato & Orçamento — ' . config('app.name'))
-@section('description', 'Entre em contato para solicitar um orçamento ou tirar dúvidas sobre nossos serviços de usinagem CNC.')
+@section('title', __('site.contact.page_title') . ' — ' . config('app.name'))
+@section('description', __('site.contact.page_desc'))
 
 @section('content')
 
@@ -10,31 +10,31 @@
         <div class="absolute inset-0 bg-tech-grid opacity-40 pointer-events-none"></div>
         <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-500/40 to-transparent"></div>
         <div class="relative max-w-7xl mx-auto px-6">
-            <p class="text-xs font-semibold tracking-widest text-blue-400 uppercase mb-3">Fale Conosco</p>
-            <h1 class="text-4xl md:text-5xl font-bold mb-4">Entre em Contato</h1>
+            <p class="text-xs font-semibold tracking-widest text-blue-400 uppercase mb-3">{{ __('site.contact.tag') }}</p>
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">{{ __('site.contact.heading') }}</h1>
             <p class="text-blue-200/70 max-w-xl leading-relaxed">
-                Preencha o formulário e nossa equipe retornará em breve com uma proposta.
+                {{ __('site.contact.subheading') }}
             </p>
         </div>
     </section>
 
-    {{-- Conteúdo --}}
+    {{-- Content --}}
     <section class="py-20 bg-slate-50">
         <div class="max-w-7xl mx-auto px-6">
             <div class="grid grid-cols-1 lg:grid-cols-5 gap-12">
 
-                {{-- Informações de contato --}}
+                {{-- Contact info --}}
                 <div class="lg:col-span-2 space-y-8">
 
                     <div>
-                        <h2 class="text-xs font-semibold uppercase tracking-widest text-blue-600 mb-5">Informações de Contato</h2>
+                        <h2 class="text-xs font-semibold uppercase tracking-widest text-blue-600 mb-5">{{ __('site.contact.info_title') }}</h2>
                         <ul class="space-y-5">
                             <li class="flex items-start gap-3">
                                 <div class="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center shrink-0 mt-0.5">
                                     <x-icon name="envelope" class="w-4 h-4 text-blue-600" />
                                 </div>
                                 <div>
-                                    <p class="text-xs text-slate-400 mb-0.5">E-mail</p>
+                                    <p class="text-xs text-slate-400 mb-0.5">{{ __('site.contact.email') }}</p>
                                     <a href="mailto:contato@d2l.ind.br" class="text-sm text-slate-700 hover:text-blue-600 transition font-medium">
                                         contato@d2l.ind.br
                                     </a>
@@ -45,7 +45,7 @@
                                     <x-icon name="phone" class="w-4 h-4 text-blue-600" />
                                 </div>
                                 <div>
-                                    <p class="text-xs text-slate-400 mb-0.5">Telefone</p>
+                                    <p class="text-xs text-slate-400 mb-0.5">{{ __('site.contact.phone') }}</p>
                                     <a href="tel:+5512997517673" class="text-sm text-slate-700 hover:text-blue-600 transition font-medium">
                                         +55 (12) 99751-7673
                                     </a>
@@ -58,7 +58,7 @@
                                     </svg>
                                 </div>
                                 <div>
-                                    <p class="text-xs text-slate-400 mb-0.5">WhatsApp</p>
+                                    <p class="text-xs text-slate-400 mb-0.5">{{ __('site.contact.whatsapp') }}</p>
                                     <a href="https://wa.me/5512997517673" target="_blank" rel="noopener noreferrer"
                                        class="text-sm text-slate-700 hover:text-green-600 transition font-medium">
                                         +55 (12) 99751-7673
@@ -70,9 +70,9 @@
                                     <x-icon name="map-pin" class="w-4 h-4 text-blue-600" />
                                 </div>
                                 <div>
-                                    <p class="text-xs text-slate-400 mb-0.5">Endereço</p>
+                                    <p class="text-xs text-slate-400 mb-0.5">{{ __('site.contact.address') }}</p>
                                     <p class="text-sm text-slate-700 font-medium leading-relaxed">
-                                        Rodovia João Amaral Gurgel, N4800<br>Bairro Piedade, Caçapava/SP</p>
+                                        Rodovia João Amaral Gurgel, N4800<br>Bairro Piedade, Caçapava/SP
                                     </p>
                                 </div>
                             </li>
@@ -80,9 +80,9 @@
                     </div>
                 </div>
 
-                {{-- Formulário --}}
+                {{-- Form --}}
                 <div class="lg:col-span-3 bg-slate-900 rounded-2xl border border-white/5 p-8">
-                    <h2 class="text-sm font-semibold text-white mb-6">Solicite um Orçamento</h2>
+                    <h2 class="text-sm font-semibold text-white mb-6">{{ __('site.contact.form_heading') }}</h2>
                     <livewire:quote-form />
                 </div>
 

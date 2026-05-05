@@ -21,33 +21,33 @@
             </div>
 
             <div>
-                <h3 class="text-white font-semibold text-sm mb-3">Navegação</h3>
+                <h3 class="text-white font-semibold text-sm mb-3">{{ __('site.footer.navigation') }}</h3>
                 <ul class="space-y-2">
-                    <li><a href="{{ route('home') }}" class="text-xs hover:text-white transition">Home</a></li>
-                    <li><a href="{{ route('home') }}#quem-somos" class="text-xs hover:text-white transition">Quem Somos</a></li>
-                    <li><a href="{{ route('certifications.index') }}" class="text-xs hover:text-white transition">Certificações</a></li>
-                    <li><a href="{{ route('services.index') }}" class="text-xs hover:text-white transition">Serviços</a></li>
+                    <li><a href="{{ route('home') }}" class="text-xs hover:text-white transition">{{ __('site.nav.home') }}</a></li>
+                    <li><a href="{{ route('home') }}#quem-somos" class="text-xs hover:text-white transition">{{ __('site.nav.about') }}</a></li>
+                    <li><a href="{{ route('certifications.index') }}" class="text-xs hover:text-white transition">{{ __('site.nav.certifications') }}</a></li>
+                    <li><a href="{{ route('services.index') }}" class="text-xs hover:text-white transition">{{ __('site.nav.services') }}</a></li>
                 </ul>
             </div>
 
             <div>
-                <ul class="space-y-2">
-                    <li><a href="{{ route('portfolio.index') }}" class="text-xs hover:text-white transition">Portfólio</a></li>
-                    <li><a href="{{ route('catalog.index') }}" class="text-xs hover:text-white transition">Catálogo</a></li>
+                <ul class="space-y-2 mt-6">
+                    <li><a href="{{ route('portfolio.index') }}" class="text-xs hover:text-white transition">{{ __('site.nav.portfolio') }}</a></li>
+                    <li><a href="{{ route('catalog.index') }}" class="text-xs hover:text-white transition">{{ __('site.nav.catalog') }}</a></li>
                     @if(\App\Models\News::published()->exists())
-                        <li><a href="{{ route('news.index') }}" class="text-xs hover:text-white transition">Notícias</a></li>
+                        <li><a href="{{ route('news.index') }}" class="text-xs hover:text-white transition">{{ __('site.nav.news') }}</a></li>
                     @endif
-                    <li><a href="{{ route('contact') }}" class="text-xs hover:text-white transition">Contato</a></li>
+                    <li><a href="{{ route('contact') }}" class="text-xs hover:text-white transition">{{ __('site.nav.contact') }}</a></li>
                 </ul>
             </div>
 
             <div>
-                <h3 class="text-white font-semibold text-sm mb-3">Contato</h3>
+                <h3 class="text-white font-semibold text-sm mb-3">{{ __('site.footer.contact') }}</h3>
                 <p class="text-xs leading-relaxed">
-                    Email: <a href="mailto:contact@precisionmachining.com" class="hover:text-white transition">contato@d2l.ind.br</a>
+                    Email: <a href="mailto:contato@d2l.ind.br" class="hover:text-white transition">contato@d2l.ind.br</a>
                 </p>
                 <p class="text-xs mt-1">
-                    Phone: <a href="tel:+5511999999999" class="hover:text-white transition">+55 12 99751-7673</a>
+                    {{ __('site.footer.phone') }}: <a href="tel:+5512997517673" class="hover:text-white transition">+55 12 99751-7673</a>
                 </p>
             </div>
 
@@ -57,7 +57,7 @@
         @if($social->whatsapp_url || $social->facebook_url || $social->instagram_url)
             <div class="border-t border-blue-900 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
                 <p class="text-xs text-blue-500">
-                    &copy; {{ date('Y') }} <b>D2L Soluções Metálicas</b>. Todos os direitos reservados.
+                    &copy; {{ date('Y') }} <b>D2L Soluções Metálicas</b>. {{ __('site.footer.rights') }}
                 </p>
                 <div class="flex items-center gap-3">
                     @if($social->whatsapp_url)
@@ -92,7 +92,7 @@
         @else
             <div class="border-t border-blue-900 pt-6 text-center">
                 <p class="text-xs text-blue-500">
-                    &copy; {{ date('Y') }} <b>D2L Soluções Metálicas</b>. Todos os direitos reservados.
+                    &copy; {{ date('Y') }} <b>D2L Soluções Metálicas</b>. {{ __('site.footer.rights') }}
                 </p>
             </div>
         @endif

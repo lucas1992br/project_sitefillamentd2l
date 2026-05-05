@@ -1,7 +1,7 @@
 @extends('layouts.site')
 
-@section('title', 'Certificações — ' . config('app.name'))
-@section('description', 'Nossas certificações de qualidade e acreditações, incluindo ISO 9001.')
+@section('title', __('site.certifications.title') . ' — ' . config('app.name'))
+@section('description', __('site.certifications.description'))
 
 @section('content')
 
@@ -9,10 +9,10 @@
         <div class="absolute inset-0 bg-tech-grid opacity-40 pointer-events-none"></div>
         <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-500/40 to-transparent"></div>
         <div class="relative max-w-7xl mx-auto px-6">
-            <p class="text-xs font-semibold tracking-widest text-blue-400 uppercase mb-3"></p>
-            <h1 class="text-4xl md:text-5xl font-bold mb-4">Certificações</h1>
+            <p class="text-xs font-semibold tracking-widest text-blue-400 uppercase mb-3">{{ __('site.certifications.tag') }}</p>
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">{{ __('site.certifications.title') }}</h1>
             <p class="text-blue-200/70 max-w-xl leading-relaxed">
-                Gestão de qualidade e conformidade verificadas independentemente.
+                {{ __('site.certifications.description') }}
             </p>
         </div>
     </section>
@@ -31,7 +31,7 @@
             @if($certifications->isEmpty())
                 <div class="text-center py-24">
                     <x-icon name="shield-check" class="w-12 h-12 text-slate-300 mx-auto mb-4" />
-                    <p class="text-slate-400 text-sm">Nenhuma certificação cadastrada ainda.</p>
+                    <p class="text-slate-400 text-sm">{{ __('site.certifications.empty') }}</p>
                 </div>
             @else
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -71,17 +71,17 @@
 
                             <div class="flex items-center justify-between">
                                 @if($cert->issued_at)
-                                    <p class="text-xs text-slate-400">Emitido: {{ $cert->issued_at->format('d/m/Y') }}</p>
+                                    <p class="text-xs text-slate-400">{{ __('site.certifications.issued') }}: {{ $cert->issued_at->format('d/m/Y') }}</p>
                                 @endif
                                 @if(!$cert->isExpired() && $cert->expires_at)
-                                    <span class="text-xs font-semibold text-green-600 bg-green-50 border border-green-100 px-2 py-0.5 rounded-full">Válido</span>
+                                    <span class="text-xs font-semibold text-green-600 bg-green-50 border border-green-100 px-2 py-0.5 rounded-full">{{ __('site.certifications.valid') }}</span>
                                 @elseif($cert->isExpired())
-                                    <span class="text-xs font-semibold text-red-500 bg-red-50 border border-red-100 px-2 py-0.5 rounded-full">Expirado</span>
+                                    <span class="text-xs font-semibold text-red-500 bg-red-50 border border-red-100 px-2 py-0.5 rounded-full">{{ __('site.certifications.expired') }}</span>
                                 @endif
                             </div>
 
                             <p class="text-xs text-blue-400 mt-3 group-hover:text-blue-600 transition-colors flex items-center gap-1">
-                                <x-icon name="eye" class="w-3.5 h-3.5" /> Ver detalhes
+                                <x-icon name="eye" class="w-3.5 h-3.5" /> {{ __('site.certifications.see_details') }}
                             </p>
                         </button>
                     @endforeach
@@ -131,39 +131,39 @@
                 <div class="px-6 py-5 space-y-4">
                     <div class="grid grid-cols-2 gap-4 text-sm">
                         <div>
-                            <p class="text-xs text-slate-400 mb-0.5">Emissor</p>
+                            <p class="text-xs text-slate-400 mb-0.5">{{ __('site.certifications.issuer') }}</p>
                             <p class="font-medium text-slate-800" x-text="cert.issuer"></p>
                         </div>
                         <template x-if="cert.certificate_number">
                             <div>
-                                <p class="text-xs text-slate-400 mb-0.5">Número</p>
+                                <p class="text-xs text-slate-400 mb-0.5">{{ __('site.certifications.number') }}</p>
                                 <p class="font-medium text-slate-800" x-text="cert.certificate_number"></p>
                             </div>
                         </template>
                         <template x-if="cert.issued_at">
                             <div>
-                                <p class="text-xs text-slate-400 mb-0.5">Emitido em</p>
+                                <p class="text-xs text-slate-400 mb-0.5">{{ __('site.certifications.issued_at') }}</p>
                                 <p class="font-medium text-slate-800" x-text="cert.issued_at"></p>
                             </div>
                         </template>
                         <template x-if="cert.expires_at">
                             <div>
-                                <p class="text-xs text-slate-400 mb-0.5">Validade</p>
-                                <p class="font-medium" :class="cert.is_expired ? 'text-red-500' : 'text-green-600'" x-text="cert.expires_at + (cert.is_expired ? ' (Expirado)' : ' (Válido)')"></p>
+                                <p class="text-xs text-slate-400 mb-0.5">{{ __('site.certifications.expires_at') }}</p>
+                                <p class="font-medium" :class="cert.is_expired ? 'text-red-500' : 'text-green-600'" x-text="cert.expires_at + (cert.is_expired ? ' {{ __('site.certifications.expired_label') }}' : ' {{ __('site.certifications.valid_label') }}')"></p>
                             </div>
                         </template>
                     </div>
 
                     <template x-if="cert.description">
                         <div>
-                            <p class="text-xs text-slate-400 mb-0.5">Descrição</p>
+                            <p class="text-xs text-slate-400 mb-0.5">{{ __('site.certifications.description_label') }}</p>
                             <p class="text-sm text-slate-600 leading-relaxed" x-text="cert.description"></p>
                         </div>
                     </template>
 
                     <template x-if="cert.cert_url">
                         <div>
-                            <p class="text-xs text-slate-400 mb-2">Documento</p>
+                            <p class="text-xs text-slate-400 mb-2">{{ __('site.certifications.document') }}</p>
                             <template x-if="cert.cert_mime && cert.cert_mime.startsWith('image/')">
                                 <img :src="cert.cert_url" alt="Certificado" class="w-full rounded-lg border border-slate-100 object-contain max-h-64">
                             </template>
@@ -171,7 +171,7 @@
                                 <a :href="cert.cert_url" target="_blank" rel="noopener noreferrer"
                                    class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-50 border border-blue-100 text-blue-600 text-sm font-medium hover:bg-blue-100 transition">
                                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m.75 12l3 3m0 0l3-3m-3 3v-6m-1.5-9H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" /></svg>
-                                    Ver Certificado (PDF)
+                                    {{ __('site.certifications.view_pdf') }}
                                 </a>
                             </template>
                         </div>

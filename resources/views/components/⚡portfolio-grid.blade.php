@@ -50,7 +50,7 @@ new class extends Component
                 wire:click="$set('category', '')"
                 class="px-4 py-1.5 rounded-full text-sm font-medium transition {{ $category === '' ? 'bg-blue-600 text-white' : 'bg-white text-blue-700 border border-blue-200 hover:border-blue-400' }}"
             >
-                All
+                {{ __('site.common.all') }}
             </button>
             @foreach ($this->categories as $cat)
                 <button
@@ -92,7 +92,7 @@ new class extends Component
                 <div class="flex items-start justify-between gap-2 mb-2">
                     <h3 class="text-sm font-semibold text-blue-900">{{ $item->title }}</h3>
                     @if ($item->is_featured)
-                        <x-badge color="warning" text="Featured" />
+                        <x-badge color="warning" :text="__('site.common.featured')" />
                     @endif
                 </div>
 
@@ -101,7 +101,7 @@ new class extends Component
                 @endif
 
                 @if ($item->material)
-                    <p class="text-xs text-gray-400 mb-2">Material: {{ $item->material }}</p>
+                    <p class="text-xs text-gray-400 mb-2">{{ __('site.common.material') }}: {{ $item->material }}</p>
                 @endif
 
                 <p class="text-sm text-gray-500 leading-relaxed line-clamp-3">
@@ -110,7 +110,7 @@ new class extends Component
             </x-card>
         @empty
             <div class="col-span-full text-center py-16 text-gray-400 text-sm">
-                No portfolio items found.
+                {{ __('site.common.no_portfolio') }}
             </div>
         @endforelse
     </div>
