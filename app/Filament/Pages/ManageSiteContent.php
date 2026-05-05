@@ -42,7 +42,7 @@ class ManageSiteContent extends Page
             'about_description'          => $this->record->about_description,
             'about_founded_year'         => $this->record->about_founded_year,
             'whatsapp_url'               => $this->record->whatsapp_url,
-            'facebook_url'               => $this->record->facebook_url,
+            'linkedin_url'               => $this->record->linkedin_url,
             'instagram_url'              => $this->record->instagram_url,
             'seo_title'                  => $this->record->seo_title,
             'seo_description'            => $this->record->seo_description,
@@ -184,9 +184,9 @@ class ManageSiteContent extends Page
                             ->url()
                             ->maxLength(255),
 
-                        TextInput::make('facebook_url')
-                            ->label('Facebook')
-                            ->placeholder('https://facebook.com/sua-pagina')
+                        TextInput::make('linkedin_url')
+                            ->label('LinkedIn')
+                            ->placeholder('https://linkedin.com/company/sua-empresa')
                             ->url()
                             ->maxLength(255),
 
@@ -430,7 +430,7 @@ class ManageSiteContent extends Page
             'about_description'          => $this->record->about_description,
             'about_founded_year'         => $this->record->about_founded_year,
             'whatsapp_url'               => $this->record->whatsapp_url,
-            'facebook_url'               => $this->record->facebook_url,
+            'linkedin_url'               => $this->record->linkedin_url,
             'instagram_url'              => $this->record->instagram_url,
             'seo_title'                  => $this->record->seo_title,
             'seo_description'            => $this->record->seo_description,
@@ -467,7 +467,7 @@ class ManageSiteContent extends Page
             'about_description'          => $data['about_description'] ?? null,
             'about_founded_year'         => $data['about_founded_year'] ?? null,
             'whatsapp_url'               => $data['whatsapp_url'] ?? null,
-            'facebook_url'               => $data['facebook_url'] ?? null,
+            'linkedin_url'               => $data['linkedin_url'] ?? null,
             'instagram_url'              => $data['instagram_url'] ?? null,
             'seo_title'                  => $data['seo_title'] ?? null,
             'seo_description'            => $data['seo_description'] ?? null,

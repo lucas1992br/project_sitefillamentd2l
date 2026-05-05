@@ -163,4 +163,23 @@ return [
         'no_catalog'   => 'No catalog items found.',
         'no_news'      => 'No news published yet.',
     ],
+
+    // Quote form
+    'form' => [
+        'full_name'        => 'Full Name',
+        'email'            => 'E-mail',
+        'phone'            => 'Phone',
+        'company'          => 'Company',
+        'project_details'  => 'Project Details',
+        'placeholder_name' => 'John Smith',
+        'placeholder_email'   => 'john@company.com',
+        'placeholder_phone'   => '+1 (555) 000-0000',
+        'placeholder_company' => 'Company Ltd',
+        'placeholder_message' => 'Please describe your needs in detail.',
+        'submit'           => 'Send Quote Request',
+        'required'         => '*',
+        'success_title'    => 'Thank you!',
+        'success_message'  => 'Your request has been received. We will get back to you shortly.',
+        'send_another'     => 'Send another request',
+    ],
 ];

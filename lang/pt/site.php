@@ -163,4 +163,23 @@ return [
         'no_catalog'   => 'Nenhum item encontrado no catálogo.',
         'no_news'      => 'Nenhuma notícia publicada ainda.',
     ],
+
+    // Quote form
+    'form' => [
+        'full_name'        => 'Nome Completo',
+        'email'            => 'E-mail',
+        'phone'            => 'Telefone',
+        'company'          => 'Empresa',
+        'project_details'  => 'Detalhes do Projeto',
+        'placeholder_name' => 'João Silva',
+        'placeholder_email'   => 'joao@empresa.com.br',
+        'placeholder_phone'   => '+55 (12) 99751-7673',
+        'placeholder_company' => 'Empresa Ltda',
+        'placeholder_message' => 'Por gentileza, descreva sua necessidade em detalhes.',
+        'submit'           => 'Enviar Solicitação de Orçamento',
+        'required'         => '*',
+        'success_title'    => 'Obrigado!',
+        'success_message'  => 'Sua solicitação foi recebida. Entraremos em contato em breve.',
+        'send_another'     => 'Enviar outra solicitação',
+    ],
 ];
