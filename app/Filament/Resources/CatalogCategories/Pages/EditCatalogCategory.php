@@ -16,4 +16,5 @@ class EditCatalogCategory extends EditRecord
             DeleteAction::make(),
         ];
     }
+
 }

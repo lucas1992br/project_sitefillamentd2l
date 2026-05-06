@@ -34,7 +34,11 @@ Route::get('/certifications', function () {
 
 Route::get('/noticias', [NewsController::class, 'index'])->name('news.index');
 
-Route::get('/contact', fn () => view('site.contact'))->name('contact');
+Route::get('/contact', function () {
+    return view('site.contact', [
+        'siteContent' => \App\Models\SiteContent::instance(),
+    ]);
+})->name('contact');
 
 Route::get('/storage/{path}', function (string $path) {
     if (!Storage::disk('private')->exists($path)) {

@@ -16,13 +16,22 @@ class CertificationForm
     {
         return $schema
             ->components([
-                Section::make('Informações do Certificado')
+                Section::make('Conteúdo')
                     ->schema([
                         TextInput::make('name')
                             ->label('Nome da Certificação')
                             ->required()
                             ->placeholder('ex: ISO 9001:2015'),
 
+                        Textarea::make('description')
+                            ->label('Descrição')
+                            ->rows(3)
+                            ->columnSpanFull(),
+                    ])
+                    ->columns(2),
+
+                Section::make('Informações do Certificado')
+                    ->schema([
                         TextInput::make('issuer')
                             ->label('Emissor / Organismo Certificador')
                             ->required()
@@ -41,11 +50,6 @@ class CertificationForm
                             ->label('Data de Vencimento')
                             ->displayFormat('d/m/Y')
                             ->helperText('Deixe em branco se o certificado não expira'),
-
-                        Textarea::make('description')
-                            ->label('Descrição')
-                            ->rows(3)
-                            ->columnSpanFull(),
 
                         TextInput::make('sort_order')
                             ->label('Ordem de Exibição')

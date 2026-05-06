@@ -16,7 +16,7 @@ class PortfolioItemForm
     {
         return $schema
             ->components([
-                Section::make('Detalhes do Item')
+                Section::make('Conteúdo')
                     ->schema([
                         TextInput::make('title')
                             ->label('Título')
@@ -27,14 +27,22 @@ class PortfolioItemForm
                             ->label('Subtítulo')
                             ->maxLength(255),
 
+                        Textarea::make('description')
+                            ->label('Descrição')
+                            ->rows(4)
+                            ->columnSpanFull(),
+                    ])
+                    ->columns(2),
+
+                Section::make('Detalhes Técnicos')
+                    ->schema([
                         Select::make('category')
                             ->label('Categoria')
                             ->options([
-                                'CNC Turning' => 'Torneamento CNC',
-                                'CNC Milling' => 'Fresamento CNC',
-                                'Welding'     => 'Soldagem',
-                                'Finishing'   => 'Acabamento',
-                                'Assembly'    => 'Montagem',
+                                'Turnkey'     => 'Turnkey',
+                                'Usinagem'    => 'Usinagem',
+                                'Caldeiraria' => 'Caldeiraria',
+                                'Restauração' => 'Restauração',
                             ])
                             ->required()
                             ->searchable(),
@@ -49,11 +57,6 @@ class PortfolioItemForm
 
                         TextInput::make('client_name')
                             ->label('Cliente (opcional)'),
-
-                        Textarea::make('description')
-                            ->label('Descrição')
-                            ->rows(4)
-                            ->columnSpanFull(),
 
                         TextInput::make('sort_order')
                             ->label('Ordem de Exibição')

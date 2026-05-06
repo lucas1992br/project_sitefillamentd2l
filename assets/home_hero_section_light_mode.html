@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+
+<html lang="pt-br"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed-variant": "#43474a",
+                        "primary-container": "#0066cc",
+                        "primary-fixed": "#d7e3ff",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed-dim": "#c4c7ca",
+                        "surface-container": "#ecedf6",
+                        "on-tertiary-fixed-variant": "#793000",
+                        "secondary-fixed": "#e0e3e6",
+                        "surface-bright": "#f9f9ff",
+                        "tertiary-fixed-dim": "#ffb692",
+                        "on-tertiary-fixed": "#341100",
+                        "surface-tint": "#005cba",
+                        "tertiary-container": "#af4900",
+                        "surface-container-low": "#f2f3fc",
+                        "secondary": "#5b5f62",
+                        "on-error-container": "#93000a",
+                        "primary": "#004e9f",
+                        "tertiary": "#883700",
+                        "on-error": "#ffffff",
+                        "on-surface-variant": "#414753",
+                        "on-surface": "#191c22",
+                        "on-secondary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface": "#f9f9ff",
+                        "secondary-container": "#dde0e3",
+                        "surface-container-highest": "#e1e2eb",
+                        "on-primary-container": "#dfe8ff",
+                        "on-tertiary-container": "#ffe3d6",
+                        "background": "#f9f9ff",
+                        "inverse-surface": "#2e3037",
+                        "primary-fixed-dim": "#aac7ff",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed": "#ffdbcb",
+                        "outline": "#727784",
+                        "inverse-on-surface": "#eff0f9",
+                        "surface-variant": "#e1e2eb",
+                        "on-primary-fixed-variant": "#00458e",
+                        "on-primary-fixed": "#001b3e",
+                        "on-secondary-container": "#5f6366",
+                        "outline-variant": "#c1c6d5",
+                        "surface-dim": "#d8d9e2",
+                        "on-secondary-fixed": "#181c1e",
+                        "inverse-primary": "#aac7ff",
+                        "on-tertiary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "surface-container-high": "#e6e8f1",
+                        "on-background": "#191c22"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "stack-md": "24px",
+                        "stack-sm": "8px",
+                        "stack-lg": "48px",
+                        "section-padding": "80px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "48px",
+                        "container-max": "1280px",
+                        "unit": "8px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "h3": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "h2": ["Inter"],
+                        "h1": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "1.7", "fontWeight": "400"}],
+                        "h3": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "h2": ["36px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "h1": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<title>MetalSolutions | Precisão Industrial</title>
+</head>
+<body class="bg-surface font-body-md text-on-surface">
+<div class="relative min-h-screen flex flex-col">
+<!-- Navigation Bar -->
+<header class="fixed top-0 left-0 right-0 z-50 bg-surface/80 backdrop-blur-md border-b border-outline-variant">
+<div class="max-w-7xl mx-auto px-6 lg:px-10 flex items-center justify-between h-20">
+<div class="flex items-center gap-3">
+<div class="bg-primary-container p-2 rounded-lg">
+<span class="material-symbols-outlined text-on-primary-container text-2xl">precision_manufacturing</span>
+</div>
+<h2 class="text-on-surface text-xl font-black tracking-tight">METALSOLUTIONS</h2>
+</div>
+<nav class="hidden md:flex items-center gap-10">
+<a class="text-on-surface-variant hover:text-primary text-sm font-semibold transition-colors uppercase tracking-wider" href="#">Serviços</a>
+<a class="text-on-surface-variant hover:text-primary text-sm font-semibold transition-colors uppercase tracking-wider" href="#">Equipamentos</a>
+<a class="text-on-surface-variant hover:text-primary text-sm font-semibold transition-colors uppercase tracking-wider" href="#">Portfólio</a>
+<a class="text-on-surface-variant hover:text-primary text-sm font-semibold transition-colors uppercase tracking-wider" href="#">Sobre Nós</a>
+</nav>
+<div class="flex items-center gap-6">
+<button class="hidden lg:flex items-center gap-2 text-white bg-[#0066CC] hover:bg-[#0052a3] px-6 py-3 rounded-lg text-sm font-bold transition-all uppercase tracking-wide">
+<span>Solicite um Orçamento</span>
+<span class="material-symbols-outlined text-lg">arrow_forward</span>
+</button>
+<button class="md:hidden text-on-surface">
+<span class="material-symbols-outlined text-3xl">menu</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Hero Section -->
+<main class="relative flex-grow flex items-center pt-20 overflow-hidden bg-white">
+<!-- Background Image with Light Overlay -->
+<div class="absolute inset-0 z-0">
+<div class="absolute inset-0 bg-white/70 z-10"></div>
+<img alt="Modern Industrial Workshop" class="w-full h-full object-cover" data-alt="Bright, modern industrial machine shop with natural lighting and high-precision CNC equipment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNTnwl80tcpdJppBDB4pIrVwy0vmSmq9zG_tDv7-camq-ZWfgEQPQ2k7Enlj_uONGaYMw0Jwo3vG8CfUqdFrLoIiGRefKLe6zIIg0hhT7sAEch0JRYdq2LH5O8wgzGbEtwToXh2TuODJPJsFXBpZcCYBQ1Y0FYimyLw_--45uMrCdzd-yVb5GHkJbx4MCiTEN50H2wwPriRK0jjD4PE5GkukOfQWXDQZkNVazI2yhvioxFiFnw6l3zRTrMlCn4RlZXoNGjNrV1nmY"/>
+</div>
+<!-- Content Container -->
+<div class="relative z-20 max-w-7xl mx-auto px-6 lg:px-10 w-full py-24 md:py-32">
+<div class="max-w-3xl space-y-8">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-fixed border border-primary-fixed-dim text-on-primary-fixed-variant text-xs font-bold uppercase tracking-widest">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+</span>
+                        Líder em Usinagem Industrial
+                    </div>
+<h1 class="text-on-surface text-5xl md:text-7xl font-h1 leading-[1.1] tracking-tight">
+                        Engenharia de <span class="text-primary-container">Precisão</span> para Metais Complexos
+                    </h1>
+<p class="text-on-surface-variant text-body-lg leading-relaxed max-w-2xl">
+                        Transformamos projetos desafiadores em realidade industrial com tecnologia CNC de ponta e processos certificados. Durabilidade e precisão milimétrica em cada componente.
+                    </p>
+<div class="flex flex-col sm:flex-row gap-4 pt-4">
+<button class="bg-[#0066CC] hover:bg-[#0052a3] text-white px-8 py-5 rounded-lg text-lg font-bold transition-all flex items-center justify-center gap-3 shadow-lg shadow-primary-container/20">
+                            Solicite um Orçamento
+                            <span class="material-symbols-outlined">request_quote</span>
+</button>
+<button class="bg-surface-container-highest hover:bg-surface-container-high text-on-surface border border-outline-variant px-8 py-5 rounded-lg text-lg font-bold transition-all flex items-center justify-center gap-3">
+                            Ver Portfólio
+                            <span class="material-symbols-outlined">grid_view</span>
+</button>
+</div>
+<!-- Trust Badges -->
+<div class="pt-12 grid grid-cols-2 md:grid-cols-4 gap-6 border-t border-outline-variant mt-12">
+<div class="space-y-1">
+<p class="text-on-surface text-2xl font-bold">1500+</p>
+<p class="text-on-surface-variant text-xs font-bold uppercase tracking-widest">Projetos Entregues</p>
+</div>
+<div class="space-y-1">
+<p class="text-on-surface text-2xl font-bold">0.01mm</p>
+<p class="text-on-surface-variant text-xs font-bold uppercase tracking-widest">Precisão Máxima</p>
+</div>
+<div class="space-y-1">
+<p class="text-on-surface text-2xl font-bold">ISO 9001</p>
+<p class="text-on-surface-variant text-xs font-bold uppercase tracking-widest">Certificação Global</p>
+</div>
+<div class="space-y-1">
+<p class="text-on-surface text-2xl font-bold">24/7</p>
+<p class="text-on-surface-variant text-xs font-bold uppercase tracking-widest">Suporte Técnico</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Side Accent -->
+<div class="absolute right-0 bottom-0 h-1/2 w-1/4 bg-primary-container/10 blur-[120px] rounded-full pointer-events-none"></div>
+</main>
+<!-- Services Preview Section -->
+<section class="bg-surface py-24 px-6 lg:px-10 border-t border-outline-variant">
+<div class="max-w-7xl mx-auto">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+<div class="space-y-4">
+<h2 class="text-on-surface text-3xl md:text-4xl font-h2">Nossa Especialidade</h2>
+<p class="text-on-surface-variant max-w-xl text-body-lg">Soluções completas de metalurgia e usinagem para diversos setores industriais, unindo tradição e tecnologia.</p>
+</div>
+<a class="text-primary-container font-bold flex items-center gap-2 hover:gap-3 transition-all" href="#">
+                        Explorar todos os serviços <span class="material-symbols-outlined">east</span>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- CNC Machining -->
+<div class="group bg-surface-container-lowest p-8 rounded-xl border border-outline-variant hover:border-primary-container transition-all duration-300 flex flex-col gap-6 shadow-sm">
+<div class="size-14 rounded-lg bg-primary-container/10 flex items-center justify-center text-primary-container group-hover:bg-primary-container group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-3xl">settings_input_component</span>
+</div>
+<div class="space-y-3">
+<h3 class="text-xl font-h3 text-on-surface">Usinagem CNC</h3>
+<p class="text-on-surface-variant leading-relaxed">Alta precisão em componentes complexos com centros de usinagem de 5 eixos de última geração.</p>
+</div>
+<a class="mt-auto text-primary-container text-sm font-bold flex items-center gap-1 group-hover:translate-x-1 transition-transform" href="#">
+                            Saiba mais <span class="material-symbols-outlined text-base">chevron_right</span>
+</a>
+</div>
+<!-- Laser Cutting -->
+<div class="group bg-surface-container-lowest p-8 rounded-xl border border-outline-variant hover:border-primary-container transition-all duration-300 flex flex-col gap-6 shadow-sm">
+<div class="size-14 rounded-lg bg-primary-container/10 flex items-center justify-center text-primary-container group-hover:bg-primary-container group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-3xl">flare</span>
+</div>
+<div class="space-y-3">
+<h3 class="text-xl font-h3 text-on-surface">Corte a Laser</h3>
+<p class="text-on-surface-variant leading-relaxed">Tecnologia de fibra ótica para cortes limpos e rápidos em chapas de aço, alumínio e inox.</p>
+</div>
+<a class="mt-auto text-primary-container text-sm font-bold flex items-center gap-1 group-hover:translate-x-1 transition-transform" href="#">
+                            Saiba mais <span class="material-symbols-outlined text-base">chevron_right</span>
+</a>
+</div>
+<!-- Specialized Welding -->
+<div class="group bg-surface-container-lowest p-8 rounded-xl border border-outline-variant hover:border-primary-container transition-all duration-300 flex flex-col gap-6 shadow-sm">
+<div class="size-14 rounded-lg bg-primary-container/10 flex items-center justify-center text-primary-container group-hover:bg-primary-container group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-3xl">heat_pump</span>
+</div>
+<div class="space-y-3">
+<h3 class="text-xl font-h3 text-on-surface">Soldagem Especializada</h3>
+<p class="text-on-surface-variant leading-relaxed">Soldadores certificados em processos MIG, TIG e soldagem orbital para integridade estrutural.</p>
+</div>
+<a class="mt-auto text-primary-container text-sm font-bold flex items-center gap-1 group-hover:translate-x-1 transition-transform" href="#">
+                            Saiba mais <span class="material-symbols-outlined text-base">chevron_right</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-inverse-surface text-inverse-on-surface py-12 px-6 lg:px-10">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+<div class="flex items-center gap-3">
+<div class="bg-primary-container p-2 rounded-lg">
+<span class="material-symbols-outlined text-on-primary-container text-xl font-bold">precision_manufacturing</span>
+</div>
+<span class="text-white font-black tracking-tight uppercase">MetalSolutions Industrial</span>
+</div>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="hover:text-primary-fixed transition-colors text-sm font-medium" href="#">Privacidade</a>
+<a class="hover:text-primary-fixed transition-colors text-sm font-medium" href="#">Termos</a>
+<a class="hover:text-primary-fixed transition-colors text-sm font-medium" href="#">Trabalhe Conosco</a>
+<a class="hover:text-primary-fixed transition-colors text-sm font-medium" href="#">Blog</a>
+</div>
+<div class="text-sm opacity-70">
+                    © 2024 MetalSolutions. Todos os direitos reservados.
+                </div>
+</div>
+</footer>
+</div>
+</body></html>

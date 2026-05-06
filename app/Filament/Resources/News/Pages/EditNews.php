@@ -16,4 +16,5 @@ class EditNews extends EditRecord
             DeleteAction::make(),
         ];
     }
+
 }

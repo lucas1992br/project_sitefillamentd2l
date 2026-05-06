@@ -41,6 +41,8 @@ class ManageSiteContent extends Page
             'about_title'                => $this->record->about_title,
             'about_description'          => $this->record->about_description,
             'about_founded_year'         => $this->record->about_founded_year,
+            'phone'                      => $this->record->phone,
+            'address'                    => $this->record->address,
             'whatsapp_url'               => $this->record->whatsapp_url,
             'linkedin_url'               => $this->record->linkedin_url,
             'instagram_url'              => $this->record->instagram_url,
@@ -68,15 +70,15 @@ class ManageSiteContent extends Page
             ->model($this->record)
             ->statePath('data')
             ->components([
-                Section::make('Logotipo')
-                    ->description('Logotipo da empresa exibido no cabeçalho e rodapé do site.')
+                Section::make('Logotipo do Cabeçalho (Navbar)')
+                    ->description('Logotipo exibido na barra de navegação superior do site.')
                     ->afterHeader([
                         \Filament\Actions\Action::make('delete_logo')
                             ->label('Excluir Logotipo')
                             ->color('danger')
                             ->icon('heroicon-o-trash')
                             ->requiresConfirmation()
-                            ->modalHeading('Excluir logotipo?')
+                            ->modalHeading('Excluir logotipo do cabeçalho?')
                             ->modalDescription('Esta ação não pode ser desfeita.')
                             ->visible(fn () => $this->record->hasMedia('logo'))
                             ->action(fn () => $this->deleteMedia('logo')),
@@ -86,6 +88,31 @@ class ManageSiteContent extends Page
                             ->label('Arquivo do Logotipo')
                             ->helperText('Formatos aceitos: PNG, SVG, WebP · Recomendado: fundo transparente (PNG ou SVG)')
                             ->collection('logo')
+                            ->image()
+                            ->imageEditor()
+                            ->maxSize(2048)
+                            ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp', 'image/avif', 'image/svg+xml'])
+                            ->model($this->record),
+                    ]),
+
+                Section::make('Logotipo do Rodapé')
+                    ->description('Logotipo exibido no rodapé do site. Se não definido, utiliza o logotipo do cabeçalho.')
+                    ->afterHeader([
+                        \Filament\Actions\Action::make('delete_logo_footer')
+                            ->label('Excluir Logotipo do Rodapé')
+                            ->color('danger')
+                            ->icon('heroicon-o-trash')
+                            ->requiresConfirmation()
+                            ->modalHeading('Excluir logotipo do rodapé?')
+                            ->modalDescription('Esta ação não pode ser desfeita.')
+                            ->visible(fn () => $this->record->hasMedia('logo_footer'))
+                            ->action(fn () => $this->deleteMedia('logo_footer')),
+                    ])
+                    ->schema([
+                        SpatieMediaLibraryFileUpload::make('logo_footer')
+                            ->label('Arquivo do Logotipo')
+                            ->helperText('Formatos aceitos: PNG, SVG, WebP · Recomendado: versão clara/branca para fundo escuro')
+                            ->collection('logo_footer')
                             ->image()
                             ->imageEditor()
                             ->maxSize(2048)
@@ -174,11 +201,22 @@ class ManageSiteContent extends Page
                             ->model($this->record),
                     ]),
 
-                Section::make('Redes Sociais')
-                    ->description('Links das redes sociais exibidos no botão flutuante do site.')
+                Section::make('Contato & Redes Sociais')
+                    ->description('Informações de contato e links das redes sociais exibidos no site.')
                     ->schema([
+                        TextInput::make('phone')
+                            ->label('Telefone / WhatsApp (número)')
+                            ->placeholder('+55 (12) 99751-7673')
+                            ->maxLength(30),
+
+                        TextInput::make('address')
+                            ->label('Endereço')
+                            ->placeholder('Rua Exemplo, 1000 — Bairro, Cidade/UF')
+                            ->maxLength(255)
+                            ->columnSpanFull(),
+
                         TextInput::make('whatsapp_url')
-                            ->label('WhatsApp')
+                            ->label('WhatsApp (link)')
                             ->placeholder('https://wa.me/5511999999999')
                             ->helperText('Use o formato: https://wa.me/55DDD999999999')
                             ->url()
@@ -429,6 +467,8 @@ class ManageSiteContent extends Page
             'about_title'                => $this->record->about_title,
             'about_description'          => $this->record->about_description,
             'about_founded_year'         => $this->record->about_founded_year,
+            'phone'                      => $this->record->phone,
+            'address'                    => $this->record->address,
             'whatsapp_url'               => $this->record->whatsapp_url,
             'linkedin_url'               => $this->record->linkedin_url,
             'instagram_url'              => $this->record->instagram_url,
@@ -466,6 +506,8 @@ class ManageSiteContent extends Page
             'about_title'                => $data['about_title'] ?? 'Sobre a D2L',
             'about_description'          => $data['about_description'] ?? null,
             'about_founded_year'         => $data['about_founded_year'] ?? null,
+            'phone'                      => $data['phone'] ?? null,
+            'address'                    => $data['address'] ?? null,
             'whatsapp_url'               => $data['whatsapp_url'] ?? null,
             'linkedin_url'               => $data['linkedin_url'] ?? null,
             'instagram_url'              => $data['instagram_url'] ?? null,

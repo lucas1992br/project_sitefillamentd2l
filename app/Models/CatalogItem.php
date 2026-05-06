@@ -13,7 +13,8 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 class CatalogItem extends Model implements HasMedia
 {
     /** @use HasFactory<\Database\Factories\CatalogItemFactory> */
-    use HasFactory, InteractsWithMedia;
+    use HasFactory;
+    use InteractsWithMedia;
 
     protected $fillable = [
         'catalog_category_id',

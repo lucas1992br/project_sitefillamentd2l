@@ -3,13 +3,14 @@
 namespace App\Filament\Resources\News\Schemas;
 
 use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
-use Filament\Forms\Components\RichEditor;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
+use Illuminate\Support\Str;
 
 class NewsForm
 {
@@ -24,17 +25,11 @@ class NewsForm
                             ->required()
                             ->maxLength(255)
                             ->live(onBlur: true)
-                            ->afterStateUpdated(function (string $operation, $state, callable $set) {
+                            ->afterStateUpdated(function (string $operation, ?string $state, callable $set) {
                                 if ($operation === 'create') {
-                                    $set('slug', \Illuminate\Support\Str::slug($state));
+                                    $set('slug', Str::slug($state ?? ''));
                                 }
                             }),
-
-                        TextInput::make('slug')
-                            ->label('Slug')
-                            ->required()
-                            ->maxLength(255)
-                            ->unique(ignoreRecord: true),
 
                         Textarea::make('excerpt')
                             ->label('Resumo')
@@ -48,8 +43,19 @@ class NewsForm
                     ])
                     ->columns(2),
 
-                Section::make('Publicação')
+                Section::make('Configurações')
                     ->schema([
+                        TextInput::make('slug')
+                            ->label('Slug')
+                            ->required()
+                            ->maxLength(255)
+                            ->unique(ignoreRecord: true),
+
+                        TextInput::make('sort_order')
+                            ->label('Ordem de Exibição')
+                            ->numeric()
+                            ->default(0),
+
                         Toggle::make('is_published')
                             ->label('Publicado')
                             ->default(false),
@@ -57,13 +63,8 @@ class NewsForm
                         DateTimePicker::make('published_at')
                             ->label('Data de Publicação')
                             ->native(false),
-
-                        TextInput::make('sort_order')
-                            ->label('Ordem de Exibição')
-                            ->numeric()
-                            ->default(0),
                     ])
-                    ->columns(3),
+                    ->columns(2),
 
                 Section::make('Imagem de Capa')
                     ->schema([

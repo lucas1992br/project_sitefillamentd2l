@@ -17,7 +17,7 @@ class ServiceForm
     {
         return $schema
             ->components([
-                Section::make('Informações Básicas')
+                Section::make('Conteúdo')
                     ->schema([
                         TextInput::make('title')
                             ->label('Título')
@@ -25,15 +25,9 @@ class ServiceForm
                             ->maxLength(255)
                             ->live(onBlur: true)
                             ->afterStateUpdated(
-                                fn (string $operation, string $state, Set $set) =>
-                                $operation === 'create' ? $set('slug', Str::slug($state)) : null
+                                fn (string $operation, ?string $state, Set $set) =>
+                                $operation === 'create' ? $set('slug', Str::slug($state ?? '')) : null
                             ),
-
-                        TextInput::make('slug')
-                            ->label('Slug (URL)')
-                            ->required()
-                            ->unique(ignoreRecord: true)
-                            ->maxLength(255),
 
                         TextInput::make('subtitle')
                             ->label('Subtítulo')
@@ -46,6 +40,16 @@ class ServiceForm
                             ->toolbarButtons([
                                 'bold', 'italic', 'bulletList', 'orderedList', 'h2', 'h3', 'link',
                             ]),
+                    ])
+                    ->columns(2),
+
+                Section::make('Configurações')
+                    ->schema([
+                        TextInput::make('slug')
+                            ->label('Slug (URL)')
+                            ->required()
+                            ->unique(ignoreRecord: true)
+                            ->maxLength(255),
 
                         TextInput::make('icon')
                             ->label('Ícone')

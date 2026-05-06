@@ -7,6 +7,12 @@
                 "/home/lucas/d2l-app/artisan",
                 "boost:mcp"
             ]
+        },
+        "stitch": {
+            "serverUrl": "https://stitch.googleapis.com/mcp",
+            "headers": {
+                "X-Goog-Api-Key": "${GOOG_API_KEY}"
+            }
         }
     }
 }

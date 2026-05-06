@@ -8,6 +8,7 @@ return [
         'portfolio'       => 'Portfólio',
         'catalog'         => 'Catálogo',
         'certifications'  => 'Certificações',
+        'clients'         => 'Clientes',
         'news'            => 'Notícias',
         'about'           => 'Quem Somos',
         'contact'         => 'Contato',
@@ -25,7 +26,7 @@ return [
 
     // Home — hero
     'home' => [
-        'iso_badge'      => 'ISO 9001 Certificado',
+        'iso_badge'      => 'ISO9001:2015',
         'headline1'      => 'Soluções em Ferramentais,',
         'headline2'      => 'GSE e Dispositivos.',
         'subtext'        => 'A D2L Soluções Metálicas atua no desenvolvimento, fabricação, integração e restauração de Plataformas, Carros de Transporte, Lingas, Dummies, entre outros, para o setor Aeroespacial, Defesa, Óleo & Gás e Automotivo.',
@@ -34,18 +35,18 @@ return [
 
         // Services section
         'services_tag'     => 'O que fazemos',
-        'services_title'   => 'Nossos Serviços',
+        'services_title'   => 'Serviços',
         'services_see_all' => 'Ver todos os serviços',
 
         // Portfolio section
-        'portfolio_tag'     => 'Nosso Trabalho',
-        'portfolio_title'   => 'Portfólio de Projetos',
+        'portfolio_tag'     => 'Nossos Trabalhos',
+        'portfolio_title'   => 'Portfólio',
         'portfolio_see_all' => 'Ver portfólio completo',
         'portfolio_empty'   => 'Nenhum projeto em destaque no momento.',
 
         // Catalog section
-        'catalog_tag'     => 'Produtos',
-        'catalog_title'   => 'Catálogo de Produtos',
+        'catalog_tag'     => 'Produtos Padronizados',
+        'catalog_title'   => 'Catálogo',
         'catalog_see_all' => 'Ver catálogo completo',
 
         // Certifications section
@@ -73,6 +74,16 @@ return [
         'news_title'   => 'Notícias',
         'news_see_all' => 'Ver todas as notícias',
 
+        // Stats
+        'stat_projects'  => 'Projetos Entregues',
+        'stat_precision' => 'Precisão de Usinagem',
+        'stat_cert'      => 'Certificação',
+        'stat_years'     => 'Anos de Experiência',
+        'stat_ontime'    => 'Entrega no Prazo',
+
+        // Certifications section extras
+        'certifications_subtitle'  => '',
+
         // About section
         'about_tag'     => 'Quem Somos',
         'about_founded' => 'Fundada em :year · :years anos de experiência',
@@ -92,28 +103,28 @@ return [
     'services' => [
         'what_we_do'  => 'O que fazemos',
         'title'       => 'Serviços',
-        'description' => 'Serviços completos de usinagem industrial CNC: torneamento, fresamento, soldagem e acabamento de superfície.',
+        'description' => '',
     ],
 
     // Portfolio page
     'portfolio' => [
-        'tag'         => 'Nosso Trabalho',
+        'tag'         => 'Nossos Trabalhos',
         'title'       => 'Portfólio',
-        'description' => 'Uma seleção de projetos concluídos em diversas indústrias e materiais.',
+        'description' => '',
     ],
 
     // Catalog page
     'catalog' => [
-        'tag'         => 'Produtos',
+        'tag'         => 'Produtos Padronizados',
         'title'       => 'Catálogo',
-        'description' => 'Conheça nossos produtos e soluções disponíveis, organizados por categoria.',
+        'description' => '',
     ],
 
     // Certifications page
     'certifications' => [
-        'tag'         => 'Qualidade',
+        'tag'         => 'Qualidade & Conformidade',
         'title'       => 'Certificações',
-        'description' => 'Gestão de qualidade e conformidade verificadas independentemente.',
+        'description' => '',
         'empty'       => 'Nenhuma certificação cadastrada ainda.',
         'issued'      => 'Emitido',
         'valid'       => 'Válido',
@@ -150,6 +161,7 @@ return [
         'phone'        => 'Telefone',
         'whatsapp'     => 'WhatsApp',
         'address'      => 'Endereço',
+        'follow_us'    => 'Siga-nos',
         'form_heading' => 'Solicite um Orçamento',
     ],
 
@@ -159,6 +171,7 @@ return [
         'featured'     => 'Destaque',
         'ref'          => 'Ref',
         'material'     => 'Material',
+        'learn_more'   => 'Saiba mais',
         'no_portfolio' => 'Nenhum item no portfólio encontrado.',
         'no_catalog'   => 'Nenhum item encontrado no catálogo.',
         'no_news'      => 'Nenhuma notícia publicada ainda.',
@@ -170,7 +183,7 @@ return [
         'email'            => 'E-mail',
         'phone'            => 'Telefone',
         'company'          => 'Empresa',
-        'project_details'  => 'Detalhes do Projeto',
+        'project_details'  => 'Descrição:',
         'placeholder_name' => 'João Silva',
         'placeholder_email'   => 'joao@empresa.com.br',
         'placeholder_phone'   => '+55 (12) 99751-7673',

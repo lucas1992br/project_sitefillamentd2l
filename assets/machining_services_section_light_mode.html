@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed-variant": "#43474a",
+                        "primary-container": "#0066cc",
+                        "primary-fixed": "#d7e3ff",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed-dim": "#c4c7ca",
+                        "surface-container": "#ecedf6",
+                        "on-tertiary-fixed-variant": "#793000",
+                        "secondary-fixed": "#e0e3e6",
+                        "surface-bright": "#f9f9ff",
+                        "tertiary-fixed-dim": "#ffb692",
+                        "on-tertiary-fixed": "#341100",
+                        "surface-tint": "#005cba",
+                        "tertiary-container": "#af4900",
+                        "surface-container-low": "#f2f3fc",
+                        "secondary": "#5b5f62",
+                        "on-error-container": "#93000a",
+                        "primary": "#005cba",
+                        "tertiary": "#883700",
+                        "on-error": "#ffffff",
+                        "on-surface-variant": "#414753",
+                        "on-surface": "#191c22",
+                        "on-secondary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface": "#f9f9ff",
+                        "secondary-container": "#dde0e3",
+                        "surface-container-highest": "#e1e2eb",
+                        "on-primary-container": "#dfe8ff",
+                        "on-tertiary-container": "#ffe3d6",
+                        "background": "#f9f9ff",
+                        "inverse-surface": "#2e3037",
+                        "primary-fixed-dim": "#aac7ff",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed": "#ffdbcb",
+                        "outline": "#727784",
+                        "inverse-on-surface": "#eff0f9",
+                        "surface-variant": "#e1e2eb",
+                        "on-primary-fixed-variant": "#00458e",
+                        "on-primary-fixed": "#001b3e",
+                        "on-secondary-container": "#5f6366",
+                        "outline-variant": "#c1c6d5",
+                        "surface-dim": "#d8d9e2",
+                        "on-secondary-fixed": "#181c1e",
+                        "inverse-primary": "#aac7ff",
+                        "on-tertiary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "surface-container-high": "#e6e8f1",
+                        "on-background": "#191c22"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "stack-md": "24px",
+                        "stack-sm": "8px",
+                        "stack-lg": "48px",
+                        "section-padding": "80px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "48px",
+                        "container-max": "1280px",
+                        "unit": "8px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "h3": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "h2": ["Inter"],
+                        "h1": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "1.7", "fontWeight": "400"}],
+                        "h3": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "h2": ["36px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "h1": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-body-md antialiased">
+<!-- Navbar -->
+<nav class="sticky top-0 z-50 w-full border-b border-outline-variant bg-surface-container-lowest/80 backdrop-blur-md">
+<div class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop h-20 flex items-center justify-between">
+<div class="flex items-center gap-2 text-on-surface font-bold text-xl tracking-tight">
+<span class="material-symbols-outlined text-primary text-3xl">precision_manufacturing</span>
+                PRECISION FORGE
+            </div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors" href="#">Solutions</a>
+<a class="text-sm font-medium text-primary underline underline-offset-8" href="#">Capabilities</a>
+<a class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors" href="#">Case Studies</a>
+<a class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors" href="#">About</a>
+<button class="bg-primary hover:bg-primary-container text-on-primary px-6 py-2.5 rounded-lg text-sm font-semibold transition-all shadow-sm">
+                    Request Quote
+                </button>
+</div>
+</div>
+</nav>
+<!-- Machining Services Section -->
+<section class="relative flex h-auto min-h-screen w-full flex-col bg-surface overflow-x-hidden py-section-padding">
+<div class="max-w-[1280px] mx-auto w-full px-margin-mobile md:px-margin-desktop">
+<div class="flex flex-col flex-1">
+<!-- Section Header -->
+<div class="flex flex-col items-center text-center mb-16">
+<span class="text-primary font-bold text-label-caps tracking-widest uppercase mb-4">Industrial Excellence</span>
+<h2 class="text-on-surface text-h2 md:text-h1 max-w-3xl">
+                        Specialized Machining Services for Mission-Critical Components
+                    </h2>
+<div class="w-20 h-1.5 bg-primary mt-8 rounded-full"></div>
+<p class="text-on-surface-variant text-body-lg mt-8 max-w-2xl">
+                        High-precision engineered solutions tailored to aerospace, medical, and defense sectors using state-of-the-art multi-axis technology.
+                    </p>
+</div>
+<!-- Services Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Service Card 1 -->
+<div class="group flex flex-col bg-surface-container-lowest rounded-lg border border-outline-variant shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden">
+<div class="w-full bg-center bg-no-repeat aspect-video bg-cover relative" data-alt="Close up of high precision metal CNC milling machine in action" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBcdzD1uxu6JJaz9JS50rB0xy_7nknriDX1fgVLgGqcDCxKmJ5Y-nwMaeLa6nEd5Qr1sfxv3VBz33Z4ubU4eING7ByoMJF0523WgFTDjtaDWafM0B7lTv52UGV_pYVzEnDSxhDztiiRPrzKwSrzkX9eHFDXzn_LyemWIuUzek03mARO5eZYFS9OE5hKku_tW3Rkr3U7XN5TqQDbP0JGlz4ebR-AecNMRNIh6ht7ukKpp71IBfYLCULKxD3GhmlffehC0PlAa3n5gRg");'>
+<div class="absolute inset-0 bg-primary/5 group-hover:bg-transparent transition-colors"></div>
+</div>
+<div class="p-6">
+<div class="flex items-center gap-3 mb-3">
+<span class="material-symbols-outlined text-primary text-2xl">settings_input_component</span>
+<p class="text-on-surface text-xl font-bold leading-normal">CNC Machining</p>
+</div>
+<p class="text-on-surface-variant text-body-md mb-6">
+                                Ultra-precise 3, 4, and 5-axis milling and turning for complex geometries with tolerances up to ±0.001mm.
+                            </p>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 bg-surface-container text-on-surface-variant text-xs font-semibold rounded-full border border-outline-variant">5-Axis Precision</span>
+<span class="px-3 py-1 bg-surface-container text-on-surface-variant text-xs font-semibold rounded-full border border-outline-variant">Medical Grade</span>
+</div>
+</div>
+</div>
+<!-- Service Card 2 -->
+<div class="group flex flex-col bg-surface-container-lowest rounded-lg border border-outline-variant shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden">
+<div class="w-full bg-center bg-no-repeat aspect-video bg-cover relative" data-alt="Professional welder performing technical TIG welding on industrial structure" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCCGMv3Um8qaQbsPedgtriXoDM-MvDpksyigzbPZ54Ac7guBoEo335LNtgKwqjF3VjkFagiJheyrnyp5RBk76eSMn0gm__nF2c1qCO8YGE-4hFkf8oQ-oI-EHWpEyC1PCGzzwwF0Dja_WbHTF9SjYmMBy00fHPJ6kgU0EWUZAStdtHSA6YHQcWCjqf2ui_HeoBifzECRMMyE5PP8dIdu6krUOSmxKq0iez8wxFVuB2JjLj6xXv5Xn1S0FjOwsXTcMpHo0Rsfhh6p-o");'>
+<div class="absolute inset-0 bg-primary/5 group-hover:bg-transparent transition-colors"></div>
+</div>
+<div class="p-6">
+<div class="flex items-center gap-3 mb-3">
+<span class="material-symbols-outlined text-primary text-2xl">precision_manufacturing</span>
+<p class="text-on-surface text-xl font-bold leading-normal">Industrial Welding</p>
+</div>
+<p class="text-on-surface-variant text-body-md mb-6">
+                                Certified TIG, MIG, and robotic welding services for high-strength structural integrity in critical industrial applications.
+                            </p>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 bg-surface-container text-on-surface-variant text-xs font-semibold rounded-full border border-outline-variant">TIG/MIG Expert</span>
+<span class="px-3 py-1 bg-surface-container text-on-surface-variant text-xs font-semibold rounded-full border border-outline-variant">ASME Certified</span>
+</div>
+</div>
+</div>
+<!-- Service Card 3 -->
+<div class="group flex flex-col bg-surface-container-lowest rounded-lg border border-outline-variant shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden">
+<div class="w-full bg-center bg-no-repeat aspect-video bg-cover relative" data-alt="Engineers examining a 3D metal prototype with technical calipers" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCacVaPdy7ggdHe89nk_IIwrYh1WvjbCWXE6Elm1y_H2UQ4hlSTichlm_tfUOpcDVHOr0am1nKoP6RGrWTxiFTregDy607UT-fLRK9EpG8Uwk7JlMX48emuIPgn0lGMcDnyWMxQHQdFavrlfCMv3y5w7ZXIvNDwNQwLa98AS08TGzVfdVLyEeI4lrrmYt8XX1pGhYqn1DD4pjZUQzte3_W_IxIpBmAPC4a_3efvWNWXxQqICI-vPbvz4DED1BgNRaVoWzfNbr9gC-M");'>
+<div class="absolute inset-0 bg-primary/5 group-hover:bg-transparent transition-colors"></div>
+</div>
+<div class="p-6">
+<div class="flex items-center gap-3 mb-3">
+<span class="material-symbols-outlined text-primary text-2xl">model_training</span>
+<p class="text-on-surface text-xl font-bold leading-normal">Metal Prototyping</p>
+</div>
+<p class="text-on-surface-variant text-body-md mb-6">
+                                Rapid iterative prototyping services to bring your concepts to functional metal reality in record time frames.
+                            </p>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 bg-surface-container text-on-surface-variant text-xs font-semibold rounded-full border border-outline-variant">Rapid Turnaround</span>
+<span class="px-3 py-1 bg-surface-container text-on-surface-variant text-xs font-semibold rounded-full border border-outline-variant">Functional Testing</span>
+</div>
+</div>
+</div>
+<!-- Service Card 4 -->
+<div class="group flex flex-col bg-surface-container-lowest rounded-lg border border-outline-variant shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden">
+<div class="w-full bg-center bg-no-repeat aspect-video bg-cover relative" data-alt="High precision laser cutting machine spark detail on stainless steel sheet" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBzpZncvFoY6te7nlTKyKnvXvRTkDarvwvh2fqxAIQuYjiCDeDaQtND7eCeeNJ_yzErR6qy7LokIQoBECePE3k6oCKprMTfzFYNwjEXy2o4w4N7eVbLNs04Z-f1Z9I4ePbiamL6P2vEDt_J07ryGLeoTrvLbPT-5rg4K6q91D8BEqtZUX8KpFlUJGlhZjrB4J1cxZt3W7s5VO0N3R4SjCUOvqq_FGR4bcsW0SbtwQI9zA5KWBgpfaSYV_3uL8a8MnzA5rIx07XEE9I");'>
+<div class="absolute inset-0 bg-primary/5 group-hover:bg-transparent transition-colors"></div>
+</div>
+<div class="p-6">
+<div class="flex items-center gap-3 mb-3">
+<span class="material-symbols-outlined text-primary text-2xl">flare</span>
+<p class="text-on-surface text-xl font-bold leading-normal">Laser Cutting</p>
+</div>
+<p class="text-on-surface-variant text-body-md mb-6">
+                                Advanced fiber laser cutting for intricate profiles in aluminum, steel, and exotic aerospace alloys.
+                            </p>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 bg-surface-container text-on-surface-variant text-xs font-semibold rounded-full border border-outline-variant">Fiber Laser Tech</span>
+<span class="px-3 py-1 bg-surface-container text-on-surface-variant text-xs font-semibold rounded-full border border-outline-variant">Tight Kerf Control</span>
+</div>
+</div>
+</div>
+<!-- Service Card 5 -->
+<div class="group flex flex-col bg-surface-container-lowest rounded-lg border border-outline-variant shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden">
+<div class="w-full bg-center bg-no-repeat aspect-video bg-cover relative" data-alt="Mechanical parts being treated in a metal finishing and plating industrial tank" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCnKvnXPj4m5Axbut2yqBWlHnEXu_ur0TmlD06pJPa7bhtP0mu7ave_9quLRoRV8PhVFUbOK0B26RnBhnHZxfRflp-olqRECuy5wjSSezCYSIsXIRdWOaTeBwuOpPht9iyuIjRvdKMNQjB1Ncwp49Ty_mF8yACO94CoNMOfk7j8vRGBSv87FT7-3IP-PFVLaiO-tNWRz_7ss1i-XWlt4NhcvUWHkUMnnYRti4ys6vPYaxF2wjTeunvuYRZLWrFQLNDNw6ty1pdfkFw");'>
+<div class="absolute inset-0 bg-primary/5 group-hover:bg-transparent transition-colors"></div>
+</div>
+<div class="p-6">
+<div class="flex items-center gap-3 mb-3">
+<span class="material-symbols-outlined text-primary text-2xl">texture</span>
+<p class="text-on-surface text-xl font-bold leading-normal">Surface Finishing</p>
+</div>
+<p class="text-on-surface-variant text-body-md mb-6">
+                                Comprehensive finishing including anodizing, powder coating, and bead blasting for superior durability and aesthetics.
+                            </p>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 bg-surface-container text-on-surface-variant text-xs font-semibold rounded-full border border-outline-variant">Anodizing</span>
+<span class="px-3 py-1 bg-surface-container text-on-surface-variant text-xs font-semibold rounded-full border border-outline-variant">Mil-Spec Finish</span>
+</div>
+</div>
+</div>
+<!-- Service Card 6 -->
+<div class="group flex flex-col bg-surface-container-lowest rounded-lg border border-outline-variant shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden">
+<div class="w-full bg-center bg-no-repeat aspect-video bg-cover relative" data-alt="Quality control technician using a CMM measuring machine to verify part precision" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDWVR6mbbCy7DhjFTUwUc06SfBnWIpo6i9Nbx1y3o5VECSKlm_cbDg0Lyew_aEnrxxrZCu8IsEMUOK5dKc2E7Yz9fZFGPk9ZQX4C3QHW3M5AZL-ntdZLwv9Fc8lPplcRRoJjkkeRrK0lf21pxD9g78FOE1-Fcye2Q_u7Mh6R4V11qC7XAuqHMT0QmMsPhloUUBa_t0M1UpAPkhoZOwu1cRBQNtfCDh2mF5rcvY4N6SXnlU8zAGh19hKiavOTNEmnUyoKtYpKnBDVYM");'>
+<div class="absolute inset-0 bg-primary/5 group-hover:bg-transparent transition-colors"></div>
+</div>
+<div class="p-6">
+<div class="flex items-center gap-3 mb-3">
+<span class="material-symbols-outlined text-primary text-2xl">verified</span>
+<p class="text-on-surface text-xl font-bold leading-normal">Quality Assurance</p>
+</div>
+<p class="text-on-surface-variant text-body-md mb-6">
+                                Rigorous inspection with CMM technology and full traceability reports to ensure every part meets ISO 9001 standards.
+                            </p>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 bg-surface-container text-on-surface-variant text-xs font-semibold rounded-full border border-outline-variant">ISO 9001:2015</span>
+<span class="px-3 py-1 bg-surface-container text-on-surface-variant text-xs font-semibold rounded-full border border-outline-variant">CMM Inspection</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Footer -->
+<div class="flex flex-col md:flex-row items-center justify-center gap-6 py-16 mt-16 border-t border-outline-variant">
+<p class="text-on-surface text-lg font-medium">Ready to discuss your next project?</p>
+<div class="flex gap-4">
+<button class="flex min-w-[160px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-14 px-8 bg-primary text-on-primary text-base font-bold leading-normal tracking-wide shadow-sm hover:bg-primary-container transition-all">
+<span class="truncate">Get a Quote</span>
+</button>
+<button class="flex min-w-[160px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-14 px-8 bg-surface-container-high text-on-surface text-base font-bold leading-normal tracking-wide hover:bg-secondary-container transition-colors">
+<span class="truncate">Download Specs</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest border-t border-outline-variant py-12">
+<div class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-8">
+<div class="flex items-center gap-2 text-on-surface font-bold text-lg opacity-80">
+<span class="material-symbols-outlined text-primary">precision_manufacturing</span>
+                PRECISION FORGE SOLUTIONS
+            </div>
+<div class="flex gap-6 text-on-surface-variant text-sm">
+<a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="hover:text-primary transition-colors" href="#">Global Locations</a>
+</div>
+<p class="text-on-surface-variant/60 text-xs">© 2024 Precision Forge Machining Ltd. All rights reserved.</p>
+</div>
+</footer>
+</body></html>

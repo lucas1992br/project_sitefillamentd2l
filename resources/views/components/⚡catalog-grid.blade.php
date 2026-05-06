@@ -63,16 +63,16 @@ new class extends Component
         <div class="flex flex-wrap gap-2 mb-8">
             <button
                 wire:click="$set('category', '')"
-                class="px-4 py-1.5 rounded-full text-sm font-medium transition {{ $category === '' ? 'bg-blue-600 text-white' : 'bg-white text-blue-700 border border-blue-200 hover:border-blue-400' }}"
+                class="px-4 py-1.5 rounded-lg text-sm font-bold transition {{ $category === '' ? 'bg-[#0066cc] text-white' : 'bg-white text-[#414753] border border-[#e1e2eb] hover:border-[#0066cc] hover:text-[#0066cc]' }}"
             >
                 {{ __('site.common.all') }}
             </button>
             @foreach ($this->categories as $cat)
                 <button
                     wire:click="$set('category', '{{ $cat->slug }}')"
-                    class="px-4 py-1.5 rounded-full text-sm font-medium transition {{ $category === $cat->slug ? 'bg-blue-600 text-white' : 'bg-white text-blue-700 border border-blue-200 hover:border-blue-400' }}"
+                    class="px-4 py-1.5 rounded-lg text-sm font-bold transition {{ $category === $cat->slug ? 'bg-[#0066cc] text-white' : 'bg-white text-[#414753] border border-[#e1e2eb] hover:border-[#0066cc] hover:text-[#0066cc]' }}"
                 >
-                    {{ $cat->name }}
+                    {{ td($cat->name) }}
                 </button>
             @endforeach
         </div>
@@ -89,20 +89,20 @@ new class extends Component
                 // Monta array de todas as imagens (capa + galeria) para o lightbox
                 $allImages = collect();
                 if ($coverFull) {
-                    $allImages->push(['url' => $coverFull, 'thumb' => $coverUrl, 'alt' => $item->title]);
+                    $allImages->push(['url' => $coverFull, 'thumb' => $coverUrl, 'alt' => td($item->title)]);
                 }
                 foreach ($gallery as $media) {
                     $allImages->push([
                         'url'   => $media->getUrl('full') ?: $media->getUrl(),
                         'thumb' => $media->getUrl('thumb') ?: $media->getUrl(),
-                        'alt'   => $item->title,
+                        'alt'   => td($item->title),
                     ]);
                 }
                 $imagesJson   = json_encode($allImages->values()->all());
                 $galleryCount = $gallery->count();
             @endphp
 
-            <div wire:key="{{ $item->id }}" class="bg-white rounded-2xl border border-slate-100 overflow-hidden shadow-sm hover:shadow-md hover:border-blue-200 transition-all duration-300 flex flex-col">
+            <div wire:key="{{ $item->id }}" class="group bg-white rounded-xl border border-[#e1e2eb] overflow-hidden il-card-hover transition-all duration-300 hover:-translate-y-1 flex flex-col">
 
                 {{-- Imagem de capa clicável --}}
                 @if ($coverUrl)
@@ -113,7 +113,7 @@ new class extends Component
                     >
                         <img
                             src="{{ $coverUrl }}"
-                            alt="{{ $item->title }}"
+                            alt="{{ td($item->title) }}"
                             class="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500"
                         >
                         <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition flex items-center justify-center">
@@ -127,31 +127,31 @@ new class extends Component
                         @endif
                     </button>
                 @else
-                    <div class="w-full h-44 bg-slate-50 flex items-center justify-center border-b border-slate-100 shrink-0">
-                        <x-icon name="photo" class="w-10 h-10 text-slate-200" />
+                    <div class="w-full h-44 bg-[#ecedf6] flex items-center justify-center shrink-0">
+                        <x-icon name="photo" class="w-10 h-10 text-[#c1c6d5]" />
                     </div>
                 @endif
 
                 {{-- Conteúdo --}}
                 <div class="p-4 flex flex-col gap-1.5 flex-1">
                     <div class="flex items-start justify-between gap-2">
-                        <h3 class="text-sm font-semibold text-blue-900 leading-snug">{{ $item->title }}</h3>
+                        <h3 class="text-sm font-bold text-[#191c22] leading-snug group-hover:text-[#0066cc] transition-colors">{{ td($item->title) }}</h3>
                         @if ($item->is_featured)
                             <x-badge color="warning" :text="__('site.common.featured')" />
                         @endif
                     </div>
 
                     @if ($item->category)
-                        <x-badge color="primary" :text="$item->category->name" />
+                        <x-badge color="primary" :text="td($item->category->name)" />
                     @endif
 
                     @if ($item->reference)
-                        <p class="text-xs text-gray-400">{{ __('site.common.ref') }}: {{ $item->reference }}</p>
+                        <p class="text-xs text-[#727784]">{{ __('site.common.ref') }}: {{ $item->reference }}</p>
                     @endif
 
                     @if ($item->description)
-                        <p class="text-sm text-gray-500 leading-relaxed line-clamp-3 mt-1">
-                            {!! strip_tags($item->description) !!}
+                        <p class="text-sm text-[#414753] leading-relaxed line-clamp-3 mt-1">
+                            {!! td(strip_tags($item->description)) !!}
                         </p>
                     @endif
 
@@ -161,12 +161,12 @@ new class extends Component
                             @foreach ($gallery->take(4) as $index => $media)
                                 <button
                                     type="button"
-                                    class="w-12 h-12 rounded-lg overflow-hidden border border-slate-200 hover:border-blue-400 transition shrink-0"
+                                    class="w-12 h-12 rounded-lg overflow-hidden border border-[#e1e2eb] hover:border-[#0066cc] transition shrink-0"
                                     @click="show({{ $imagesJson }}, {{ $index + 1 }})"
                                 >
                                     <img
                                         src="{{ $media->getUrl('thumb') ?: $media->getUrl() }}"
-                                        alt="{{ $item->title }}"
+                                        alt="{{ td($item->title) }}"
                                         class="w-full h-full object-cover"
                                     >
                                 </button>
@@ -174,7 +174,7 @@ new class extends Component
                             @if ($galleryCount > 4)
                                 <button
                                     type="button"
-                                    class="w-12 h-12 rounded-lg bg-slate-100 border border-slate-200 hover:border-blue-400 flex items-center justify-center text-xs font-semibold text-slate-500 transition shrink-0"
+                                    class="w-12 h-12 rounded-lg bg-[#ecedf6] border border-[#e1e2eb] hover:border-[#0066cc] flex items-center justify-center text-xs font-bold text-[#727784] transition shrink-0"
                                     @click="show({{ $imagesJson }}, 5)"
                                 >
                                     +{{ $galleryCount - 4 }}
@@ -185,7 +185,7 @@ new class extends Component
                 </div>
             </div>
         @empty
-            <div class="col-span-full text-center py-16 text-gray-400 text-sm">
+            <div class="col-span-full text-center py-16 text-[#727784] text-sm">
                 {{ __('site.common.no_catalog') }}
             </div>
         @endforelse

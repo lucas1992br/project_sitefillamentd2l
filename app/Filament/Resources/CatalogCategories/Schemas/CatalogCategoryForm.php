@@ -15,24 +15,28 @@ class CatalogCategoryForm
     {
         return $schema
             ->components([
-                Section::make('Informações da Categoria')
+                Section::make('Conteúdo')
                     ->schema([
                         TextInput::make('name')
                             ->label('Nome')
                             ->required()
                             ->maxLength(255)
                             ->live(onBlur: true)
-                            ->afterStateUpdated(fn (string $state, callable $set) => $set('slug', Str::slug($state))),
-
-                        TextInput::make('slug')
-                            ->required()
-                            ->maxLength(255)
-                            ->unique(ignoreRecord: true),
+                            ->afterStateUpdated(fn (?string $state, callable $set) => $set('slug', Str::slug($state ?? ''))),
 
                         Textarea::make('description')
                             ->label('Descrição')
                             ->rows(3)
                             ->columnSpanFull(),
+                    ])
+                    ->columns(2),
+
+                Section::make('Configurações')
+                    ->schema([
+                        TextInput::make('slug')
+                            ->required()
+                            ->maxLength(255)
+                            ->unique(ignoreRecord: true),
 
                         TextInput::make('sort_order')
                             ->label('Ordem')

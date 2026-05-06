@@ -1,0 +1,130 @@
+{
+  "designSystems": [
+    {
+      "name": "assets/6a2dad6a9a0a4ed2951716ab7286b9da",
+      "designSystem": {
+        "displayName": "Industrial Luster",
+        "styleGuidelines": "## Brand & Style\n\nThis design system is engineered to project the core values of high-precision machining: accuracy, reliability, and modern engineering. It moves away from the heavy, dark aesthetics common in the industrial sector, favoring a \"Luminous Industrial\" style that emphasizes transparency and technological sophistication.\n\nThe brand personality is authoritative yet inviting. By utilizing a high-key lighting approach in both UI elements and photography, the design system evokes a laboratory-clean environment where complex metal solutions are executed with surgical precision. The target audience\u2014ranging from procurement officers to senior engineers\u2014should perceive a company that is forward-thinking and meticulous. The visual language balances heavy-duty industrial capability with a refined, high-tech interface.\n\n## Layout & Spacing\n\nThe layout philosophy centers on a 12-column fixed-width grid for desktop, ensuring consistent alignment of technical content. A strict 8px baseline grid governs all vertical rhythm, reinforcing the concept of \"precision machining\" through mathematical consistency.\n\nWhitespace is treated as a premium design element rather than \"empty\" space. Large section paddings (80px+) are used to separate service offerings, preventing the UI from feeling cluttered. Content blocks should utilize consistent gutters of 24px to allow for high-quality industrial imagery to sit comfortably alongside technical specifications.\n\n## Elevation & Depth\n\nTo achieve a \"luminous\" feel, elevation in this design system is conveyed through subtle tonal layering and ambient shadows rather than dramatic dark offsets. \n\nSurfaces utilize \"Surface-over-Surface\" depth, where a white card might sit on a `#F8F9FA` background. Shadows should be exceptionally soft, using a multi-layered approach with very low opacity (3-5%) and a slight blue tint (`rgba(0, 102, 204, 0.05)`) to maintain the cool, metallic temperature of the brand. Borders are kept thin (1px) and light, acting more as \"guides\" than dividers, which contributes to the clear, glass-like atmosphere.\n\n## Components\n\n### Buttons\nPrimary buttons use the Vibrant Blue accent with white text, featuring a subtle gradient to suggest a tactile, high-quality switch. Secondary buttons use a \"Ghost\" style with the Metallic Silver border and slate text.\n\n### Cards\nCards are the primary container for services and products. They should be white with a 1px `#E9ECEF` border and a very soft ambient shadow on hover. This hover state mimics the way light catches the edge of a machined part.\n\n### Input Fields\nInputs use a light gray background (`#F8F9FA`) and an 8px radius. On focus, the border transitions to the Primary Blue, providing a clear \"active\" state that mirrors the illumination of a CNC control panel.\n\n### Chips & Tags\nUsed for material types (e.g., \"Aluminum,\" \"Titanium\"). These utilize a subtle metallic silver background with `label-caps` typography to look like etched metal nameplates.\n\n### Imagery\nPhotography must be bright, featuring natural or high-key studio lighting. Close-up \"macro\" shots of machined parts with shallow depth-of-field should be used to emphasize precision and clean surfaces, avoiding dark, oily, or \"gritty\" workshop aesthetics.",
+        "theme": {
+          "colorMode": "LIGHT",
+          "font": "INTER",
+          "roundness": "ROUND_EIGHT",
+          "customColor": "#0066CC",
+          "headlineFont": "INTER",
+          "bodyFont": "INTER",
+          "labelFont": "INTER",
+          "namedColors": {
+            "background": "#f9f9ff",
+            "error": "#ba1a1a",
+            "error_container": "#ffdad6",
+            "inverse_on_surface": "#eff0f9",
+            "inverse_primary": "#aac7ff",
+            "inverse_surface": "#2e3037",
+            "on_background": "#191c22",
+            "on_error": "#ffffff",
+            "on_error_container": "#93000a",
+            "on_primary": "#ffffff",
+            "on_primary_container": "#dfe8ff",
+            "on_primary_fixed": "#001b3e",
+            "on_primary_fixed_variant": "#00458e",
+            "on_secondary": "#ffffff",
+            "on_secondary_container": "#5f6366",
+            "on_secondary_fixed": "#181c1e",
+            "on_secondary_fixed_variant": "#43474a",
+            "on_surface": "#191c22",
+            "on_surface_variant": "#414753",
+            "on_tertiary": "#ffffff",
+            "on_tertiary_container": "#ffe3d6",
+            "on_tertiary_fixed": "#341100",
+            "on_tertiary_fixed_variant": "#793000",
+            "outline": "#727784",
+            "outline_variant": "#c1c6d5",
+            "primary": "#004e9f",
+            "primary_container": "#0066cc",
+            "primary_fixed": "#d7e3ff",
+            "primary_fixed_dim": "#aac7ff",
+            "secondary": "#5b5f62",
+            "secondary_container": "#dde0e3",
+            "secondary_fixed": "#e0e3e6",
+            "secondary_fixed_dim": "#c4c7ca",
+            "surface": "#f9f9ff",
+            "surface_bright": "#f9f9ff",
+            "surface_container": "#ecedf6",
+            "surface_container_high": "#e6e8f1",
+            "surface_container_highest": "#e1e2eb",
+            "surface_container_low": "#f2f3fc",
+            "surface_container_lowest": "#ffffff",
+            "surface_dim": "#d8d9e2",
+            "surface_tint": "#005cba",
+            "surface_variant": "#e1e2eb",
+            "tertiary": "#883700",
+            "tertiary_container": "#af4900",
+            "tertiary_fixed": "#ffdbcb",
+            "tertiary_fixed_dim": "#ffb692"
+          },
+          "designMd": "---\nname: Industrial Luster\ncolors:\n  surface: '#f9f9ff'\n  surface-dim: '#d8d9e2'\n  surface-bright: '#f9f9ff'\n  surface-container-lowest: '#ffffff'\n  surface-container-low: '#f2f3fc'\n  surface-container: '#ecedf6'\n  surface-container-high: '#e6e8f1'\n  surface-container-highest: '#e1e2eb'\n  on-surface: '#191c22'\n  on-surface-variant: '#414753'\n  inverse-surface: '#2e3037'\n  inverse-on-surface: '#eff0f9'\n  outline: '#727784'\n  outline-variant: '#c1c6d5'\n  surface-tint: '#005cba'\n  primary: '#004e9f'\n  on-primary: '#ffffff'\n  primary-container: '#0066cc'\n  on-primary-container: '#dfe8ff'\n  inverse-primary: '#aac7ff'\n  secondary: '#5b5f62'\n  on-secondary: '#ffffff'\n  secondary-container: '#dde0e3'\n  on-secondary-container: '#5f6366'\n  tertiary: '#883700'\n  on-tertiary: '#ffffff'\n  tertiary-container: '#af4900'\n  on-tertiary-container: '#ffe3d6'\n  error: '#ba1a1a'\n  on-error: '#ffffff'\n  error-container: '#ffdad6'\n  on-error-container: '#93000a'\n  primary-fixed: '#d7e3ff'\n  primary-fixed-dim: '#aac7ff'\n  on-primary-fixed: '#001b3e'\n  on-primary-fixed-variant: '#00458e'\n  secondary-fixed: '#e0e3e6'\n  secondary-fixed-dim: '#c4c7ca'\n  on-secondary-fixed: '#181c1e'\n  on-secondary-fixed-variant: '#43474a'\n  tertiary-fixed: '#ffdbcb'\n  tertiary-fixed-dim: '#ffb692'\n  on-tertiary-fixed: '#341100'\n  on-tertiary-fixed-variant: '#793000'\n  background: '#f9f9ff'\n  on-background: '#191c22'\n  surface-variant: '#e1e2eb'\ntypography:\n  h1:\n    fontFamily: Inter\n    fontSize: 48px\n    fontWeight: '700'\n    lineHeight: '1.2'\n    letterSpacing: -0.02em\n  h2:\n    fontFamily: Inter\n    fontSize: 36px\n    fontWeight: '700'\n    lineHeight: '1.2'\n    letterSpacing: -0.01em\n  h3:\n    fontFamily: Inter\n    fontSize: 24px\n    fontWeight: '600'\n    lineHeight: '1.3'\n  body-lg:\n    fontFamily: Inter\n    fontSize: 18px\n    fontWeight: '400'\n    lineHeight: '1.7'\n  body-md:\n    fontFamily: Inter\n    fontSize: 16px\n    fontWeight: '400'\n    lineHeight: '1.6'\n  label-caps:\n    fontFamily: Inter\n    fontSize: 12px\n    fontWeight: '600'\n    lineHeight: '1.0'\n    letterSpacing: 0.05em\nrounded:\n  sm: 0.25rem\n  DEFAULT: 0.5rem\n  md: 0.75rem\n  lg: 1rem\n  xl: 1.5rem\n  full: 9999px\nspacing:\n  unit: 8px\n  container-max: 1280px\n  gutter: 24px\n  margin-mobile: 16px\n  margin-desktop: 48px\n  stack-sm: 8px\n  stack-md: 24px\n  stack-lg: 48px\n  section-padding: 80px\n---\n\n## Brand & Style\n\nThis design system is engineered to project the core values of high-precision machining: accuracy, reliability, and modern engineering. It moves away from the heavy, dark aesthetics common in the industrial sector, favoring a \"Luminous Industrial\" style that emphasizes transparency and technological sophistication.\n\nThe brand personality is authoritative yet inviting. By utilizing a high-key lighting approach in both UI elements and photography, the design system evokes a laboratory-clean environment where complex metal solutions are executed with surgical precision. The target audience\u2014ranging from procurement officers to senior engineers\u2014should perceive a company that is forward-thinking and meticulous. The visual language balances heavy-duty industrial capability with a refined, high-tech interface.\n\n## Colors\n\nThe color palette is built on a foundation of \"luminous neutrals\" to create an airy, harmonic atmosphere. The primary corporate blue is utilized for core branding and navigation, while a more vibrant accent blue is reserved strictly for interactive calls to action, ensuring they \"pop\" against the metallic background.\n\nSecondary silvers and grays are not merely decorative; they serve as functional layers to separate content without the use of heavy lines. Backgrounds utilize a mix of pure white and very light grays to simulate the reflective surfaces of polished steel and aluminum. Text is kept to a deep slate gray to maintain high contrast while avoiding the visual harshness of pure black, contributing to the overall sophisticated feel.\n\n## Typography\n\nThis design system utilizes **Inter** exclusively to leverage its systematic, utilitarian nature. The typeface conveys a sense of modern engineering and digital precision.\n\nHeadings are set with bold weights and tighter letter-spacing to mirror the density and strength of metal. Body copy prioritizes legibility with a generous line-height (1.6 to 1.7), creating the \"harmonic\" feel required by the brand narrative. A specialized \"label-caps\" style is used for technical specifications and metadata, providing a structured, blueprint-like aesthetic to technical data points.\n\n## Layout & Spacing\n\nThe layout philosophy centers on a 12-column fixed-width grid for desktop, ensuring consistent alignment of technical content. A strict 8px baseline grid governs all vertical rhythm, reinforcing the concept of \"precision machining\" through mathematical consistency.\n\nWhitespace is treated as a premium design element rather than \"empty\" space. Large section paddings (80px+) are used to separate service offerings, preventing the UI from feeling cluttered. Content blocks should utilize consistent gutters of 24px to allow for high-quality industrial imagery to sit comfortably alongside technical specifications.\n\n## Elevation & Depth\n\nTo achieve a \"luminous\" feel, elevation in this design system is conveyed through subtle tonal layering and ambient shadows rather than dramatic dark offsets. \n\nSurfaces utilize \"Surface-over-Surface\" depth, where a white card might sit on a `#F8F9FA` background. Shadows should be exceptionally soft, using a multi-layered approach with very low opacity (3-5%) and a slight blue tint (`rgba(0, 102, 204, 0.05)`) to maintain the cool, metallic temperature of the brand. Borders are kept thin (1px) and light, acting more as \"guides\" than dividers, which contributes to the clear, glass-like atmosphere.\n\n## Shapes\n\nThe shape language reflects the \"finished product\" of machining: smooth, safe, and precise. A standard corner radius of 8px (0.5rem) is applied to all primary components, including buttons, cards, and input fields. \n\nThis specific degree of roundedness bridges the gap between aggressive \"sharp\" industrialism and overly \"soft\" consumer apps. It suggests a tool that has been expertly milled and deburred. For larger containers or hero image masks, a `rounded-xl` (1.5rem) setting may be used to soften the overall layout and enhance the \"inviting\" atmosphere of the brand.\n\n## Components\n\n### Buttons\nPrimary buttons use the Vibrant Blue accent with white text, featuring a subtle gradient to suggest a tactile, high-quality switch. Secondary buttons use a \"Ghost\" style with the Metallic Silver border and slate text.\n\n### Cards\nCards are the primary container for services and products. They should be white with a 1px `#E9ECEF` border and a very soft ambient shadow on hover. This hover state mimics the way light catches the edge of a machined part.\n\n### Input Fields\nInputs use a light gray background (`#F8F9FA`) and an 8px radius. On focus, the border transitions to the Primary Blue, providing a clear \"active\" state that mirrors the illumination of a CNC control panel.\n\n### Chips & Tags\nUsed for material types (e.g., \"Aluminum,\" \"Titanium\"). These utilize a subtle metallic silver background with `label-caps` typography to look like etched metal nameplates.\n\n### Imagery\nPhotography must be bright, featuring natural or high-key studio lighting. Close-up \"macro\" shots of machined parts with shallow depth-of-field should be used to emphasize precision and clean surfaces, avoiding dark, oily, or \"gritty\" workshop aesthetics.",
+          "colorVariant": "FIDELITY",
+          "overridePrimaryColor": "#0066CC",
+          "overrideSecondaryColor": "#E9ECEF",
+          "spacingScale": 2,
+          "typography": {
+            "body-lg": {
+              "fontFamily": "Inter",
+              "fontSize": "18px",
+              "fontWeight": "400",
+              "lineHeight": "1.7"
+            },
+            "body-md": {
+              "fontFamily": "Inter",
+              "fontSize": "16px",
+              "fontWeight": "400",
+              "lineHeight": "1.6"
+            },
+            "h1": {
+              "fontFamily": "Inter",
+              "fontSize": "48px",
+              "fontWeight": "700",
+              "lineHeight": "1.2",
+              "letterSpacing": "-0.02em"
+            },
+            "h2": {
+              "fontFamily": "Inter",
+              "fontSize": "36px",
+              "fontWeight": "700",
+              "lineHeight": "1.2",
+              "letterSpacing": "-0.01em"
+            },
+            "h3": {
+              "fontFamily": "Inter",
+              "fontSize": "24px",
+              "fontWeight": "600",
+              "lineHeight": "1.3"
+            },
+            "label-caps": {
+              "fontFamily": "Inter",
+              "fontSize": "12px",
+              "fontWeight": "600",
+              "lineHeight": "1.0",
+              "letterSpacing": "0.05em"
+            }
+          },
+          "spacing": {
+            "container-max": "1280px",
+            "gutter": "24px",
+            "margin-desktop": "48px",
+            "margin-mobile": "16px",
+            "section-padding": "80px",
+            "stack-lg": "48px",
+            "stack-md": "24px",
+            "stack-sm": "8px",
+            "unit": "8px"
+          },
+          "headlineFontFamily": "Inter",
+          "bodyFontFamily": "Inter",
+          "labelFontFamily": "Inter"
+        }
+      },
+      "version": "1"
+    }
+  ]
+}

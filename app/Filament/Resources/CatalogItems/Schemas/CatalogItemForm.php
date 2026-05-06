@@ -17,7 +17,7 @@ class CatalogItemForm
     {
         return $schema
             ->components([
-                Section::make('Informações do Item')
+                Section::make('Conteúdo')
                     ->schema([
                         TextInput::make('title')
                             ->label('Título')
@@ -28,17 +28,6 @@ class CatalogItemForm
                             ->label('Subtítulo')
                             ->maxLength(255),
 
-                        Select::make('catalog_category_id')
-                            ->label('Categoria')
-                            ->options(CatalogCategory::active()->pluck('name', 'id'))
-                            ->searchable()
-                            ->nullable(),
-
-                        TextInput::make('reference')
-                            ->label('Referência')
-                            ->maxLength(255)
-                            ->placeholder('ex: REF-0001-AB'),
-
                         Textarea::make('description')
                             ->label('Descrição')
                             ->rows(4)
@@ -48,6 +37,24 @@ class CatalogItemForm
                             ->label('Especificações Técnicas')
                             ->rows(4)
                             ->columnSpanFull(),
+                    ])
+                    ->columns(2),
+
+                Section::make('Configurações')
+                    ->schema([
+                        Select::make('catalog_category_id')
+                            ->label('Categoria')
+                            ->options(
+                                CatalogCategory::active()->get()
+                                    ->mapWithKeys(fn ($cat) => [$cat->id => $cat->name])
+                            )
+                            ->searchable()
+                            ->nullable(),
+
+                        TextInput::make('reference')
+                            ->label('Referência')
+                            ->maxLength(255)
+                            ->placeholder('ex: REF-0001-AB'),
 
                         TextInput::make('sort_order')
                             ->label('Ordem')
