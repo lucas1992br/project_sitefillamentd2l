@@ -30,7 +30,7 @@
                 @if($footerLogoUrl)
                     <a href="{{ route('home') }}" class="inline-block mb-4">
                         <img src="{{ $footerLogoUrl }}" alt="{{ config('app.name') }}"
-                             class="h-10 w-auto object-contain {{ $footerLogoFallback ? 'brightness-0 invert' : '' }}" />
+                             class="h-20 w-auto object-contain {{ $footerLogoFallback ? 'brightness-0 invert' : '' }}" />
                     </a>
                 @else
                     <a href="{{ route('home') }}" class="flex items-center gap-2.5 mb-4 w-fit">
