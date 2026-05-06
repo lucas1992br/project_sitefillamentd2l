@@ -55,6 +55,10 @@ class SiteContent extends Model implements HasMedia
         $this->addMediaCollection('logo_footer')
             ->singleFile()
             ->acceptsMimeTypes(['image/jpeg', 'image/png', 'image/webp', 'image/avif', 'image/svg+xml']);
+
+        $this->addMediaCollection('logo_admin')
+            ->singleFile()
+            ->acceptsMimeTypes(['image/jpeg', 'image/png', 'image/webp', 'image/avif', 'image/svg+xml']);
     }
 
     public function registerMediaConversions(?Media $media = null): void

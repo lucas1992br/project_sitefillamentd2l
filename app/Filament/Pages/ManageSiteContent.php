@@ -120,6 +120,31 @@ class ManageSiteContent extends Page
                             ->model($this->record),
                     ]),
 
+                Section::make('Logotipo do Painel Admin')
+                    ->description('Logotipo exibido na barra lateral do painel administrativo (Filament). Se não definido, utiliza o logotipo do cabeçalho.')
+                    ->afterHeader([
+                        \Filament\Actions\Action::make('delete_logo_admin')
+                            ->label('Excluir Logotipo do Admin')
+                            ->color('danger')
+                            ->icon('heroicon-o-trash')
+                            ->requiresConfirmation()
+                            ->modalHeading('Excluir logotipo do painel admin?')
+                            ->modalDescription('Esta ação não pode ser desfeita.')
+                            ->visible(fn () => $this->record->hasMedia('logo_admin'))
+                            ->action(fn () => $this->deleteMedia('logo_admin')),
+                    ])
+                    ->schema([
+                        SpatieMediaLibraryFileUpload::make('logo_admin')
+                            ->label('Arquivo do Logotipo')
+                            ->helperText('Recomendado: versão compacta ou horizontal · fundo transparente (PNG ou SVG)')
+                            ->collection('logo_admin')
+                            ->image()
+                            ->imageEditor()
+                            ->maxSize(2048)
+                            ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp', 'image/avif', 'image/svg+xml'])
+                            ->model($this->record),
+                    ]),
+
                 Section::make('Quem Somos')
                     ->description('Seção de apresentação da empresa exibida na página inicial.')
                     ->afterHeader([

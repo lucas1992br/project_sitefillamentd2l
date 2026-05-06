@@ -22,7 +22,8 @@ class AdminPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
     {
-        $logoUrl = \App\Models\SiteContent::instance()->getFirstMediaUrl('logo');
+        $site    = \App\Models\SiteContent::instance();
+        $logoUrl = $site->getFirstMediaUrl('logo_admin') ?: $site->getFirstMediaUrl('logo');
 
         return $panel
             ->default()
