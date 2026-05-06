@@ -1,6 +1,6 @@
 @extends('layouts.site')
 
-@section('title', 'D2L — Soluções em Metálicas')
+@section('title', config('app.name') . ' — ' . __('site.home.headline1') . ' ' . __('site.home.headline2'))
 @section('description', '')
 
 @section('content')
@@ -168,14 +168,18 @@
 >
     <div class="max-w-7xl mx-auto px-6 md:px-12">
 
-        <div class="text-center mb-12">
-            <p class="text-xs font-bold tracking-widest text-[#0066cc] uppercase mb-3">{{ __('site.home.certifications_tag') }}</p>
-            <h2 class="text-4xl font-bold text-[#191c22] tracking-tight mb-4">{{ __('site.home.certifications_title') }}</h2>
-            @if(__('site.home.certifications_subtitle'))
-                <p class="text-[#414753] max-w-2xl mx-auto text-lg leading-relaxed">
-                    {{ __('site.home.certifications_subtitle') }}
-                </p>
-            @endif
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12">
+            <div>
+                <p class="text-xs font-bold tracking-widest text-[#0066cc] uppercase mb-2">{{ __('site.home.certifications_tag') }}</p>
+                <h2 class="text-4xl font-bold text-[#191c22] tracking-tight">{{ __('site.home.certifications_title') }}</h2>
+                @if(__('site.home.certifications_subtitle'))
+                    <p class="text-[#414753] text-lg leading-relaxed mt-2">{{ __('site.home.certifications_subtitle') }}</p>
+                @endif
+            </div>
+            <a href="{{ route('certifications.index') }}"
+               class="inline-flex items-center gap-2 text-sm font-bold text-[#0066cc] hover:text-[#004e9f] transition shrink-0">
+                {{ __('site.home.certifications_see_all') }} <x-icon name="arrow-right" class="w-4 h-4" />
+            </a>
         </div>
 
         <div
@@ -218,13 +222,6 @@
                         @endif
                     </button>
                 @endforeach
-            </div>
-
-            <div class="text-center">
-                <a href="{{ route('certifications.index') }}"
-                   class="inline-flex items-center gap-2 text-sm font-bold text-[#0066cc] hover:text-[#004e9f] transition">
-                    {{ __('site.home.certifications_see_all') }} <x-icon name="arrow-right" class="w-4 h-4" />
-                </a>
             </div>
 
             {{-- Modal --}}
@@ -520,7 +517,7 @@
 >
     <div class="max-w-7xl mx-auto px-6 md:px-12">
 
-        <div class="text-center mb-12">
+        <div class="mb-12">
             <p class="text-xs font-bold tracking-widest text-[#0066cc] uppercase mb-2">{{ __('site.home.testimonials_tag') }}</p>
             <h2 class="text-4xl font-bold text-[#191c22] tracking-tight">{{ __('site.home.testimonials_title') }}</h2>
         </div>
@@ -602,10 +599,10 @@
                             </p>
                         @endif
                         <h3 class="text-sm font-bold text-[#191c22] mb-2 group-hover:text-[#0066cc] transition-colors leading-snug">
-                            {{ $item->title }}
+                            {{ td($item->title) }}
                         </h3>
                         @if($item->excerpt)
-                            <p class="text-xs text-[#414753] leading-relaxed line-clamp-3">{{ $item->excerpt }}</p>
+                            <p class="text-xs text-[#414753] leading-relaxed line-clamp-3">{{ td($item->excerpt) }}</p>
                         @endif
                     </div>
                 </a>

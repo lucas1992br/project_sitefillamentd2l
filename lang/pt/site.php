@@ -14,6 +14,7 @@ return [
         'contact'         => 'Contato',
         'quote'           => 'Solicite um Orçamento',
         'follow_us'       => 'Siga-nos',
+        'more'            => 'Mais',
     ],
 
     // Footer

@@ -14,6 +14,7 @@ return [
         'contact'         => 'Contact',
         'quote'           => 'Request a Quote',
         'follow_us'       => 'Follow us',
+        'more'            => 'More',
     ],
 
     // Footer
@@ -66,8 +67,8 @@ return [
         'cert_valid_label'       => '(Valid)',
 
         // Testimonials section
-        'testimonials_tag'   => 'Testimonials',
-        'testimonials_title' => 'What our clients say',
+        'testimonials_tag'   => 'Clients',
+        'testimonials_title' => '',
 
         // News section
         'news_tag'     => 'Updates',
@@ -145,7 +146,7 @@ return [
     'news' => [
         'tag'         => 'Stay informed',
         'title'       => 'News',
-        'description' => '.',
+        'description' => '',
         'empty'       => 'No news published yet.',
         'related'     => 'Other news',
     ],

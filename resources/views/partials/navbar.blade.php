@@ -1,5 +1,5 @@
 <nav
-    x-data="{ mobileOpen: false, scrolled: false }"
+    x-data="{ mobileOpen: false, scrolled: false, moreOpen: false }"
     @scroll.window="scrolled = window.scrollY > 10"
     :class="scrolled ? 'shadow-sm shadow-black/5' : ''"
     class="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-md border-b border-[#c1c6d5] transition-shadow duration-300"
@@ -27,7 +27,8 @@
         @php($hasCatalog = \App\Models\CatalogItem::active()->exists())
         @php($hasClients = \App\Models\Client::active()->exists())
 
-        <div class="hidden md:flex items-center gap-8">
+        {{-- Desktop nav --}}
+        <div class="hidden md:flex items-center gap-6">
             <a href="{{ route('home') }}" class="text-sm font-semibold text-[#414753] hover:text-[#0066cc] transition-colors uppercase tracking-wider">{{ __('site.nav.home') }}</a>
             <a href="{{ route('home') }}#quem-somos" class="text-sm font-semibold text-[#414753] hover:text-[#0066cc] transition-colors uppercase tracking-wider">{{ __('site.nav.about') }}</a>
             @if($hasCertifications)
@@ -38,12 +39,52 @@
             @if($hasCatalog)
                 <a href="{{ route('home') }}#catalog" class="text-sm font-semibold text-[#414753] hover:text-[#0066cc] transition-colors uppercase tracking-wider">{{ __('site.nav.catalog') }}</a>
             @endif
-            @if($hasClients)
-                <a href="{{ route('home') }}#clientes" class="text-sm font-semibold text-[#414753] hover:text-[#0066cc] transition-colors uppercase tracking-wider">{{ __('site.nav.clients') }}</a>
+
+            {{-- Clientes e Notícias: dropdown se ambos ativos, links diretos se só um --}}
+            @if($hasClients && $hasNews)
+                <div class="relative"
+                     @mouseenter="moreOpen = true"
+                     @mouseleave="moreOpen = false"
+                >
+                    <button
+                        class="flex items-center justify-center w-7 h-7 rounded-full border border-[#c1c6d5] hover:border-[#0066cc] hover:bg-[#d7e3ff]/50 transition-all"
+                        :class="moreOpen ? 'border-[#0066cc] bg-[#d7e3ff]/50 text-[#0066cc]' : 'text-[#414753]'"
+                    >
+                        <x-icon name="chevron-down" class="w-3.5 h-3.5 transition-transform duration-200" ::class="moreOpen ? 'rotate-180' : ''" />
+                    </button>
+
+                    <div
+                        x-show="moreOpen"
+                        x-transition:enter="transition duration-150 ease-out"
+                        x-transition:enter-start="opacity-0 -translate-y-1"
+                        x-transition:enter-end="opacity-100 translate-y-0"
+                        x-transition:leave="transition duration-100 ease-in"
+                        x-transition:leave-end="opacity-0 -translate-y-1"
+                        class="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-44 bg-white rounded-xl border border-[#e1e2eb] shadow-lg overflow-hidden"
+                        style="display: none"
+                    >
+                        <a href="{{ route('home') }}#clientes"
+                           class="flex items-center gap-2.5 px-4 py-3 text-sm font-semibold text-[#414753] hover:text-[#0066cc] hover:bg-[#f9f9ff] transition-colors">
+                            <x-icon name="user-group" class="w-4 h-4 text-[#0066cc] shrink-0" />
+                            {{ __('site.nav.clients') }}
+                        </a>
+                        <div class="h-px bg-[#e1e2eb]"></div>
+                        <a href="{{ route('news.index') }}"
+                           class="flex items-center gap-2.5 px-4 py-3 text-sm font-semibold text-[#414753] hover:text-[#0066cc] hover:bg-[#f9f9ff] transition-colors">
+                            <x-icon name="newspaper" class="w-4 h-4 text-[#0066cc] shrink-0" />
+                            {{ __('site.nav.news') }}
+                        </a>
+                    </div>
+                </div>
+            @else
+                @if($hasClients)
+                    <a href="{{ route('home') }}#clientes" class="text-sm font-semibold text-[#414753] hover:text-[#0066cc] transition-colors uppercase tracking-wider">{{ __('site.nav.clients') }}</a>
+                @endif
+                @if($hasNews)
+                    <a href="{{ route('news.index') }}" class="text-sm font-semibold text-[#414753] hover:text-[#0066cc] transition-colors uppercase tracking-wider">{{ __('site.nav.news') }}</a>
+                @endif
             @endif
-            @if($hasNews)
-                <a href="{{ route('news.index') }}" class="text-sm font-semibold text-[#414753] hover:text-[#0066cc] transition-colors uppercase tracking-wider">{{ __('site.nav.news') }}</a>
-            @endif
+
             <a href="{{ route('contact') }}" class="text-sm font-semibold text-[#414753] hover:text-[#0066cc] transition-colors uppercase tracking-wider">{{ __('site.nav.contact') }}</a>
         </div>
 
