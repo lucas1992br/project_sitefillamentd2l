@@ -82,15 +82,7 @@ return [
         'stat_ontime'    => 'On-Time Delivery',
 
         // Certifications section extras
-        'certifications_subtitle'  => 'Our processes are audited and certified by independent bodies, ensuring quality in every part delivered.',
-        'why_partner_title'        => 'Why choose D2L?',
-        'why_partner_text'         => 'We combine over 20 years of experience with state-of-the-art machining technology and a rigorous quality management system.',
-        'trust_tech_title'         => 'Advanced Technology',
-        'trust_tech_text'          => 'High-precision CNC mills and lathes with tolerances from ±0.01 mm.',
-        'trust_delivery_title'     => 'On-Time Delivery',
-        'trust_delivery_text'      => '99.8% of orders delivered within the agreed deadline — no surprises.',
-        'trust_quality_title'      => 'Certified Quality',
-        'trust_quality_text'       => 'ISO 9001:2015 quality management system with full traceability at every process step.',
+        'certifications_subtitle'  => '',
 
         // About section
         'about_tag'     => 'About Us',
@@ -111,42 +103,42 @@ return [
     'services' => [
         'what_we_do'  => 'What we do',
         'title'       => 'Services',
-        'description' => 'Full CNC industrial machining services: turning, milling, welding and surface finishing.',
+        'description' => '',
     ],
 
     // Portfolio page
     'portfolio' => [
         'tag'         => 'Our Work',
         'title'       => 'Portfolio',
-        'description' => 'A selection of completed projects across various industries and materials.',
+        'description' => '',
     ],
 
     // Catalog page
     'catalog' => [
         'tag'         => 'Products',
         'title'       => 'Catalog',
-        'description' => 'Browse our available products and solutions, organized by category.',
+        'description' => '',
     ],
 
     // Certifications page
     'certifications' => [
-        'tag'         => 'Quality',
-        'title'       => 'Certifications',
-        'description' => 'Quality management and compliance independently verified.',
-        'empty'       => 'No certifications registered yet.',
-        'issued'      => 'Issued',
-        'valid'       => 'Valid',
-        'expired'     => 'Expired',
-        'see_details' => 'See details',
-        'issuer'      => 'Issuer',
-        'number'      => 'Number',
-        'issued_at'   => 'Issued on',
-        'expires_at'  => 'Valid until',
+        'tag'               => 'Quality & Compliance',
+        'title'             => 'Certifications',
+        'description'       => '',
+        'empty'             => 'No certifications registered yet.',
+        'issued'            => 'Issued',
+        'valid'             => 'Valid',
+        'expired'           => 'Expired',
+        'see_details'       => 'See details',
+        'issuer'            => 'Issuer',
+        'number'            => 'Number',
+        'issued_at'         => 'Issued on',
+        'expires_at'        => 'Valid until',
         'description_label' => 'Description',
-        'document'    => 'Document',
-        'view_pdf'    => 'View Certificate (PDF)',
-        'expired_label' => '(Expired)',
-        'valid_label'   => '(Valid)',
+        'document'          => 'Document',
+        'view_pdf'          => 'View Certificate (PDF)',
+        'expired_label'     => '(Expired)',
+        'valid_label'       => '(Valid)',
     ],
 
     // News page
@@ -187,20 +179,20 @@ return [
 
     // Quote form
     'form' => [
-        'full_name'        => 'Full Name',
-        'email'            => 'E-mail',
-        'phone'            => 'Phone',
-        'company'          => 'Company',
-        'project_details'  => 'Details',
-        'placeholder_name' => 'John Smith',
+        'full_name'           => 'Full Name',
+        'email'               => 'E-mail',
+        'phone'               => 'Phone',
+        'company'             => 'Company',
+        'project_details'     => 'Description:',
+        'placeholder_name'    => 'John Smith',
         'placeholder_email'   => 'john@company.com',
         'placeholder_phone'   => '+1 (555) 000-0000',
         'placeholder_company' => 'Company Ltd',
         'placeholder_message' => 'Please describe your needs in detail.',
-        'submit'           => 'Send Quote Request',
-        'required'         => '*',
-        'success_title'    => 'Thank you!',
-        'success_message'  => 'Your request has been received. We will get back to you shortly.',
-        'send_another'     => 'Send another request',
+        'submit'              => 'Send Quote Request',
+        'required'            => '*',
+        'success_title'       => 'Thank you!',
+        'success_message'     => 'Your request has been received. We will get back to you shortly.',
+        'send_another'        => 'Send another request',
     ],
 ];

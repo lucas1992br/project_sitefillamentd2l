@@ -18,22 +18,18 @@
         </video>
         <div class="absolute inset-0 bg-white/75"></div>
     @else
-        {{-- placeholder gradient --}}
         <div class="absolute inset-0"
              style="background: linear-gradient(135deg, #f9f9ff 0%, #e6e8f1 60%, #d7e3ff 100%);">
         </div>
         <div class="absolute inset-0 bg-tech-grid-light opacity-10"></div>
     @endif
 
-    {{-- Accent blob --}}
     <div class="absolute right-0 top-1/4 w-[520px] h-[520px] rounded-full pointer-events-none"
          style="background: radial-gradient(circle, rgba(0,102,204,0.08) 0%, transparent 70%);"></div>
 
-    {{-- Content --}}
     <div class="relative z-10 max-w-7xl mx-auto px-6 md:px-12 w-full py-28 md:py-36">
         <div class="max-w-3xl">
 
-            {{-- Badge --}}
             <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#0066cc]/30 bg-[#d7e3ff]/60 mb-8">
                 <span class="relative flex h-2 w-2">
                     <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#0066cc] opacity-75"></span>
@@ -42,7 +38,6 @@
                 <span class="text-xs font-bold text-[#004e9f] tracking-widest uppercase">{{ __('site.home.iso_badge') }}</span>
             </div>
 
-            {{-- Headline --}}
             <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight text-[#191c22] mb-6">
                 {{ __('site.home.headline1') }}<br>
                 <span style="color:#0066cc">{{ __('site.home.headline2') }}</span>
@@ -65,7 +60,6 @@
                 </a>
             </div>
 
-            {{-- Redes sociais --}}
             @if($siteContent->whatsapp_url || $siteContent->linkedin_url || $siteContent->instagram_url)
                 <div class="flex items-center gap-3 mt-8">
                     <span class="text-xs text-[#727784] uppercase tracking-widest">{{ __('site.nav.follow_us') }}</span>
@@ -96,415 +90,16 @@
 
 
 {{-- ══════════════════════════════════════════════════
-     2. SERVIÇOS
-══════════════════════════════════════════════════ --}}
-<section id="services" class="py-24 bg-[#f9f9ff] border-t border-[#e1e2eb]">
-    <div class="max-w-7xl mx-auto px-6 md:px-12">
-
-        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-14">
-            <div>
-                <p class="text-xs font-bold tracking-widest text-[#0066cc] uppercase mb-2">{{ __('site.home.services_tag') }}</p>
-                <h2 class="text-4xl font-bold text-[#191c22] tracking-tight">{{ __('site.home.services_title') }}</h2>
-            </div>
-            <a href="{{ route('services.index') }}"
-               class="inline-flex items-center gap-2 text-sm font-bold text-[#0066cc] hover:text-[#004e9f] transition shrink-0">
-                {{ __('site.home.services_see_all') }} <x-icon name="arrow-right" class="w-4 h-4" />
-            </a>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            @foreach($services as $service)
-                <a href="{{ route('services.index') }}"
-                   class="group flex flex-col bg-white rounded-xl border border-[#e1e2eb] overflow-hidden il-card-hover transition-all duration-300 hover:-translate-y-1">
-
-                    @if($service->getFirstMedia('cover'))
-                        <img src="{{ $service->getFirstMediaUrl('cover', 'thumb') }}"
-                             alt="{{ td($service->title) }}"
-                             class="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-500">
-                    @else
-                        <div class="w-full h-40 bg-[#ecedf6] flex items-center justify-center">
-                            <x-icon name="wrench-screwdriver" class="w-10 h-10 text-[#c1c6d5]" />
-                        </div>
-                    @endif
-
-                    <div class="p-6 flex flex-col gap-2 flex-1">
-                        <div class="w-10 h-10 rounded-lg bg-[#d7e3ff] flex items-center justify-center mb-1 group-hover:bg-[#0066cc] transition-colors">
-                            <x-icon name="{{ $service->icon ?? 'cog-6-tooth' }}" class="w-5 h-5 text-[#0066cc] group-hover:text-white transition-colors" />
-                        </div>
-                        <h3 class="text-base font-bold text-[#191c22] group-hover:text-[#0066cc] transition-colors">
-                            {{ td($service->title) }}
-                        </h3>
-                        @if($service->subtitle)
-                            <p class="text-xs font-semibold text-[#727784] uppercase tracking-wider">{{ td($service->subtitle) }}</p>
-                        @endif
-                        <p class="text-sm text-[#414753] leading-relaxed line-clamp-3 mt-auto">
-                            {!! td(strip_tags($service->description)) !!}
-                        </p>
-                        <span class="mt-3 text-sm font-bold text-[#0066cc] flex items-center gap-1 group-hover:gap-2 transition-all">
-                            {{ __('site.common.learn_more') }} <x-icon name="chevron-right" class="w-4 h-4" />
-                        </span>
-                    </div>
-                </a>
-            @endforeach
-        </div>
-    </div>
-</section>
-
-
-{{-- ══════════════════════════════════════════════════
-     3. PORTFÓLIO
-══════════════════════════════════════════════════ --}}
-<section id="portfolio" class="py-24 bg-white border-t border-[#e1e2eb]">
-    <div class="max-w-7xl mx-auto px-6 md:px-12">
-
-        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
-            <div class="max-w-xl">
-                <p class="text-xs font-bold tracking-widest text-[#0066cc] uppercase mb-2">{{ __('site.home.portfolio_tag') }}</p>
-                <h2 class="text-4xl font-bold text-[#191c22] tracking-tight">{{ __('site.home.portfolio_title') }}</h2>
-            </div>
-        </div>
-
-        @if($featuredItems->isEmpty())
-            <div class="text-center py-20 text-[#727784] text-sm">{{ __('site.home.portfolio_empty') }}</div>
-        @else
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-                @foreach($featuredItems as $item)
-                    <a href="{{ route('portfolio.index') }}"
-                       class="group relative rounded-xl overflow-hidden bg-[#ecedf6] border border-[#e1e2eb] il-card-hover transition-all duration-300 hover:-translate-y-1 block aspect-[4/3]">
-
-                        @if($item->getFirstMedia('cover'))
-                            <img src="{{ $item->getFirstMediaUrl('cover', 'thumb') ?: $item->getFirstMediaUrl('cover') }}"
-                                 alt="{{ td($item->title) }}"
-                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        @else
-                            <div class="w-full h-full flex items-center justify-center">
-                                <x-icon name="photo" class="w-12 h-12 text-[#c1c6d5]" />
-                            </div>
-                        @endif
-
-                        <div class="absolute inset-0 bg-gradient-to-t from-[#191c22]/80 via-[#191c22]/20 to-transparent opacity-60 group-hover:opacity-90 transition-opacity"></div>
-
-                        <div class="absolute bottom-0 left-0 p-5 w-full">
-                            @if($item->category)
-                                <span class="inline-block text-xs font-bold text-white bg-[#0066cc] px-2 py-0.5 rounded mb-2 uppercase tracking-wider">
-                                    {{ ucfirst($item->category) }}
-                                </span>
-                            @endif
-                            <h3 class="text-sm font-bold text-white leading-snug">{{ td($item->title) }}</h3>
-                            @if($item->subtitle)
-                                <p class="text-xs text-white/70 mt-1">{{ td($item->subtitle) }}</p>
-                            @endif
-                        </div>
-                    </a>
-                @endforeach
-            </div>
-
-            <div class="text-center mt-10">
-                <a href="{{ route('portfolio.index') }}"
-                   class="inline-flex items-center gap-2 text-sm font-bold text-[#0066cc] hover:text-[#004e9f] transition">
-                    {{ __('site.home.portfolio_see_all') }} <x-icon name="arrow-right" class="w-4 h-4" />
-                </a>
-            </div>
-        @endif
-    </div>
-</section>
-
-
-{{-- ══════════════════════════════════════════════════
-     4. CATÁLOGO
-══════════════════════════════════════════════════ --}}
-@if($featuredCatalogItems->isNotEmpty())
-<section id="catalog" class="py-24 bg-[#f9f9ff] border-t border-[#e1e2eb]">
-    <div class="max-w-7xl mx-auto px-6 md:px-12">
-
-        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-14">
-            <div>
-                <p class="text-xs font-bold tracking-widest text-[#0066cc] uppercase mb-2">{{ __('site.home.catalog_tag') }}</p>
-                <h2 class="text-4xl font-bold text-[#191c22] tracking-tight">{{ __('site.home.catalog_title') }}</h2>
-            </div>
-            <a href="{{ route('catalog.index') }}"
-               class="inline-flex items-center gap-2 text-sm font-bold text-[#0066cc] hover:text-[#004e9f] transition shrink-0">
-                {{ __('site.home.catalog_see_all') }} <x-icon name="arrow-right" class="w-4 h-4" />
-            </a>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            @foreach($featuredCatalogItems as $catalogItem)
-                <div class="group bg-white rounded-xl border border-[#e1e2eb] overflow-hidden il-card-hover transition-all duration-300 hover:-translate-y-1">
-
-                    @if($catalogItem->getFirstMedia('cover'))
-                        <img src="{{ $catalogItem->getFirstMediaUrl('cover', 'thumb') }}"
-                             alt="{{ td($catalogItem->title) }}"
-                             class="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500">
-                    @else
-                        <div class="w-full h-44 bg-[#ecedf6] flex items-center justify-center">
-                            <x-icon name="photo" class="w-10 h-10 text-[#c1c6d5]" />
-                        </div>
-                    @endif
-
-                    <div class="p-5">
-                        @if($catalogItem->category)
-                            <span class="inline-block text-xs font-bold text-[#0066cc] bg-[#d7e3ff] border border-[#aac7ff] px-2 py-0.5 rounded-full mb-2">
-                                {{ td($catalogItem->category->name) }}
-                            </span>
-                        @endif
-                        <h3 class="text-sm font-bold text-[#191c22] mb-1 group-hover:text-[#0066cc] transition-colors leading-snug">
-                            {{ td($catalogItem->title) }}
-                        </h3>
-                        @if($catalogItem->reference)
-                            <p class="text-xs text-[#727784] mb-2">{{ __('site.common.ref') }}: {{ $catalogItem->reference }}</p>
-                        @endif
-                        @if($catalogItem->description)
-                            <p class="text-xs text-[#414753] leading-relaxed line-clamp-2">
-                                {!! td(strip_tags($catalogItem->description)) !!}
-                            </p>
-                        @endif
-                    </div>
-                </div>
-            @endforeach
-        </div>
-    </div>
-</section>
-@endif
-
-
-{{-- ══════════════════════════════════════════════════
-     5. CERTIFICAÇÕES & DEPOIMENTOS
-══════════════════════════════════════════════════ --}}
-@if($certifications->isNotEmpty() || $clients->whereNotNull('testimonial')->isNotEmpty())
-<section id="certifications" class="py-24 bg-white border-t border-[#e1e2eb]">
-    <div class="max-w-7xl mx-auto px-6 md:px-12">
-
-        @if($certifications->isNotEmpty())
-            <div class="text-center mb-12">
-                <p class="text-xs font-bold tracking-widest text-[#0066cc] uppercase mb-3">{{ __('site.home.certifications_tag') }}</p>
-                <h2 class="text-4xl font-bold text-[#191c22] tracking-tight mb-4">{{ __('site.home.certifications_title') }}</h2>
-                <p class="text-[#414753] max-w-2xl mx-auto text-lg leading-relaxed">
-                    {{ __('site.home.certifications_subtitle') }}
-                </p>
-            </div>
-
-            <div
-                x-data="{ open: false, cert: {}, show(c) { this.cert = c; this.open = true; } }"
-                @keydown.escape.window="open = false"
-            >
-                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 mb-20">
-                    @foreach($certifications as $cert)
-                        @php
-                            $certData = [
-                                'name'               => $cert->name,
-                                'issuer'             => $cert->issuer,
-                                'certificate_number' => $cert->certificate_number,
-                                'issued_at'          => $cert->issued_at?->format('d/m/Y'),
-                                'expires_at'         => $cert->expires_at?->format('d/m/Y'),
-                                'description'        => $cert->description,
-                                'is_expired'         => $cert->isExpired(),
-                                'logo_url'           => $cert->getFirstMediaUrl('logo'),
-                                'cert_url'           => $cert->getFirstMediaUrl('certificate'),
-                                'cert_mime'          => $cert->getFirstMedia('certificate')?->mime_type,
-                            ];
-                        @endphp
-                        <button
-                            type="button"
-                            @click="show({{ json_encode($certData) }})"
-                            class="group flex flex-col items-center justify-center p-6 bg-[#f2f3fc] rounded-xl border border-[#e1e2eb] hover:border-[#0066cc] il-card-hover transition-all cursor-pointer"
-                        >
-                            <div class="w-14 h-14 bg-white rounded-full flex items-center justify-center mb-3 border border-[#e1e2eb] group-hover:border-[#0066cc] transition-colors">
-                                @if($cert->getFirstMedia('logo'))
-                                    <img src="{{ $cert->getFirstMediaUrl('logo') }}" alt="{{ $cert->name }}" class="w-8 h-8 object-contain">
-                                @else
-                                    <x-icon name="shield-check" class="w-7 h-7 text-[#0066cc]" />
-                                @endif
-                            </div>
-                            <span class="text-xs font-bold text-[#414753] text-center uppercase tracking-wider leading-tight">{{ $cert->name }}</span>
-                            @if(!$cert->isExpired() && $cert->expires_at)
-                                <span class="mt-2 text-[10px] font-bold text-green-600 bg-green-50 border border-green-100 px-1.5 py-0.5 rounded-full">{{ __('site.home.cert_valid') }}</span>
-                            @elseif($cert->isExpired())
-                                <span class="mt-2 text-[10px] font-bold text-red-500 bg-red-50 border border-red-100 px-1.5 py-0.5 rounded-full">{{ __('site.home.cert_expired') }}</span>
-                            @endif
-                        </button>
-                    @endforeach
-                </div>
-                {{-- Cert Modal --}}
-                <div
-                    x-show="open"
-                    x-transition:enter="transition duration-200"
-                    x-transition:enter-start="opacity-0"
-                    x-transition:enter-end="opacity-100"
-                    x-transition:leave="transition duration-150"
-                    x-transition:leave-end="opacity-0"
-                    class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
-                    @click.self="open = false"
-                    style="display:none"
-                >
-                    <div
-                        x-show="open"
-                        x-transition:enter="transition duration-200"
-                        x-transition:enter-start="opacity-0 scale-95"
-                        x-transition:enter-end="opacity-100 scale-100"
-                        x-transition:leave="transition duration-150"
-                        x-transition:leave-end="opacity-0 scale-95"
-                        class="bg-white rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden border border-[#e1e2eb]"
-                    >
-                        <div class="flex items-center justify-between px-6 py-4 border-b border-[#e1e2eb]">
-                            <div class="flex items-center gap-3">
-                                <div class="w-9 h-9 rounded-full bg-[#d7e3ff] flex items-center justify-center shrink-0">
-                                    <template x-if="cert.logo_url">
-                                        <img :src="cert.logo_url" :alt="cert.name" class="w-6 h-6 object-contain">
-                                    </template>
-                                    <template x-if="!cert.logo_url">
-                                        <x-icon name="shield-check" class="w-5 h-5 text-[#0066cc]" />
-                                    </template>
-                                </div>
-                                <h3 x-text="cert.name" class="text-base font-bold text-[#191c22]"></h3>
-                            </div>
-                            <button @click="open = false" class="text-[#727784] hover:text-[#191c22] transition">
-                                <x-icon name="x-mark" class="w-5 h-5" />
-                            </button>
-                        </div>
-                        <div class="px-6 py-5 space-y-4">
-                            <div class="grid grid-cols-2 gap-4 text-sm">
-                                <div>
-                                    <p class="text-xs text-[#727784] mb-0.5 uppercase tracking-wider">{{ __('site.home.cert_issuer') }}</p>
-                                    <p class="font-semibold text-[#191c22]" x-text="cert.issuer"></p>
-                                </div>
-                                <template x-if="cert.certificate_number">
-                                    <div>
-                                        <p class="text-xs text-[#727784] mb-0.5 uppercase tracking-wider">{{ __('site.home.cert_number') }}</p>
-                                        <p class="font-semibold text-[#191c22]" x-text="cert.certificate_number"></p>
-                                    </div>
-                                </template>
-                                <template x-if="cert.issued_at">
-                                    <div>
-                                        <p class="text-xs text-[#727784] mb-0.5 uppercase tracking-wider">{{ __('site.home.cert_issued_at') }}</p>
-                                        <p class="font-semibold text-[#191c22]" x-text="cert.issued_at"></p>
-                                    </div>
-                                </template>
-                                <template x-if="cert.expires_at">
-                                    <div>
-                                        <p class="text-xs text-[#727784] mb-0.5 uppercase tracking-wider">{{ __('site.home.cert_expires_at') }}</p>
-                                        <p class="font-semibold" :class="cert.is_expired ? 'text-red-500' : 'text-green-600'" x-text="cert.expires_at"></p>
-                                    </div>
-                                </template>
-                            </div>
-                            <template x-if="cert.description">
-                                <div>
-                                    <p class="text-xs text-[#727784] mb-1 uppercase tracking-wider">{{ __('site.home.cert_description') }}</p>
-                                    <p class="text-sm text-[#414753] leading-relaxed" x-text="cert.description"></p>
-                                </div>
-                            </template>
-                            <template x-if="cert.cert_url">
-                                <div>
-                                    <a :href="cert.cert_url" target="_blank" rel="noopener noreferrer"
-                                       class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#d7e3ff] border border-[#aac7ff] text-[#004e9f] text-sm font-bold hover:bg-[#aac7ff] transition">
-                                        <x-icon name="document-arrow-down" class="w-4 h-4" />
-                                        {{ __('site.home.cert_view_pdf') }}
-                                    </a>
-                                </div>
-                            </template>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        @endif
-
-        {{-- Depoimentos --}}
-        @if($clients->where('testimonial', '!=', null)->isNotEmpty())
-            <div id="clientes" class="text-center mt-20 mb-10">
-                <p class="text-xs font-bold tracking-widest text-[#0066cc] uppercase mb-2">{{ __('site.home.testimonials_tag') }}</p>
-                <h3 class="text-3xl font-bold text-[#191c22] tracking-tight">{{ __('site.home.testimonials_title') }}</h3>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                @foreach($clients->whereNotNull('testimonial') as $client)
-                    <div class="bg-[#f9f9ff] rounded-xl border border-[#e1e2eb] p-7 il-card-hover transition-all duration-300">
-                        <div class="text-5xl font-serif text-[#d7e3ff] leading-none mb-3 select-none">"</div>
-                        <p class="text-[#414753] leading-relaxed italic mb-6 text-sm">"{{ $client->testimonial }}"</p>
-                        <div class="flex items-center gap-3">
-                            <div class="w-9 h-9 rounded-full bg-[#0066cc] flex items-center justify-center text-white text-xs font-bold shrink-0">
-                                {{ strtoupper(substr($client->contact_name ?? $client->name, 0, 2)) }}
-                            </div>
-                            <div>
-                                <p class="text-sm font-bold text-[#191c22]">{{ $client->contact_name ?? $client->name }}</p>
-                                @if($client->contact_role)
-                                    <p class="text-xs text-[#727784]">{{ $client->contact_role }} · {{ $client->name }}</p>
-                                @endif
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        @endif
-
-        <div class="text-center mt-10">
-            <a href="{{ route('certifications.index') }}"
-               class="inline-flex items-center gap-2 text-sm font-bold text-[#0066cc] hover:text-[#004e9f] transition">
-                {{ __('site.home.certifications_see_all') }} <x-icon name="arrow-right" class="w-4 h-4" />
-            </a>
-        </div>
-    </div>
-</section>
-@endif
-
-
-{{-- ══════════════════════════════════════════════════
-     6. NOTÍCIAS
-══════════════════════════════════════════════════ --}}
-@if($latestNews->isNotEmpty())
-<section id="noticias" class="py-24 bg-[#f9f9ff] border-t border-[#e1e2eb]">
-    <div class="max-w-7xl mx-auto px-6 md:px-12">
-
-        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-14">
-            <div>
-                <p class="text-xs font-bold tracking-widest text-[#0066cc] uppercase mb-2">{{ __('site.home.news_tag') }}</p>
-                <h2 class="text-4xl font-bold text-[#191c22] tracking-tight">{{ __('site.home.news_title') }}</h2>
-            </div>
-            <a href="{{ route('news.index') }}"
-               class="inline-flex items-center gap-2 text-sm font-bold text-[#0066cc] hover:text-[#004e9f] transition shrink-0">
-                {{ __('site.home.news_see_all') }} <x-icon name="arrow-right" class="w-4 h-4" />
-            </a>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            @foreach($latestNews as $item)
-                <a href="{{ route('news.index') }}"
-                   class="group bg-white rounded-xl border border-[#e1e2eb] overflow-hidden il-card-hover transition-all duration-300 hover:-translate-y-1 block">
-
-                    @if($item->getFirstMedia('cover'))
-                        <img src="{{ $item->getFirstMediaUrl('cover', 'thumb') ?: $item->getFirstMediaUrl('cover') }}"
-                             alt="{{ $item->title }}"
-                             class="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500">
-                    @else
-                        <div class="w-full h-44 bg-[#ecedf6] flex items-center justify-center">
-                            <x-icon name="newspaper" class="w-10 h-10 text-[#c1c6d5]" />
-                        </div>
-                    @endif
-
-                    <div class="p-5">
-                        @if($item->published_at)
-                            <p class="text-xs text-[#0066cc] font-bold uppercase tracking-wider mb-2">
-                                {{ $item->published_at->format('d/m/Y') }}
-                            </p>
-                        @endif
-                        <h3 class="text-sm font-bold text-[#191c22] mb-2 group-hover:text-[#0066cc] transition-colors leading-snug">
-                            {{ $item->title }}
-                        </h3>
-                        @if($item->excerpt)
-                            <p class="text-xs text-[#414753] leading-relaxed line-clamp-3">{{ $item->excerpt }}</p>
-                        @endif
-                    </div>
-                </a>
-            @endforeach
-        </div>
-    </div>
-</section>
-@endif
-
-
-{{-- ══════════════════════════════════════════════════
-     7. QUEM SOMOS
+     2. QUEM SOMOS
 ══════════════════════════════════════════════════ --}}
 @if($siteContent->about_active)
-<section id="quem-somos" class="py-24 bg-white border-t border-[#e1e2eb]">
+<section
+    id="quem-somos"
+    class="py-24 bg-[#f9f9ff] border-t border-[#e1e2eb] transition-all duration-700 ease-out"
+    x-data="{ shown: false }"
+    x-init="new IntersectionObserver(([e]) => { if (e.isIntersecting) { shown = true } }, { threshold: 0.1 }).observe($el)"
+    :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'"
+>
     <div class="max-w-7xl mx-auto px-6 md:px-12">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
@@ -561,9 +156,471 @@
 
 
 {{-- ══════════════════════════════════════════════════
-     8. CONTATO
+     3. CERTIFICAÇÕES
 ══════════════════════════════════════════════════ --}}
-<section id="contact" class="py-24 bg-[#004e9f] relative overflow-hidden">
+@if($certifications->isNotEmpty())
+<section
+    id="certifications"
+    class="py-24 bg-white border-t border-[#e1e2eb] transition-all duration-700 ease-out"
+    x-data="{ shown: false }"
+    x-init="new IntersectionObserver(([e]) => { if (e.isIntersecting) { shown = true } }, { threshold: 0.08 }).observe($el)"
+    :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'"
+>
+    <div class="max-w-7xl mx-auto px-6 md:px-12">
+
+        <div class="text-center mb-12">
+            <p class="text-xs font-bold tracking-widest text-[#0066cc] uppercase mb-3">{{ __('site.home.certifications_tag') }}</p>
+            <h2 class="text-4xl font-bold text-[#191c22] tracking-tight mb-4">{{ __('site.home.certifications_title') }}</h2>
+            @if(__('site.home.certifications_subtitle'))
+                <p class="text-[#414753] max-w-2xl mx-auto text-lg leading-relaxed">
+                    {{ __('site.home.certifications_subtitle') }}
+                </p>
+            @endif
+        </div>
+
+        <div
+            x-data="{ open: false, cert: {}, show(c) { this.cert = c; this.open = true; } }"
+            @keydown.escape.window="open = false"
+        >
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 mb-10">
+                @foreach($certifications as $cert)
+                    @php
+                        $certData = [
+                            'name'               => $cert->name,
+                            'issuer'             => $cert->issuer,
+                            'certificate_number' => $cert->certificate_number,
+                            'issued_at'          => $cert->issued_at?->format('d/m/Y'),
+                            'expires_at'         => $cert->expires_at?->format('d/m/Y'),
+                            'description'        => $cert->description,
+                            'is_expired'         => $cert->isExpired(),
+                            'logo_url'           => $cert->getFirstMediaUrl('logo'),
+                            'cert_url'           => $cert->getFirstMediaUrl('certificate'),
+                            'cert_mime'          => $cert->getFirstMedia('certificate')?->mime_type,
+                        ];
+                    @endphp
+                    <button
+                        type="button"
+                        @click="show({{ json_encode($certData) }})"
+                        class="group flex flex-col items-center justify-center p-6 bg-[#f2f3fc] rounded-xl border border-[#e1e2eb] hover:border-[#0066cc] il-card-hover transition-all cursor-pointer"
+                    >
+                        <div class="w-14 h-14 bg-white rounded-full flex items-center justify-center mb-3 border border-[#e1e2eb] group-hover:border-[#0066cc] transition-colors">
+                            @if($cert->getFirstMedia('logo'))
+                                <img src="{{ $cert->getFirstMediaUrl('logo') }}" alt="{{ $cert->name }}" class="w-8 h-8 object-contain">
+                            @else
+                                <x-icon name="shield-check" class="w-7 h-7 text-[#0066cc]" />
+                            @endif
+                        </div>
+                        <span class="text-xs font-bold text-[#414753] text-center uppercase tracking-wider leading-tight">{{ $cert->name }}</span>
+                        @if(!$cert->isExpired() && $cert->expires_at)
+                            <span class="mt-2 text-[10px] font-bold text-green-600 bg-green-50 border border-green-100 px-1.5 py-0.5 rounded-full">{{ __('site.home.cert_valid') }}</span>
+                        @elseif($cert->isExpired())
+                            <span class="mt-2 text-[10px] font-bold text-red-500 bg-red-50 border border-red-100 px-1.5 py-0.5 rounded-full">{{ __('site.home.cert_expired') }}</span>
+                        @endif
+                    </button>
+                @endforeach
+            </div>
+
+            <div class="text-center">
+                <a href="{{ route('certifications.index') }}"
+                   class="inline-flex items-center gap-2 text-sm font-bold text-[#0066cc] hover:text-[#004e9f] transition">
+                    {{ __('site.home.certifications_see_all') }} <x-icon name="arrow-right" class="w-4 h-4" />
+                </a>
+            </div>
+
+            {{-- Modal --}}
+            <div
+                x-show="open"
+                x-transition:enter="transition duration-200"
+                x-transition:enter-start="opacity-0"
+                x-transition:enter-end="opacity-100"
+                x-transition:leave="transition duration-150"
+                x-transition:leave-end="opacity-0"
+                class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
+                @click.self="open = false"
+                style="display:none"
+            >
+                <div
+                    x-show="open"
+                    x-transition:enter="transition duration-200"
+                    x-transition:enter-start="opacity-0 scale-95"
+                    x-transition:enter-end="opacity-100 scale-100"
+                    x-transition:leave="transition duration-150"
+                    x-transition:leave-end="opacity-0 scale-95"
+                    class="bg-white rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden border border-[#e1e2eb]"
+                >
+                    <div class="flex items-center justify-between px-6 py-4 border-b border-[#e1e2eb]">
+                        <div class="flex items-center gap-3">
+                            <div class="w-9 h-9 rounded-full bg-[#d7e3ff] flex items-center justify-center shrink-0">
+                                <template x-if="cert.logo_url">
+                                    <img :src="cert.logo_url" :alt="cert.name" class="w-6 h-6 object-contain">
+                                </template>
+                                <template x-if="!cert.logo_url">
+                                    <x-icon name="shield-check" class="w-5 h-5 text-[#0066cc]" />
+                                </template>
+                            </div>
+                            <h3 x-text="cert.name" class="text-base font-bold text-[#191c22]"></h3>
+                        </div>
+                        <button @click="open = false" class="text-[#727784] hover:text-[#191c22] transition">
+                            <x-icon name="x-mark" class="w-5 h-5" />
+                        </button>
+                    </div>
+                    <div class="px-6 py-5 space-y-4">
+                        <div class="grid grid-cols-2 gap-4 text-sm">
+                            <div>
+                                <p class="text-xs text-[#727784] mb-0.5 uppercase tracking-wider">{{ __('site.home.cert_issuer') }}</p>
+                                <p class="font-semibold text-[#191c22]" x-text="cert.issuer"></p>
+                            </div>
+                            <template x-if="cert.certificate_number">
+                                <div>
+                                    <p class="text-xs text-[#727784] mb-0.5 uppercase tracking-wider">{{ __('site.home.cert_number') }}</p>
+                                    <p class="font-semibold text-[#191c22]" x-text="cert.certificate_number"></p>
+                                </div>
+                            </template>
+                            <template x-if="cert.issued_at">
+                                <div>
+                                    <p class="text-xs text-[#727784] mb-0.5 uppercase tracking-wider">{{ __('site.home.cert_issued_at') }}</p>
+                                    <p class="font-semibold text-[#191c22]" x-text="cert.issued_at"></p>
+                                </div>
+                            </template>
+                            <template x-if="cert.expires_at">
+                                <div>
+                                    <p class="text-xs text-[#727784] mb-0.5 uppercase tracking-wider">{{ __('site.home.cert_expires_at') }}</p>
+                                    <p class="font-semibold" :class="cert.is_expired ? 'text-red-500' : 'text-green-600'" x-text="cert.expires_at"></p>
+                                </div>
+                            </template>
+                        </div>
+                        <template x-if="cert.description">
+                            <div>
+                                <p class="text-xs text-[#727784] mb-1 uppercase tracking-wider">{{ __('site.home.cert_description') }}</p>
+                                <p class="text-sm text-[#414753] leading-relaxed" x-text="cert.description"></p>
+                            </div>
+                        </template>
+                        <template x-if="cert.cert_url">
+                            <div>
+                                <a :href="cert.cert_url" target="_blank" rel="noopener noreferrer"
+                                   class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#d7e3ff] border border-[#aac7ff] text-[#004e9f] text-sm font-bold hover:bg-[#aac7ff] transition">
+                                    <x-icon name="document-arrow-down" class="w-4 h-4" />
+                                    {{ __('site.home.cert_view_pdf') }}
+                                </a>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@endif
+
+
+{{-- ══════════════════════════════════════════════════
+     4. SERVIÇOS
+══════════════════════════════════════════════════ --}}
+<section
+    id="services"
+    class="py-24 bg-[#f9f9ff] border-t border-[#e1e2eb] transition-all duration-700 ease-out"
+    x-data="{ shown: false }"
+    x-init="new IntersectionObserver(([e]) => { if (e.isIntersecting) { shown = true } }, { threshold: 0.08 }).observe($el)"
+    :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'"
+>
+    <div class="max-w-7xl mx-auto px-6 md:px-12">
+
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-14">
+            <div>
+                <p class="text-xs font-bold tracking-widest text-[#0066cc] uppercase mb-2">{{ __('site.home.services_tag') }}</p>
+                <h2 class="text-4xl font-bold text-[#191c22] tracking-tight">{{ __('site.home.services_title') }}</h2>
+            </div>
+            <a href="{{ route('services.index') }}"
+               class="inline-flex items-center gap-2 text-sm font-bold text-[#0066cc] hover:text-[#004e9f] transition shrink-0">
+                {{ __('site.home.services_see_all') }} <x-icon name="arrow-right" class="w-4 h-4" />
+            </a>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            @foreach($services as $service)
+                <a href="{{ route('services.index') }}"
+                   class="group flex flex-col bg-white rounded-xl border border-[#e1e2eb] overflow-hidden il-card-hover transition-all duration-300 hover:-translate-y-1"
+                   style="transition-delay: {{ $loop->index * 80 }}ms">
+
+                    @if($service->getFirstMedia('cover'))
+                        <img src="{{ $service->getFirstMediaUrl('cover', 'thumb') }}"
+                             alt="{{ td($service->title) }}"
+                             class="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-500">
+                    @else
+                        <div class="w-full h-40 bg-[#ecedf6] flex items-center justify-center">
+                            <x-icon name="wrench-screwdriver" class="w-10 h-10 text-[#c1c6d5]" />
+                        </div>
+                    @endif
+
+                    <div class="p-6 flex flex-col gap-2 flex-1">
+                        <div class="w-10 h-10 rounded-lg bg-[#d7e3ff] flex items-center justify-center mb-1 group-hover:bg-[#0066cc] transition-colors">
+                            <x-icon name="{{ $service->icon ?? 'cog-6-tooth' }}" class="w-5 h-5 text-[#0066cc] group-hover:text-white transition-colors" />
+                        </div>
+                        <h3 class="text-base font-bold text-[#191c22] group-hover:text-[#0066cc] transition-colors">
+                            {{ td($service->title) }}
+                        </h3>
+                        @if($service->subtitle)
+                            <p class="text-xs font-semibold text-[#727784] uppercase tracking-wider">{{ td($service->subtitle) }}</p>
+                        @endif
+                        <p class="text-sm text-[#414753] leading-relaxed line-clamp-3 mt-auto">
+                            {!! td(strip_tags($service->description)) !!}
+                        </p>
+                        <span class="mt-3 text-sm font-bold text-[#0066cc] flex items-center gap-1 group-hover:gap-2 transition-all">
+                            {{ __('site.common.learn_more') }} <x-icon name="chevron-right" class="w-4 h-4" />
+                        </span>
+                    </div>
+                </a>
+            @endforeach
+        </div>
+    </div>
+</section>
+
+
+{{-- ══════════════════════════════════════════════════
+     5. PORTFÓLIO
+══════════════════════════════════════════════════ --}}
+<section
+    id="portfolio"
+    class="py-24 bg-white border-t border-[#e1e2eb] transition-all duration-700 ease-out"
+    x-data="{ shown: false }"
+    x-init="new IntersectionObserver(([e]) => { if (e.isIntersecting) { shown = true } }, { threshold: 0.08 }).observe($el)"
+    :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'"
+>
+    <div class="max-w-7xl mx-auto px-6 md:px-12">
+
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
+            <div class="max-w-xl">
+                <p class="text-xs font-bold tracking-widest text-[#0066cc] uppercase mb-2">{{ __('site.home.portfolio_tag') }}</p>
+                <h2 class="text-4xl font-bold text-[#191c22] tracking-tight">{{ __('site.home.portfolio_title') }}</h2>
+            </div>
+        </div>
+
+        @if($featuredItems->isEmpty())
+            <div class="text-center py-20 text-[#727784] text-sm">{{ __('site.home.portfolio_empty') }}</div>
+        @else
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+                @foreach($featuredItems as $item)
+                    <a href="{{ route('portfolio.index') }}"
+                       class="group relative rounded-xl overflow-hidden bg-[#ecedf6] border border-[#e1e2eb] il-card-hover transition-all duration-300 hover:-translate-y-1 block aspect-[4/3]"
+                       style="transition-delay: {{ $loop->index * 80 }}ms">
+
+                        @if($item->getFirstMedia('cover'))
+                            <img src="{{ $item->getFirstMediaUrl('cover', 'thumb') ?: $item->getFirstMediaUrl('cover') }}"
+                                 alt="{{ td($item->title) }}"
+                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        @else
+                            <div class="w-full h-full flex items-center justify-center">
+                                <x-icon name="photo" class="w-12 h-12 text-[#c1c6d5]" />
+                            </div>
+                        @endif
+
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#191c22]/80 via-[#191c22]/20 to-transparent opacity-60 group-hover:opacity-90 transition-opacity"></div>
+
+                        <div class="absolute bottom-0 left-0 p-5 w-full">
+                            @if($item->category)
+                                <span class="inline-block text-xs font-bold text-white bg-[#0066cc] px-2 py-0.5 rounded mb-2 uppercase tracking-wider">
+                                    {{ ucfirst($item->category) }}
+                                </span>
+                            @endif
+                            <h3 class="text-sm font-bold text-white leading-snug">{{ td($item->title) }}</h3>
+                            @if($item->subtitle)
+                                <p class="text-xs text-white/70 mt-1">{{ td($item->subtitle) }}</p>
+                            @endif
+                        </div>
+                    </a>
+                @endforeach
+            </div>
+
+            <div class="text-center mt-10">
+                <a href="{{ route('portfolio.index') }}"
+                   class="inline-flex items-center gap-2 text-sm font-bold text-[#0066cc] hover:text-[#004e9f] transition">
+                    {{ __('site.home.portfolio_see_all') }} <x-icon name="arrow-right" class="w-4 h-4" />
+                </a>
+            </div>
+        @endif
+    </div>
+</section>
+
+
+{{-- ══════════════════════════════════════════════════
+     6. CATÁLOGO
+══════════════════════════════════════════════════ --}}
+@if($featuredCatalogItems->isNotEmpty())
+<section
+    id="catalog"
+    class="py-24 bg-[#f9f9ff] border-t border-[#e1e2eb] transition-all duration-700 ease-out"
+    x-data="{ shown: false }"
+    x-init="new IntersectionObserver(([e]) => { if (e.isIntersecting) { shown = true } }, { threshold: 0.08 }).observe($el)"
+    :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'"
+>
+    <div class="max-w-7xl mx-auto px-6 md:px-12">
+
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-14">
+            <div>
+                <p class="text-xs font-bold tracking-widest text-[#0066cc] uppercase mb-2">{{ __('site.home.catalog_tag') }}</p>
+                <h2 class="text-4xl font-bold text-[#191c22] tracking-tight">{{ __('site.home.catalog_title') }}</h2>
+            </div>
+            <a href="{{ route('catalog.index') }}"
+               class="inline-flex items-center gap-2 text-sm font-bold text-[#0066cc] hover:text-[#004e9f] transition shrink-0">
+                {{ __('site.home.catalog_see_all') }} <x-icon name="arrow-right" class="w-4 h-4" />
+            </a>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            @foreach($featuredCatalogItems as $catalogItem)
+                <div class="group bg-white rounded-xl border border-[#e1e2eb] overflow-hidden il-card-hover transition-all duration-300 hover:-translate-y-1"
+                     style="transition-delay: {{ $loop->index * 80 }}ms">
+
+                    @if($catalogItem->getFirstMedia('cover'))
+                        <img src="{{ $catalogItem->getFirstMediaUrl('cover', 'thumb') }}"
+                             alt="{{ td($catalogItem->title) }}"
+                             class="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500">
+                    @else
+                        <div class="w-full h-44 bg-[#ecedf6] flex items-center justify-center">
+                            <x-icon name="photo" class="w-10 h-10 text-[#c1c6d5]" />
+                        </div>
+                    @endif
+
+                    <div class="p-5">
+                        @if($catalogItem->category)
+                            <span class="inline-block text-xs font-bold text-[#0066cc] bg-[#d7e3ff] border border-[#aac7ff] px-2 py-0.5 rounded-full mb-2">
+                                {{ td($catalogItem->category->name) }}
+                            </span>
+                        @endif
+                        <h3 class="text-sm font-bold text-[#191c22] mb-1 group-hover:text-[#0066cc] transition-colors leading-snug">
+                            {{ td($catalogItem->title) }}
+                        </h3>
+                        @if($catalogItem->reference)
+                            <p class="text-xs text-[#727784] mb-2">{{ __('site.common.ref') }}: {{ $catalogItem->reference }}</p>
+                        @endif
+                        @if($catalogItem->description)
+                            <p class="text-xs text-[#414753] leading-relaxed line-clamp-2">
+                                {!! td(strip_tags($catalogItem->description)) !!}
+                            </p>
+                        @endif
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+</section>
+@endif
+
+
+{{-- ══════════════════════════════════════════════════
+     7. CLIENTES
+══════════════════════════════════════════════════ --}}
+@if($clients->whereNotNull('testimonial')->isNotEmpty())
+<section
+    id="clientes"
+    class="py-24 bg-white border-t border-[#e1e2eb] transition-all duration-700 ease-out"
+    x-data="{ shown: false }"
+    x-init="new IntersectionObserver(([e]) => { if (e.isIntersecting) { shown = true } }, { threshold: 0.08 }).observe($el)"
+    :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'"
+>
+    <div class="max-w-7xl mx-auto px-6 md:px-12">
+
+        <div class="text-center mb-12">
+            <p class="text-xs font-bold tracking-widest text-[#0066cc] uppercase mb-2">{{ __('site.home.testimonials_tag') }}</p>
+            <h2 class="text-4xl font-bold text-[#191c22] tracking-tight">{{ __('site.home.testimonials_title') }}</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            @foreach($clients->whereNotNull('testimonial') as $client)
+                <div class="bg-[#f9f9ff] rounded-xl border border-[#e1e2eb] p-7 il-card-hover transition-all duration-300"
+                     style="transition-delay: {{ $loop->index * 100 }}ms">
+                    <div class="text-5xl font-serif text-[#d7e3ff] leading-none mb-3 select-none">"</div>
+                    <p class="text-[#414753] leading-relaxed italic mb-6 text-sm">"{{ $client->testimonial }}"</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-full bg-[#0066cc] flex items-center justify-center text-white text-xs font-bold shrink-0">
+                            {{ strtoupper(substr($client->contact_name ?? $client->name, 0, 2)) }}
+                        </div>
+                        <div>
+                            <p class="text-sm font-bold text-[#191c22]">{{ $client->contact_name ?? $client->name }}</p>
+                            @if($client->contact_role)
+                                <p class="text-xs text-[#727784]">{{ $client->contact_role }} · {{ $client->name }}</p>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+</section>
+@endif
+
+
+{{-- ══════════════════════════════════════════════════
+     8. NOTÍCIAS
+══════════════════════════════════════════════════ --}}
+@if($latestNews->isNotEmpty())
+<section
+    id="noticias"
+    class="py-24 bg-[#f9f9ff] border-t border-[#e1e2eb] transition-all duration-700 ease-out"
+    x-data="{ shown: false }"
+    x-init="new IntersectionObserver(([e]) => { if (e.isIntersecting) { shown = true } }, { threshold: 0.08 }).observe($el)"
+    :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'"
+>
+    <div class="max-w-7xl mx-auto px-6 md:px-12">
+
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-14">
+            <div>
+                <p class="text-xs font-bold tracking-widest text-[#0066cc] uppercase mb-2">{{ __('site.home.news_tag') }}</p>
+                <h2 class="text-4xl font-bold text-[#191c22] tracking-tight">{{ __('site.home.news_title') }}</h2>
+            </div>
+            <a href="{{ route('news.index') }}"
+               class="inline-flex items-center gap-2 text-sm font-bold text-[#0066cc] hover:text-[#004e9f] transition shrink-0">
+                {{ __('site.home.news_see_all') }} <x-icon name="arrow-right" class="w-4 h-4" />
+            </a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            @foreach($latestNews as $item)
+                <a href="{{ route('news.index') }}"
+                   class="group bg-white rounded-xl border border-[#e1e2eb] overflow-hidden il-card-hover transition-all duration-300 hover:-translate-y-1 block"
+                   style="transition-delay: {{ $loop->index * 80 }}ms">
+
+                    @if($item->getFirstMedia('cover'))
+                        <img src="{{ $item->getFirstMediaUrl('cover', 'thumb') ?: $item->getFirstMediaUrl('cover') }}"
+                             alt="{{ $item->title }}"
+                             class="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500">
+                    @else
+                        <div class="w-full h-44 bg-[#ecedf6] flex items-center justify-center">
+                            <x-icon name="newspaper" class="w-10 h-10 text-[#c1c6d5]" />
+                        </div>
+                    @endif
+
+                    <div class="p-5">
+                        @if($item->published_at)
+                            <p class="text-xs text-[#0066cc] font-bold uppercase tracking-wider mb-2">
+                                {{ $item->published_at->format('d/m/Y') }}
+                            </p>
+                        @endif
+                        <h3 class="text-sm font-bold text-[#191c22] mb-2 group-hover:text-[#0066cc] transition-colors leading-snug">
+                            {{ $item->title }}
+                        </h3>
+                        @if($item->excerpt)
+                            <p class="text-xs text-[#414753] leading-relaxed line-clamp-3">{{ $item->excerpt }}</p>
+                        @endif
+                    </div>
+                </a>
+            @endforeach
+        </div>
+    </div>
+</section>
+@endif
+
+
+{{-- ══════════════════════════════════════════════════
+     9. CONTATO
+══════════════════════════════════════════════════ --}}
+<section
+    id="contact"
+    class="py-24 bg-[#004e9f] relative overflow-hidden transition-all duration-700 ease-out"
+    x-data="{ shown: false }"
+    x-init="new IntersectionObserver(([e]) => { if (e.isIntersecting) { shown = true } }, { threshold: 0.05 }).observe($el)"
+    :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'"
+>
     <div class="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-[600px] h-[600px] rounded-full bg-white/5 blur-3xl pointer-events-none"></div>
     <div class="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-[#0066cc]/30 blur-3xl pointer-events-none"></div>
 
@@ -576,7 +633,6 @@
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
 
-            {{-- Info --}}
             <div class="lg:col-span-5 space-y-6">
                 <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
                     <h3 class="text-xs font-bold uppercase tracking-widest text-[#aac7ff] mb-5">{{ __('site.home.contact_info_title') }}</h3>
@@ -634,7 +690,6 @@
                 @endif
             </div>
 
-            {{-- Form --}}
             <div class="lg:col-span-7 bg-white rounded-xl border border-[#e1e2eb] p-7 lg:p-10 shadow-2xl">
                 <h3 class="text-lg font-bold text-[#191c22] mb-6 flex items-center gap-2">
                     <x-icon name="document-text" class="w-5 h-5 text-[#0066cc]" />
