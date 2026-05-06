@@ -22,12 +22,22 @@ class AdminPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
     {
+        $logoUrl = \App\Models\SiteContent::instance()->getFirstMediaUrl('logo');
+
         return $panel
             ->default()
             ->id('admin')
             ->path('admin')
             ->maxContentWidth(Width::Full)
             ->login()
+            ->brandName(config('app.name'))
+            ->when(
+                $logoUrl,
+                fn (Panel $p) => $p
+                ->brandLogo($logoUrl)
+                ->brandLogoHeight('3rem')
+                ->darkModeBrandLogo($logoUrl)
+            )
             ->colors([
                 'primary' => Color::Blue,
             ])
