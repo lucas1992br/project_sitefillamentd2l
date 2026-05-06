@@ -20,7 +20,7 @@ class HomeController
             'featuredItems'        => PortfolioItem::active()->where('show_on_home', true)->take(4)->get(),
             'featuredCatalogItems' => CatalogItem::active()->with('category')->featured()->take(4)->get(),
             'certifications'       => Certification::active()->get(),
-            'clients'              => Client::active()->featured()->take(4)->get(),
+            'clients'              => Client::active()->featured()->with('media')->take(8)->get(),
             'latestNews'           => News::published()->with('media')->take(4)->get(),
             'siteContent'          => SiteContent::instance(),
         ]);

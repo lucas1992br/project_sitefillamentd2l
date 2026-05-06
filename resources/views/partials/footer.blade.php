@@ -1,5 +1,5 @@
 @php($footerContent = \App\Models\SiteContent::instance())
-@php($hasClients = \App\Models\Client::active()->whereNotNull('testimonial')->exists())
+@php($hasClients = \App\Models\Client::active()->exists())
 <footer class="bg-[#191c22] text-[#9ca3af]">
     <div class="max-w-7xl mx-auto px-6 md:px-12 py-14">
         {{-- Navigation em linha --}}

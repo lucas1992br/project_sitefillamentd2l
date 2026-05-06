@@ -186,12 +186,12 @@
                 @foreach($certifications as $cert)
                     @php
                         $certData = [
-                            'name'               => $cert->name,
+                            'name'               => td($cert->name),
                             'issuer'             => $cert->issuer,
                             'certificate_number' => $cert->certificate_number,
                             'issued_at'          => $cert->issued_at?->format('d/m/Y'),
                             'expires_at'         => $cert->expires_at?->format('d/m/Y'),
-                            'description'        => $cert->description,
+                            'description'        => td($cert->description),
                             'is_expired'         => $cert->isExpired(),
                             'logo_url'           => $cert->getFirstMediaUrl('logo'),
                             'cert_url'           => $cert->getFirstMediaUrl('certificate'),
@@ -210,7 +210,7 @@
                                 <x-icon name="shield-check" class="w-7 h-7 text-[#0066cc]" />
                             @endif
                         </div>
-                        <span class="text-xs font-bold text-[#414753] text-center uppercase tracking-wider leading-tight">{{ $cert->name }}</span>
+                        <span class="text-xs font-bold text-[#414753] text-center uppercase tracking-wider leading-tight">{{ td($cert->name) }}</span>
                         @if(!$cert->isExpired() && $cert->expires_at)
                             <span class="mt-2 text-[10px] font-bold text-green-600 bg-green-50 border border-green-100 px-1.5 py-0.5 rounded-full">{{ __('site.home.cert_valid') }}</span>
                         @elseif($cert->isExpired())
@@ -510,7 +510,7 @@
 {{-- ══════════════════════════════════════════════════
      7. CLIENTES
 ══════════════════════════════════════════════════ --}}
-@if($clients->whereNotNull('testimonial')->isNotEmpty())
+@if($clients->isNotEmpty())
 <section
     id="clientes"
     class="py-24 bg-white border-t border-[#e1e2eb] transition-all duration-700 ease-out"
@@ -525,23 +525,28 @@
             <h2 class="text-4xl font-bold text-[#191c22] tracking-tight">{{ __('site.home.testimonials_title') }}</h2>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            @foreach($clients->whereNotNull('testimonial') as $client)
-                <div class="bg-[#f9f9ff] rounded-xl border border-[#e1e2eb] p-7 il-card-hover transition-all duration-300"
-                     style="transition-delay: {{ $loop->index * 100 }}ms">
-                    <div class="text-5xl font-serif text-[#d7e3ff] leading-none mb-3 select-none">"</div>
-                    <p class="text-[#414753] leading-relaxed italic mb-6 text-sm">"{{ $client->testimonial }}"</p>
-                    <div class="flex items-center gap-3">
-                        <div class="w-9 h-9 rounded-full bg-[#0066cc] flex items-center justify-center text-white text-xs font-bold shrink-0">
-                            {{ strtoupper(substr($client->contact_name ?? $client->name, 0, 2)) }}
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
+            @foreach($clients as $client)
+                <div class="group flex flex-col items-center gap-4 p-6 bg-[#f9f9ff] rounded-xl border border-[#e1e2eb] il-card-hover transition-all duration-300"
+                     style="transition-delay: {{ $loop->index * 80 }}ms">
+
+                    @if($client->getFirstMedia('logo'))
+                        <div class="w-20 h-20 rounded-xl bg-white border border-[#e1e2eb] flex items-center justify-center overflow-hidden p-2 group-hover:border-[#0066cc] transition-colors">
+                            <img src="{{ $client->getFirstMediaUrl('logo') }}"
+                                 alt="{{ $client->name }}"
+                                 class="w-full h-full object-contain">
                         </div>
-                        <div>
-                            <p class="text-sm font-bold text-[#191c22]">{{ $client->contact_name ?? $client->name }}</p>
-                            @if($client->contact_role)
-                                <p class="text-xs text-[#727784]">{{ $client->contact_role }} · {{ $client->name }}</p>
-                            @endif
+                    @else
+                        <div class="w-20 h-20 rounded-xl bg-[#d7e3ff] border border-[#aac7ff] flex items-center justify-center group-hover:border-[#0066cc] transition-colors">
+                            <span class="text-xl font-bold text-[#0066cc]">{{ strtoupper(substr($client->name, 0, 2)) }}</span>
                         </div>
-                    </div>
+                    @endif
+
+                    <p class="text-sm font-semibold text-[#191c22] text-center leading-snug">{{ $client->name }}</p>
+
+                    @if($client->testimonial)
+                        <p class="text-xs text-[#727784] text-center leading-relaxed line-clamp-3 italic">"{{ $client->testimonial }}"</p>
+                    @endif
                 </div>
             @endforeach
         </div>
@@ -576,7 +581,7 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             @foreach($latestNews as $item)
-                <a href="{{ route('news.index') }}"
+                <a href="{{ route('news.show', $item->slug) }}"
                    class="group bg-white rounded-xl border border-[#e1e2eb] overflow-hidden il-card-hover transition-all duration-300 hover:-translate-y-1 block"
                    style="transition-delay: {{ $loop->index * 80 }}ms">
 
@@ -676,18 +681,6 @@
                     </ul>
                 </div>
 
-                @if($clients->isNotEmpty())
-                    <div>
-                        <h3 class="text-xs font-bold uppercase tracking-widest text-[#aac7ff] mb-4">{{ __('site.home.contact_trusted_by') }}</h3>
-                        <div class="flex flex-wrap gap-2">
-                            @foreach($clients->take(4) as $client)
-                                <span class="text-xs text-white/80 bg-white/10 border border-white/20 px-3 py-1.5 rounded-full">
-                                    {{ $client->name }}
-                                </span>
-                            @endforeach
-                        </div>
-                    </div>
-                @endif
             </div>
 
             <div class="lg:col-span-7 bg-white rounded-xl border border-[#e1e2eb] p-7 lg:p-10 shadow-2xl">

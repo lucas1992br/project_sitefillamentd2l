@@ -26,7 +26,8 @@
             @else
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     @foreach($news as $item)
-                        <article class="group bg-white rounded-xl border border-[#e1e2eb] overflow-hidden il-card-hover transition-all duration-300 hover:-translate-y-1">
+                        <a href="{{ route('news.show', $item->slug) }}"
+                           class="group bg-white rounded-xl border border-[#e1e2eb] overflow-hidden il-card-hover transition-all duration-300 hover:-translate-y-1 block">
 
                             @if($item->getFirstMedia('cover'))
                                 <img
@@ -57,7 +58,7 @@
                                     </p>
                                 @endif
                             </div>
-                        </article>
+                        </a>
                     @endforeach
                 </div>
 

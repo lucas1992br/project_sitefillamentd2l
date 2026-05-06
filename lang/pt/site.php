@@ -66,8 +66,8 @@ return [
         'cert_valid_label'       => '(Válido)',
 
         // Testimonials section
-        'testimonials_tag'   => 'Depoimentos',
-        'testimonials_title' => 'O que dizem nossos clientes',
+        'testimonials_tag'   => 'Clientes',
+        'testimonials_title' => '',
 
         // News section
         'news_tag'     => 'Novidades',
@@ -143,10 +143,11 @@ return [
 
     // News page
     'news' => [
-        'tag'       => 'Novidades',
-        'title'     => 'Notícias',
-        'description' => 'Fique por dentro das últimas novidades, projetos e atualizações da D2L.',
-        'empty'     => 'Nenhuma notícia publicada ainda.',
+        'tag'         => 'Novidades',
+        'title'       => 'Notícias',
+        'description' => '',
+        'empty'       => 'Nenhuma notícia publicada ainda.',
+        'related'     => 'Outras notícias',
     ],
 
     // Contact page
@@ -155,7 +156,7 @@ return [
         'page_desc'    => 'Entre em contato para solicitar um orçamento ou tirar dúvidas sobre nossos serviços.',
         'tag'          => 'Fale Conosco',
         'heading'      => 'Entre em Contato',
-        'subheading'   => 'Preencha o formulário e nossa equipe retornará em breve com uma proposta.',
+        'subheading'   => '',
         'info_title'   => 'Informações de Contato',
         'email'        => 'E-mail',
         'phone'        => 'Telefone',

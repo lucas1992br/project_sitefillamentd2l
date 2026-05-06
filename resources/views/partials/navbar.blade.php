@@ -25,7 +25,7 @@
         @php($hasNews = \App\Models\News::published()->exists())
         @php($hasCertifications = \App\Models\Certification::active()->exists())
         @php($hasCatalog = \App\Models\CatalogItem::active()->exists())
-        @php($hasClients = \App\Models\Client::active()->whereNotNull('testimonial')->exists())
+        @php($hasClients = \App\Models\Client::active()->exists())
 
         <div class="hidden md:flex items-center gap-8">
             <a href="{{ route('home') }}" class="text-sm font-semibold text-[#414753] hover:text-[#0066cc] transition-colors uppercase tracking-wider">{{ __('site.nav.home') }}</a>

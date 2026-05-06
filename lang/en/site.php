@@ -145,8 +145,9 @@ return [
     'news' => [
         'tag'         => 'Stay informed',
         'title'       => 'News',
-        'description' => 'Stay up to date with the latest news, projects and updates from D2L.',
+        'description' => '.',
         'empty'       => 'No news published yet.',
+        'related'     => 'Other news',
     ],
 
     // Contact page
@@ -155,7 +156,7 @@ return [
         'page_desc'    => 'Get in touch to request a quote or ask questions about our services.',
         'tag'          => 'Talk to Us',
         'heading'      => 'Get in Touch',
-        'subheading'   => 'Fill in the form and our team will get back to you shortly with a proposal.',
+        'subheading'   => '',
         'info_title'   => 'Contact Information',
         'email'        => 'E-mail',
         'phone'        => 'Phone',

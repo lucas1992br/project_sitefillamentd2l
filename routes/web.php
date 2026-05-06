@@ -33,6 +33,7 @@ Route::get('/certifications', function () {
 })->name('certifications.index');
 
 Route::get('/noticias', [NewsController::class, 'index'])->name('news.index');
+Route::get('/noticias/{slug}', [NewsController::class, 'show'])->name('news.show');
 
 Route::get('/contact', function () {
     return view('site.contact', [
