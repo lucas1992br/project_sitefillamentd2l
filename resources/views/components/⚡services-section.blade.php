@@ -38,7 +38,8 @@ new class extends Component
                     @if ($service->getFirstMedia('cover'))
                         <img src="{{ $service->getFirstMediaUrl('cover', 'thumb') }}"
                              alt="{{ td($service->title) }}"
-                             class="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-500">
+                             loading="lazy"
+                             class="w-full h-40 object-cover">
                     @else
                         <div class="w-full h-40 bg-[#ecedf6] flex items-center justify-center">
                             <x-icon name="wrench-screwdriver" class="w-10 h-10 text-[#c1c6d5]" />

@@ -9,7 +9,7 @@
         @php($logoUrl = \App\Models\SiteContent::instance()->getFirstMediaUrl('logo'))
         <a href="{{ route('home') }}" class="flex items-center gap-3 shrink-0">
             @if($logoUrl)
-                <img src="{{ $logoUrl }}" alt="{{ config('app.name') }}" class="h-20 sm:h-24 w-auto object-contain" />
+                <img src="{{ $logoUrl }}" alt="{{ config('app.name') }}" class="h-18 w-auto max-w-[220px] object-contain" />
             @else
                 <div class="flex items-center gap-2.5">
                     <div class="w-8 h-8 rounded-lg bg-[#0066cc] flex items-center justify-center shrink-0">
@@ -78,10 +78,10 @@
                 </div>
             @else
                 @if($hasClients)
-                    <a href="{{ route('home') }}#clientes" class="text-sm font-semibold text-[#414753] hover:text-[#0066cc] transition-colors uppercase tracking-wider">{{ __('site.nav.clients') }}</a>
+                    <a href="{{ route('home') }}#clients" class="text-sm font-semibold text-[#414753] hover:text-[#0066cc] transition-colors uppercase tracking-wider">{{ __('site.nav.clients') }}</a>
                 @endif
                 @if($hasNews)
-                    <a href="{{ route('news.index') }}" class="text-sm font-semibold text-[#414753] hover:text-[#0066cc] transition-colors uppercase tracking-wider">{{ __('site.nav.news') }}</a>
+                    <a href="{{ route('news.index') }}#news" class="text-sm font-semibold text-[#414753] hover:text-[#0066cc] transition-colors uppercase tracking-wider">{{ __('site.nav.news') }}</a>
                 @endif
             @endif
 

@@ -21,31 +21,31 @@
                 @foreach ($services as $service)
                     <div class="group bg-white rounded-xl border border-[#e1e2eb] overflow-hidden il-card-hover transition-all duration-300 hover:-translate-y-1">
                         @php
-                            $images = collect();
-                            $cover = $service->getFirstMedia('cover');
+                            $images      = collect();
+                            $svcTitle    = td($service->title);
+                            $svcSubtitle = $service->subtitle ? td($service->subtitle) : null;
+                            $cover       = $service->getFirstMedia('cover');
                             if ($cover) {
                                 $images->push([
-                                    'thumb' => $cover->hasGeneratedConversion('card') ? $cover->getUrl('card') : $cover->getUrl(),
-                                    'full'  => $cover->getUrl(),
-                                    'alt'   => td($service->title),
+                                    'thumb'    => $cover->hasGeneratedConversion('card') ? $cover->getUrl('card') : $cover->getUrl(),
+                                    'full'     => $cover->getUrl(),
+                                    'alt'      => $svcTitle,
+                                    'title'    => $svcTitle,
+                                    'subtitle' => $svcSubtitle,
                                 ]);
                             }
                             foreach ($service->getMedia('gallery') as $media) {
                                 $images->push([
-                                    'thumb' => $media->hasGeneratedConversion('card') ? $media->getUrl('card') : $media->getUrl(),
-                                    'full'  => $media->getUrl(),
-                                    'alt'   => td($service->title),
+                                    'thumb'    => $media->hasGeneratedConversion('card') ? $media->getUrl('card') : $media->getUrl(),
+                                    'full'     => $media->getUrl(),
+                                    'alt'      => $svcTitle,
+                                    'title'    => $svcTitle,
+                                    'subtitle' => $svcSubtitle,
                                 ]);
                             }
                         @endphp
 
-                        @if ($images->isNotEmpty())
-                            <x-image-slider :images="$images" height="h-44" />
-                        @else
-                            <div class="w-full h-44 bg-[#ecedf6] flex items-center justify-center">
-                                <x-icon name="wrench-screwdriver" class="w-10 h-10 text-[#c1c6d5]" />
-                            </div>
-                        @endif
+                        <x-image-gallery :images="$images" height="h-44" />
 
                         <div class="p-6">
                             <div class="w-10 h-10 rounded-lg bg-[#d7e3ff] flex items-center justify-center mb-3 group-hover:bg-[#0066cc] transition-colors">
@@ -64,20 +64,6 @@
                     </div>
                 @endforeach
             </div>
-        </div>
-    </section>
-
-    {{-- CTA --}}
-    <section class="py-16 bg-[#004e9f] text-center relative overflow-hidden">
-        <div class="absolute top-0 right-0 w-96 h-96 rounded-full bg-white/5 blur-3xl pointer-events-none"></div>
-        <div class="relative max-w-2xl mx-auto px-6">
-            <h2 class="text-2xl md:text-3xl font-bold text-white mb-3">{{ __('site.home.cta_quote') }}</h2>
-            <p class="text-[#aac7ff] mb-8">{{ __('site.contact.subheading') }}</p>
-            <a href="{{ route('contact') }}"
-               class="inline-flex items-center gap-2 px-8 py-3.5 rounded-lg bg-white text-[#004e9f] font-bold text-sm hover:bg-[#d7e3ff] transition shadow-lg">
-                <x-icon name="document-text" class="w-4 h-4" />
-                {{ __('site.home.cta_quote') }}
-            </a>
         </div>
     </section>
 

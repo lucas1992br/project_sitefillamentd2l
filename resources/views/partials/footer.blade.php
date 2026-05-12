@@ -40,13 +40,6 @@
                         <span class="text-white font-bold text-lg tracking-tight">{{ config('app.name') }}</span>
                     </a>
                 @endif
-
-                @if($footerContent->about_description)
-                    <p class="text-sm leading-relaxed text-[#9ca3af] max-w-xs line-clamp-3">
-                        {{ Str::limit(strip_tags($footerContent->about_description), 160) }}
-                    </p>
-                @endif
-
                 @if($footerContent->whatsapp_url || $footerContent->linkedin_url || $footerContent->instagram_url)
                     <div class="flex items-center gap-2 mt-6">
                         @if($footerContent->whatsapp_url)

@@ -47,16 +47,30 @@
                 </x-slot:right>
             </x-layout.header>
         </x-slot:header>
+        @php
+            $siteContent   = App\Models\SiteContent::instance();
+            $logoAdminUrl  = $siteContent->getFirstMediaUrl('logo_admin') ?: $siteContent->getFirstMediaUrl('logo');
+        @endphp
         <x-slot:menu>
             <x-side-bar smart collapsible>
                 <x-slot:brand>
-                    <div class="my-4 flex items-center justify-center">
-                        <img src="{{ asset('/assets/images/tsui.png') }}" width="40" height="40" />
+                    <div class="px-4 py-3 flex items-center justify-center border-b border-white/10">
+                        @if($logoAdminUrl)
+                            <img src="{{ $logoAdminUrl }}" alt="{{ config('app.name') }}"
+                                 class="h-10 w-auto max-w-[140px] object-contain" />
+                        @else
+                            <span class="text-sm font-bold text-white truncate">{{ config('app.name') }}</span>
+                        @endif
                     </div>
                 </x-slot:brand>
                 <x-slot:brand-collapsed>
-                    <div class="my-4 flex items-center justify-center">
-                        <img src="{{ asset('/assets/images/tsui.png') }}" width="20" height="20" />
+                    <div class="px-2 py-3 flex items-center justify-center border-b border-white/10">
+                        @if($logoAdminUrl)
+                            <img src="{{ $logoAdminUrl }}" alt="{{ config('app.name') }}"
+                                 class="h-8 w-8 object-contain" />
+                        @else
+                            <span class="text-xs font-bold text-white">{{ substr(config('app.name'), 0, 1) }}</span>
+                        @endif
                     </div>
                 </x-slot:brand-collapsed>
                 <x-side-bar.item text="Dashboard" icon="home" :route="route('dashboard')" />

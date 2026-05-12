@@ -61,7 +61,7 @@ new class extends Component
                                         {{ $client->contact_name ?? $client->name }}
                                     </p>
                                     @if ($client->contact_role)
-                                        <p class="text-xs text-gray-400">{{ $client->contact_role }}, {{ $client->name }}</p>
+                                        <p class="text-xs text-gray-400">{{ td($client->contact_role) }}, {{ $client->name }}</p>
                                     @endif
                                 </div>
                             </div>

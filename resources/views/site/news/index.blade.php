@@ -26,22 +26,24 @@
             @else
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     @foreach($news as $item)
-                        <a href="{{ route('news.show', $item->slug) }}"
-                           class="group bg-white rounded-xl border border-[#e1e2eb] overflow-hidden il-card-hover transition-all duration-300 hover:-translate-y-1 block">
+                        @php
+                            $images   = collect();
+                            $cover    = $item->getFirstMedia('cover');
+                            $newsTitle = td($item->title);
+                            if ($cover) {
+                                $images->push([
+                                    'thumb' => $cover->hasGeneratedConversion('thumb') ? $cover->getUrl('thumb') : $cover->getUrl(),
+                                    'full'  => $cover->getUrl(),
+                                    'alt'   => $newsTitle,
+                                    'title' => $newsTitle,
+                                ]);
+                            }
+                        @endphp
+                        <div class="group bg-white rounded-xl border border-[#e1e2eb] overflow-hidden il-card-hover transition-all duration-300 hover:-translate-y-1">
 
-                            @if($item->getFirstMedia('cover'))
-                                <img
-                                    src="{{ $item->getFirstMediaUrl('cover', 'thumb') ?: $item->getFirstMediaUrl('cover') }}"
-                                    alt="{{ td($item->title) }}"
-                                    class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
-                                >
-                            @else
-                                <div class="w-full h-48 bg-[#ecedf6] flex items-center justify-center">
-                                    <x-icon name="newspaper" class="w-10 h-10 text-[#c1c6d5]" />
-                                </div>
-                            @endif
+                            <x-image-gallery :images="$images" height="h-48" />
 
-                            <div class="p-6">
+                            <a href="{{ route('news.show', $item->slug) }}" class="block p-6">
                                 @if($item->published_at)
                                     <p class="text-xs text-[#0066cc] font-bold uppercase tracking-wider mb-2">
                                         {{ $item->published_at->format('d/m/Y') }}
@@ -57,8 +59,8 @@
                                         {{ td($item->excerpt) }}
                                     </p>
                                 @endif
-                            </div>
-                        </a>
+                            </a>
+                        </div>
                     @endforeach
                 </div>
 

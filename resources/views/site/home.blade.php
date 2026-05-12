@@ -82,12 +82,12 @@
             <div>
                 <p class="text-xs font-bold tracking-widest text-[#0066cc] uppercase mb-3">{{ __('site.home.about_tag') }}</p>
                 <h2 class="text-4xl font-bold text-[#191c22] mb-6 leading-tight tracking-tight">
-                    {{ $siteContent->about_title }}
+                    {{ td($siteContent->about_title) }}
                 </h2>
 
                 @if($siteContent->about_description)
                     <div class="space-y-4 text-[#414753] leading-relaxed text-base">
-                        @foreach(explode("\n", $siteContent->about_description) as $paragraph)
+                        @foreach(explode("\n", td($siteContent->about_description)) as $paragraph)
                             @if(trim($paragraph))
                                 <p>{{ trim($paragraph) }}</p>
                             @endif
@@ -109,7 +109,7 @@
                 @if($siteContent->getFirstMedia('about_image'))
                     <div class="rounded-2xl overflow-hidden shadow-xl border border-[#e1e2eb]">
                         <img src="{{ $siteContent->getFirstMediaUrl('about_image') }}"
-                             alt="{{ $siteContent->about_title }}"
+                             alt="{{ td($siteContent->about_title) }}"
                              class="w-full h-80 lg:h-96 object-cover">
                     </div>
                 @else
@@ -318,7 +318,7 @@
                     @if($service->getFirstMedia('cover'))
                         <img src="{{ $service->getFirstMediaUrl('cover', 'thumb') }}"
                              alt="{{ td($service->title) }}"
-                             class="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-500">
+                             class="w-full h-40 object-cover">
                     @else
                         <div class="w-full h-40 bg-[#ecedf6] flex items-center justify-center">
                             <x-icon name="wrench-screwdriver" class="w-10 h-10 text-[#c1c6d5]" />
@@ -366,6 +366,13 @@
                 <p class="text-xs font-bold tracking-widest text-[#0066cc] uppercase mb-2">{{ __('site.home.portfolio_tag') }}</p>
                 <h2 class="text-4xl font-bold text-[#191c22] tracking-tight">{{ __('site.home.portfolio_title') }}</h2>
             </div>
+
+             <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-14">
+            <a href="{{ route('portfolio.index') }}"
+               class="inline-flex items-center gap-2 text-sm font-bold text-[#0066cc] hover:text-[#004e9f] transition shrink-0">
+                {{ __('site.home.portfolio_see_all') }} <x-icon name="arrow-right" class="w-4 h-4" />
+            </a>
+        </div>
         </div>
 
         @if($featuredItems->isEmpty())
@@ -380,7 +387,8 @@
                         @if($item->getFirstMedia('cover'))
                             <img src="{{ $item->getFirstMediaUrl('cover', 'thumb') ?: $item->getFirstMediaUrl('cover') }}"
                                  alt="{{ td($item->title) }}"
-                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                 loading="lazy"
+                                 class="w-full h-full object-cover">
                         @else
                             <div class="w-full h-full flex items-center justify-center">
                                 <x-icon name="photo" class="w-12 h-12 text-[#c1c6d5]" />
@@ -392,7 +400,7 @@
                         <div class="absolute bottom-0 left-0 p-5 w-full">
                             @if($item->category)
                                 <span class="inline-block text-xs font-bold text-white bg-[#0066cc] px-2 py-0.5 rounded mb-2 uppercase tracking-wider">
-                                    {{ ucfirst($item->category) }}
+                                    {{ td(ucfirst($item->category)) }}
                                 </span>
                             @endif
                             <h3 class="text-sm font-bold text-white leading-snug">{{ td($item->title) }}</h3>
@@ -402,13 +410,6 @@
                         </div>
                     </a>
                 @endforeach
-            </div>
-
-            <div class="text-center mt-10">
-                <a href="{{ route('portfolio.index') }}"
-                   class="inline-flex items-center gap-2 text-sm font-bold text-[#0066cc] hover:text-[#004e9f] transition">
-                    {{ __('site.home.portfolio_see_all') }} <x-icon name="arrow-right" class="w-4 h-4" />
-                </a>
             </div>
         @endif
     </div>
@@ -447,7 +448,8 @@
                     @if($catalogItem->getFirstMedia('cover'))
                         <img src="{{ $catalogItem->getFirstMediaUrl('cover', 'thumb') }}"
                              alt="{{ td($catalogItem->title) }}"
-                             class="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500">
+                             loading="lazy"
+                             class="w-full h-44 object-cover">
                     @else
                         <div class="w-full h-44 bg-[#ecedf6] flex items-center justify-center">
                             <x-icon name="photo" class="w-10 h-10 text-[#c1c6d5]" />
@@ -560,8 +562,9 @@
 
                     @if($item->getFirstMedia('cover'))
                         <img src="{{ $item->getFirstMediaUrl('cover', 'thumb') ?: $item->getFirstMediaUrl('cover') }}"
-                             alt="{{ $item->title }}"
-                             class="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500">
+                             alt="{{ td($item->title) }}"
+                             loading="lazy"
+                             class="w-full h-44 object-cover">
                     @else
                         <div class="w-full h-44 bg-[#ecedf6] flex items-center justify-center">
                             <x-icon name="newspaper" class="w-10 h-10 text-[#c1c6d5]" />

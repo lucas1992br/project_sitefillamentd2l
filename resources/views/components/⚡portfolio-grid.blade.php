@@ -57,7 +57,7 @@ new class extends Component
                     wire:click="$set('category', '{{ $cat }}')"
                     class="px-4 py-1.5 rounded-lg text-sm font-bold transition {{ $category === $cat ? 'bg-[#0066cc] text-white' : 'bg-white text-[#414753] border border-[#e1e2eb] hover:border-[#0066cc] hover:text-[#0066cc]' }}"
                 >
-                    {{ ucfirst($cat) }}
+                    {{ td(ucfirst($cat)) }}
                 </button>
             @endforeach
         </div>
@@ -67,32 +67,32 @@ new class extends Component
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         @forelse ($this->items as $item)
             @php
-                $images = collect();
-                $cover = $item->getFirstMedia('cover');
+                $images    = collect();
+                $itemTitle = td($item->title);
+                $itemSub   = $item->category ? ucfirst($item->category) : ($item->material ?? null);
+                $cover     = $item->getFirstMedia('cover');
                 if ($cover) {
                     $images->push([
-                        'thumb' => $cover->hasGeneratedConversion('thumb') ? $cover->getUrl('thumb') : $cover->getUrl(),
-                        'full'  => $cover->getUrl(),
-                        'alt'   => td($item->title),
+                        'thumb'    => $cover->hasGeneratedConversion('thumb') ? $cover->getUrl('thumb') : $cover->getUrl(),
+                        'full'     => $cover->getUrl(),
+                        'alt'      => $itemTitle,
+                        'title'    => $itemTitle,
+                        'subtitle' => $itemSub,
                     ]);
                 }
                 foreach ($item->getMedia('gallery') as $media) {
                     $images->push([
-                        'thumb' => $media->hasGeneratedConversion('thumb') ? $media->getUrl('thumb') : $media->getUrl(),
-                        'full'  => $media->getUrl(),
-                        'alt'   => td($item->title),
+                        'thumb'    => $media->hasGeneratedConversion('thumb') ? $media->getUrl('thumb') : $media->getUrl(),
+                        'full'     => $media->getUrl(),
+                        'alt'      => $itemTitle,
+                        'title'    => $itemTitle,
+                        'subtitle' => $itemSub,
                     ]);
                 }
             @endphp
             <div wire:key="{{ $item->id }}" class="group bg-white rounded-xl border border-[#e1e2eb] overflow-hidden il-card-hover transition-all duration-300 hover:-translate-y-1 flex flex-col">
 
-                @if ($images->isNotEmpty())
-                    <x-image-slider :images="$images" height="h-48" />
-                @else
-                    <div class="w-full h-48 bg-[#ecedf6] flex items-center justify-center">
-                        <x-icon name="photo" class="w-10 h-10 text-[#c1c6d5]" />
-                    </div>
-                @endif
+                <x-image-gallery :images="$images" height="h-48" />
 
                 <div class="p-5 flex flex-col gap-2 flex-1">
                     <div class="flex items-start justify-between gap-2">
@@ -103,11 +103,11 @@ new class extends Component
                     </div>
 
                     @if ($item->category)
-                        <span class="inline-block w-fit text-xs font-bold text-[#0066cc] bg-[#d7e3ff] border border-[#aac7ff] px-2 py-0.5 rounded-full">{{ ucfirst($item->category) }}</span>
+                        <span class="inline-block w-fit text-xs font-bold text-[#0066cc] bg-[#d7e3ff] border border-[#aac7ff] px-2 py-0.5 rounded-full">{{ td(ucfirst($item->category)) }}</span>
                     @endif
 
                     @if ($item->material)
-                        <p class="text-xs text-[#727784]">{{ __('site.common.material') }}: {{ $item->material }}</p>
+                        <p class="text-xs text-[#727784]">{{ __('site.common.material') }}: {{ td($item->material) }}</p>
                     @endif
 
                     @if ($item->description)

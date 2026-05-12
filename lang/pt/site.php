@@ -31,7 +31,7 @@ return [
         'headline1'      => 'Soluções em Ferramentais,',
         'headline2'      => 'GSE e Dispositivos.',
         'subtext'        => 'A D2L Soluções Metálicas atua no desenvolvimento, fabricação, integração e restauração de Plataformas, Carros de Transporte, Lingas, Dummies, entre outros, para o setor Aeroespacial, Defesa, Óleo & Gás e Automotivo.',
-        'cta_quote'      => 'Solicite um Orçamento',
+        'cta_quote'      => 'Entre em Contato',
         'cta_portfolio'  => 'Ver Portfólio',
 
         // Services section
@@ -90,8 +90,8 @@ return [
         'about_founded' => 'Fundada em :year · :years anos de experiência',
 
         // Contact section (in home)
-        'contact_tag'          => 'Fale Conosco',
-        'contact_title'        => 'Solicite um Orçamento',
+        'contact_tag'          => '',
+        'contact_title'        => 'Entre em Contato',
         'contact_info_title'   => 'Informações de Contato',
         'contact_trusted_by'   => 'Confiado por',
         'contact_email'        => 'E-mail',
@@ -155,7 +155,7 @@ return [
     'contact' => [
         'page_title'   => 'Contato & Orçamento',
         'page_desc'    => 'Entre em contato para solicitar um orçamento ou tirar dúvidas sobre nossos serviços.',
-        'tag'          => 'Fale Conosco',
+        'tag'          => '',
         'heading'      => 'Entre em Contato',
         'subheading'   => '',
         'info_title'   => 'Informações de Contato',
@@ -164,7 +164,7 @@ return [
         'whatsapp'     => 'WhatsApp',
         'address'      => 'Endereço',
         'follow_us'    => 'Siga-nos',
-        'form_heading' => 'Entre em Contato ou tire uma dúvida',
+        'form_heading' => 'Entre em Contato',
     ],
 
     // Common UI

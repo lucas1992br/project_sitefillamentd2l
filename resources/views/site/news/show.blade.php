@@ -28,11 +28,21 @@
             <p class="text-lg text-[#414753] leading-relaxed mb-8">{{ td($item->excerpt) }}</p>
         @endif
 
-        @if($item->getFirstMedia('cover'))
-            <div class="w-64 h-64 rounded-xl overflow-hidden border border-[#e1e2eb] shadow-sm">
-                <img src="{{ $item->getFirstMediaUrl('cover', 'thumb') ?: $item->getFirstMediaUrl('cover') }}"
-                     alt="{{ td($item->title) }}"
-                     class="w-full h-full object-cover">
+        @php
+            $heroImages = collect();
+            $heroCover  = $item->getFirstMedia('cover');
+            if ($heroCover) {
+                $heroImages->push([
+                    'thumb' => $heroCover->hasGeneratedConversion('thumb') ? $heroCover->getUrl('thumb') : $heroCover->getUrl(),
+                    'full'  => $heroCover->getUrl(),
+                    'alt'   => td($item->title),
+                    'title' => td($item->title),
+                ]);
+            }
+        @endphp
+        @if($heroImages->isNotEmpty())
+            <div class="w-full rounded-xl overflow-hidden border border-[#e1e2eb] shadow-sm">
+                <x-image-gallery :images="$heroImages" height="h-64 md:h-80" />
             </div>
         @endif
     </div>
@@ -63,20 +73,24 @@
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             @foreach($related as $news)
-                <a href="{{ route('news.show', $news->slug) }}"
-                   class="group bg-white rounded-xl border border-[#e1e2eb] overflow-hidden il-card-hover transition-all duration-300 hover:-translate-y-1 block">
+                @php
+                    $relImages = collect();
+                    $relCover  = $news->getFirstMedia('cover');
+                    $relTitle  = td($news->title);
+                    if ($relCover) {
+                        $relImages->push([
+                            'thumb' => $relCover->hasGeneratedConversion('thumb') ? $relCover->getUrl('thumb') : $relCover->getUrl(),
+                            'full'  => $relCover->getUrl(),
+                            'alt'   => $relTitle,
+                            'title' => $relTitle,
+                        ]);
+                    }
+                @endphp
+                <div class="group bg-white rounded-xl border border-[#e1e2eb] overflow-hidden il-card-hover transition-all duration-300 hover:-translate-y-1">
 
-                    @if($news->getFirstMedia('cover'))
-                        <img src="{{ $news->getFirstMediaUrl('cover', 'thumb') ?: $news->getFirstMediaUrl('cover') }}"
-                             alt="{{ td($news->title) }}"
-                             class="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500">
-                    @else
-                        <div class="w-full h-44 bg-[#ecedf6] flex items-center justify-center">
-                            <x-icon name="newspaper" class="w-10 h-10 text-[#c1c6d5]" />
-                        </div>
-                    @endif
+                    <x-image-gallery :images="$relImages" height="h-44" />
 
-                    <div class="p-5">
+                    <a href="{{ route('news.show', $news->slug) }}" class="block p-5">
                         @if($news->published_at)
                             <p class="text-xs text-[#0066cc] font-bold uppercase tracking-wider mb-2">
                                 {{ $news->published_at->format('d/m/Y') }}
@@ -85,8 +99,8 @@
                         <h3 class="text-sm font-bold text-[#191c22] leading-snug group-hover:text-[#0066cc] transition-colors">
                             {{ td($news->title) }}
                         </h3>
-                    </div>
-                </a>
+                    </a>
+                </div>
             @endforeach
         </div>
     </div>
