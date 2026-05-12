@@ -85,7 +85,7 @@
                 @endif
             @endif
 
-            <a href="{{ route('contact') }}" class="text-sm font-semibold text-[#414753] hover:text-[#0066cc] transition-colors uppercase tracking-wider">{{ __('site.nav.contact') }}</a>
+            <a href="{{ route('home') }}#contact" class="text-sm font-semibold text-[#414753] hover:text-[#0066cc] transition-colors uppercase tracking-wider">{{ __('site.nav.contact') }}</a>
         </div>
 
         {{-- Language switcher com bandeiras --}}

@@ -27,7 +27,7 @@ return [
 
     // Home — hero
     'home' => [
-        'iso_badge'      => 'ISO9001:2015',
+        'iso_badge'      => '',
         'headline1'      => 'Soluções em Ferramentais,',
         'headline2'      => 'GSE e Dispositivos.',
         'subtext'        => 'A D2L Soluções Metálicas atua no desenvolvimento, fabricação, integração e restauração de Plataformas, Carros de Transporte, Lingas, Dummies, entre outros, para o setor Aeroespacial, Defesa, Óleo & Gás e Automotivo.',
@@ -164,7 +164,7 @@ return [
         'whatsapp'     => 'WhatsApp',
         'address'      => 'Endereço',
         'follow_us'    => 'Siga-nos',
-        'form_heading' => 'Solicite um Orçamento',
+        'form_heading' => 'Entre em Contato ou tire uma dúvida',
     ],
 
     // Common UI
@@ -191,7 +191,7 @@ return [
         'placeholder_phone'   => '+55 (12) 99751-7673',
         'placeholder_company' => 'Empresa Ltda',
         'placeholder_message' => 'Por gentileza, descreva sua necessidade em detalhes.',
-        'submit'           => 'Enviar Solicitação de Orçamento',
+        'submit'           => 'Enviar',
         'required'         => '*',
         'success_title'    => 'Obrigado!',
         'success_message'  => 'Sua solicitação foi recebida. Entraremos em contato em breve.',

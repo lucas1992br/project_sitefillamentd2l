@@ -164,7 +164,7 @@ return [
         'whatsapp'     => 'WhatsApp',
         'address'      => 'Address',
         'follow_us'    => 'Follow us',
-        'form_heading' => 'Request a Quote',
+        'form_heading' => 'Get in touch or ask a question.',
     ],
 
     // Common UI
@@ -191,7 +191,7 @@ return [
         'placeholder_phone'   => '+1 (555) 000-0000',
         'placeholder_company' => 'Company Ltd',
         'placeholder_message' => 'Please describe your needs in detail.',
-        'submit'              => 'Send Quote Request',
+        'submit'              => 'Send',
         'required'            => '*',
         'success_title'       => 'Thank you!',
         'success_message'     => 'Your request has been received. We will get back to you shortly.',
