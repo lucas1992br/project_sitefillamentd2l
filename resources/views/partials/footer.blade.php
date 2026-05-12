@@ -8,17 +8,17 @@
             <div class="flex flex-wrap gap-x-6 gap-y-2">
                 <a href="{{ route('home') }}" class="text-sm hover:text-white transition-colors">{{ __('site.nav.home') }}</a>
                 <a href="{{ route('home') }}#quem-somos" class="text-sm hover:text-white transition-colors">{{ __('site.nav.about') }}</a>
-                <a href="{{ route('certifications.index') }}" class="text-sm hover:text-white transition-colors">{{ __('site.nav.certifications') }}</a>
-                <a href="{{ route('services.index') }}" class="text-sm hover:text-white transition-colors">{{ __('site.nav.services') }}</a>
-                <a href="{{ route('portfolio.index') }}" class="text-sm hover:text-white transition-colors">{{ __('site.nav.portfolio') }}</a>
-                <a href="{{ route('catalog.index') }}" class="text-sm hover:text-white transition-colors">{{ __('site.nav.catalog') }}</a>
+                <a href="{{ route('home') }}#certifications" class="text-sm hover:text-white transition-colors">{{ __('site.nav.certifications') }}</a>
+                <a href="{{ route('home') }}#services" class="text-sm hover:text-white transition-colors">{{ __('site.nav.services') }}</a>
+                <a href="{{ route('home') }}#portfolio" class="text-sm hover:text-white transition-colors">{{ __('site.nav.portfolio') }}</a>
+                <a href="{{ route('home') }}#catalog" class="text-sm hover:text-white transition-colors">{{ __('site.nav.catalog') }}</a>
                 @if($hasClients)
                     <a href="{{ route('home') }}#clientes" class="text-sm hover:text-white transition-colors">{{ __('site.nav.clients') }}</a>
                 @endif
                 @if(\App\Models\News::published()->exists())
-                    <a href="{{ route('news.index') }}" class="text-sm hover:text-white transition-colors">{{ __('site.nav.news') }}</a>
+                    <a href="{{ route('home') }}#noticias" class="text-sm hover:text-white transition-colors">{{ __('site.nav.news') }}</a>
                 @endif
-                <a href="{{ route('contact') }}" class="text-sm hover:text-white transition-colors">{{ __('site.nav.contact') }}</a>
+                <a href="{{ route('home') }}#contact" class="text-sm hover:text-white transition-colors">{{ __('site.nav.contact') }}</a>
             </div>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-10 pb-10 border-b border-white/10 mt-10">

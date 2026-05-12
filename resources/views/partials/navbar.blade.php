@@ -69,7 +69,7 @@
                             {{ __('site.nav.clients') }}
                         </a>
                         <div class="h-px bg-[#e1e2eb]"></div>
-                        <a href="{{ route('news.index') }}"
+                        <a href="{{ route('home') }}#noticias"
                            class="flex items-center gap-2.5 px-4 py-3 text-sm font-semibold text-[#414753] hover:text-[#0066cc] hover:bg-[#f9f9ff] transition-colors">
                             <x-icon name="newspaper" class="w-4 h-4 text-[#0066cc] shrink-0" />
                             {{ __('site.nav.news') }}
@@ -81,7 +81,7 @@
                     <a href="{{ route('home') }}#clients" class="text-sm font-semibold text-[#414753] hover:text-[#0066cc] transition-colors uppercase tracking-wider">{{ __('site.nav.clients') }}</a>
                 @endif
                 @if($hasNews)
-                    <a href="{{ route('news.index') }}#noticias" class="text-sm font-semibold text-[#414753] hover:text-[#0066cc] transition-colors uppercase tracking-wider">{{ __('site.nav.news') }}</a>
+                    <a href="{{ route('home') }}#noticias" class="text-sm font-semibold text-[#414753] hover:text-[#0066cc] transition-colors uppercase tracking-wider">{{ __('site.nav.news') }}</a>
                 @endif
             @endif
 
@@ -145,9 +145,9 @@
             <a href="{{ route('home') }}#clientes" @click="mobileOpen=false" class="text-sm font-semibold text-[#414753] hover:text-[#0066cc] transition-colors">{{ __('site.nav.clients') }}</a>
         @endif
         @if($hasNews)
-            <a href="{{ route('news.index') }}" @click="mobileOpen=false" class="text-sm font-semibold text-[#414753] hover:text-[#0066cc] transition-colors">{{ __('site.nav.news') }}</a>
+            <a href="{{ route('home') }}#noticias" @click="mobileOpen=false" class="text-sm font-semibold text-[#414753] hover:text-[#0066cc] transition-colors">{{ __('site.nav.news') }}</a>
         @endif
-        <a href="{{ route('contact') }}" @click="mobileOpen=false" class="text-sm font-semibold text-[#414753] hover:text-[#0066cc] transition-colors">{{ __('site.nav.contact') }}</a>
+        <a href="{{ route('home') }}#contact" @click="mobileOpen=false" class="text-sm font-semibold text-[#414753] hover:text-[#0066cc] transition-colors">{{ __('site.nav.contact') }}</a>
 
         {{-- Mobile language switcher --}}
         <div class="flex items-center gap-3 pt-2 border-t border-[#e1e2eb]">
