@@ -81,7 +81,7 @@
                     <a href="{{ route('home') }}#clients" class="text-sm font-semibold text-[#414753] hover:text-[#0066cc] transition-colors uppercase tracking-wider">{{ __('site.nav.clients') }}</a>
                 @endif
                 @if($hasNews)
-                    <a href="{{ route('news.index') }}#news" class="text-sm font-semibold text-[#414753] hover:text-[#0066cc] transition-colors uppercase tracking-wider">{{ __('site.nav.news') }}</a>
+                    <a href="{{ route('news.index') }}#noticias" class="text-sm font-semibold text-[#414753] hover:text-[#0066cc] transition-colors uppercase tracking-wider">{{ __('site.nav.news') }}</a>
                 @endif
             @endif
 
