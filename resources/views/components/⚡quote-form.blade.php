@@ -87,9 +87,9 @@ new class extends Component
             <div class="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-4">
                 <x-icon name="check-circle" class="w-8 h-8 text-green-600" />
             </div>
-            <h3 class="text-lg font-semibold text-white mb-2">{{ __('site.form.success_title') }}</h3>
-            <p class="text-sm text-slate-400">{{ __('site.form.success_message') }}</p>
-            <button wire:click="$set('submitted', false)" class="mt-6 text-sm text-blue-400 hover:underline">
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">{{ __('site.form.success_title') }}</h3>
+            <p class="text-sm text-gray-500">{{ __('site.form.success_message') }}</p>
+            <button wire:click="$set('submitted', false)" class="mt-6 text-sm text-blue-600 hover:underline">
                 {{ __('site.form.send_another') }}
             </button>
         </div>
@@ -98,72 +98,72 @@ new class extends Component
 
             {{-- Nome --}}
             <div>
-                <label class="block text-xs font-medium text-slate-300 mb-1.5">
-                    {{ __('site.form.full_name') }} <span class="text-blue-400">*</span>
+                <label class="block text-xs font-medium text-gray-700 mb-1.5">
+                    {{ __('site.form.full_name') }} <span class="text-blue-600">*</span>
                 </label>
                 <input
                     wire:model="name"
                     type="text"
                     placeholder="{{ __('site.form.placeholder_name') }}"
-                    class="w-full rounded-lg border border-white/10 bg-white/5 px-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+                    class="w-full rounded-lg border border-gray-300 bg-white px-3.5 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
                 >
-                @error('name') <p class="text-xs text-red-400 mt-1">{{ $message }}</p> @enderror
+                @error('name') <p class="text-xs text-red-500 mt-1">{{ $message }}</p> @enderror
             </div>
 
             {{-- E-mail --}}
             <div>
-                <label class="block text-xs font-medium text-slate-300 mb-1.5">
-                    {{ __('site.form.email') }} <span class="text-blue-400">*</span>
+                <label class="block text-xs font-medium text-gray-700 mb-1.5">
+                    {{ __('site.form.email') }} <span class="text-blue-600">*</span>
                 </label>
                 <input
                     wire:model="email"
                     type="email"
                     placeholder="{{ __('site.form.placeholder_email') }}"
-                    class="w-full rounded-lg border border-white/10 bg-white/5 px-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+                    class="w-full rounded-lg border border-gray-300 bg-white px-3.5 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
                 >
-                @error('email') <p class="text-xs text-red-400 mt-1">{{ $message }}</p> @enderror
+                @error('email') <p class="text-xs text-red-500 mt-1">{{ $message }}</p> @enderror
             </div>
 
             {{-- Telefone --}}
             <div>
-                <label class="block text-xs font-medium text-slate-300 mb-1.5">
+                <label class="block text-xs font-medium text-gray-700 mb-1.5">
                     {{ __('site.form.phone') }}
                 </label>
                 <input
                     wire:model="phone"
                     type="tel"
                     placeholder="{{ __('site.form.placeholder_phone') }}"
-                    class="w-full rounded-lg border border-white/10 bg-white/5 px-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+                    class="w-full rounded-lg border border-gray-300 bg-white px-3.5 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
                 >
-                @error('phone') <p class="text-xs text-red-400 mt-1">{{ $message }}</p> @enderror
+                @error('phone') <p class="text-xs text-red-500 mt-1">{{ $message }}</p> @enderror
             </div>
 
             {{-- Empresa --}}
             <div>
-                <label class="block text-xs font-medium text-slate-300 mb-1.5">
-                    {{ __('site.form.company') }} <span class="text-blue-400">*</span>
+                <label class="block text-xs font-medium text-gray-700 mb-1.5">
+                    {{ __('site.form.company') }} <span class="text-blue-600">*</span>
                 </label>
                 <input
                     wire:model="company"
                     type="text"
                     placeholder="{{ __('site.form.placeholder_company') }}"
-                    class="w-full rounded-lg border border-white/10 bg-white/5 px-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+                    class="w-full rounded-lg border border-gray-300 bg-white px-3.5 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
                 >
-                @error('company') <p class="text-xs text-red-400 mt-1">{{ $message }}</p> @enderror
+                @error('company') <p class="text-xs text-red-500 mt-1">{{ $message }}</p> @enderror
             </div>
 
             {{-- Mensagem — ocupa as 2 colunas --}}
             <div class="sm:col-span-2">
-                <label class="block text-xs font-medium text-slate-300 mb-1.5">
-                    {{ __('site.form.project_details') }} <span class="text-blue-400">*</span>
+                <label class="block text-xs font-medium text-gray-700 mb-1.5">
+                    {{ __('site.form.project_details') }} <span class="text-blue-600">*</span>
                 </label>
                 <textarea
                     wire:model="message"
                     rows="5"
                     placeholder="{{ __('site.form.placeholder_message') }}"
-                    class="w-full rounded-lg border border-white/10 bg-white/5 px-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition resize-none"
+                    class="w-full rounded-lg border border-gray-300 bg-white px-3.5 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition resize-none"
                 ></textarea>
-                @error('message') <p class="text-xs text-red-400 mt-1">{{ $message }}</p> @enderror
+                @error('message') <p class="text-xs text-red-500 mt-1">{{ $message }}</p> @enderror
             </div>
 
             {{-- Botão — ocupa as 2 colunas --}}
